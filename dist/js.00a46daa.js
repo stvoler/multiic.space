@@ -11319,14 +11319,10 @@ var _menu = _interopRequireDefault(require("./menu"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 _gsap.gsap.registerPlugin(_ScrollTrigger.ScrollTrigger);
 
 var menuEl = document.querySelector('[data-scroll-container]');
 (0, _preloader.preloader)('.item').then(function () {
-  var _scrollTrigger;
-
   var scroll = new _locomotiveScroll.default({
     el: menuEl,
     smooth: true
@@ -11361,16 +11357,19 @@ var menuEl = document.querySelector('[data-scroll-container]');
   });
 
   var tl = _gsap.gsap.timeline({
-    scrollTrigger: (_scrollTrigger = {
+    scrollTrigger: {
       trigger: ".item.active",
       repeat: true,
-      scrub: true,
       pin: ".items",
-      start: "0 0"
-    }, _defineProperty(_scrollTrigger, "scrub", 1), _defineProperty(_scrollTrigger, "end", "+=250%"), _scrollTrigger),
+      start: "0 0",
+      scrub: 2,
+      end: "+=270%"
+    },
     onComplete: aClass,
     onUpdate: rClass
-  }).fromTo("header .border", {
+  });
+
+  tl.fromTo("header .border", {
     width: 1,
     scale: 1
   }, {
@@ -11379,7 +11378,8 @@ var menuEl = document.querySelector('[data-scroll-container]');
     width: 'calc(100vw - 80px)',
     scale: 1,
     ease: "[0.74,0.2,1,-0.22]"
-  }).fromTo(".item .border", {
+  });
+  tl.fromTo(".item .border", {
     borderColor: '#000',
     scale: 1
   }, {
@@ -11388,24 +11388,75 @@ var menuEl = document.querySelector('[data-scroll-container]');
     borderColor: '#fff',
     scale: 1,
     ease: "[0.74,0.2,1,-0.22]"
-  }).to(".item .text", {
-    duration: 4,
-    fontSize: 108
-  }, 0).to(".item .text", {
-    delay: 5,
-    duration: 2,
-    color: "#E5E5E5",
-    fontSize: 15
-  }, 0).to(".menu", {
+  });
+  tl.fromTo(".block-1 .title", {
+    transform: 'translateY(0px) scaleY(1)',
+    lineHeight: 1.2
+  }, {
+    delay: 0.4,
     duration: 3,
-    translateY: -300
+    transform: 'translateY(-300px) scaleY(4.5)',
+    lineHeight: 0.8,
+    ease: "[0.74,0.2,1,-0.22]"
+  });
+  tl.fromTo(".block-1 .text", {
+    transform: 'translateY(0px) scaleY(1)',
+    lineHeight: 1.2
+  }, {
+    delay: 0.3,
+    duration: 2.5,
+    transform: 'translateY(-560px) scaleY(3.5)',
+    lineHeight: 0.8,
+    ease: "[0.74,0.2,1,-0.22]"
+  }); // .to(".item .text", {duration: 4, transform: 'translateY(0px) scaleY(0)'}, 0).to(".item .text", { duration: 2, transform: 'translateY(0px) scaleY(4.5)'}, 0)
+
+  tl.to(".menu", {
+    duration: 3,
+    translateY: '-300px'
   }, 0).to("#trigger", {
     duration: 4,
-    translateX: 100
-  }, 0).fromTo("header", {
-    background: "linear-gradient(to bottom, rgba(229,229,229,0) 0%,rgba(0,0,0,0) 100%)"
+    translateX: '30vw'
+  }, 0); // .fromTo("header", {background: "linear-gradient(to bottom, rgba(229,229,229,0) 0%,rgba(0,0,0,0) 100%)"}, {background: "linear-gradient(to bottom, rgba(229,229,229,0.65) 0%,rgba(0,0,0,0) 100%)"})
+
+  tl.fromTo(".block-2 .title", {
+    transform: 'translateY(0px) scaleY(1)',
+    lineHeight: 1.2
   }, {
-    background: "linear-gradient(to bottom, rgba(229,229,229,0.65) 0%,rgba(0,0,0,0) 100%)"
+    delay: 0.3,
+    duration: 3,
+    transform: 'translateY(-300px) scaleY(4.5)',
+    lineHeight: 0.8,
+    ease: "[0.74,0.2,1,-0.22]"
+  });
+  tl.fromTo(".block-2 .text", {
+    transform: 'translateY(0px) scaleY(1)',
+    lineHeight: 1.2
+  }, {
+    delay: 0.2,
+    duration: 2.5,
+    transform: 'translateY(-500px) scaleY(3.5)',
+    lineHeight: 0.8,
+    ease: "[0.74,0.2,1,-0.22]"
+  });
+  tl.fromTo(".block-3 .title", {
+    transform: 'translateY(0px) scaleY(1)',
+    lineHeight: 1.2
+  }, {
+    delay: 0.3,
+    duration: 3,
+    transform: 'translateY(-300px) scaleY(4.5)',
+    lineHeight: 0.8,
+    ease: "[0.74,0.2,1,-0.22]"
+  });
+  tl.fromTo(".block-3 .text", {
+    transform: 'translateY(0px) scaleY(1)',
+    lineHeight: 1.2
+  }, {
+    delay: 0.2,
+    duration: 2.5,
+    transform: 'translateY(-500px) scaleY(3.5)',
+    lineHeight: 0.8,
+    ease: "[0.74,0.2,1,-0.22]"
   });
 
   function aClass() {
