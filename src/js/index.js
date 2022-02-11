@@ -56,6 +56,7 @@ preloader('.item').then(() => {
       onUpdate: rClass
     })
 
+    .fromTo("header .border", {translateY: 0, scale: 1}, {delay: 2.7, duration: 4.5, translateY: 0, scale: 0.24, ease: "[0.74,0.2,1,-0.22]"})
     .fromTo(".item.active .border", {translateY: 0, scale: 1}, {delay: 2.7, duration: 4.5, translateY: 0, scale: 0.24, ease: "[0.74,0.2,1,-0.22]"})
     .to(".item.active", {duration: 4, fontSize: 108}, 0).to(".item.active", {delay: 5, duration: 2, color: "#E5E5E5",fontSize: 15}, 0)
     .to(".menu", {duration: 3, translateY: -300}, 0).to("#trigger", {duration: 4, translateX: 100}, 0)

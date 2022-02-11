@@ -189,7 +189,7 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"./..\\fonts\\CoFoSans-Regular.woff2":[["CoFoSans-Regular.5c54b224.woff2","fonts/CoFoSans-Regular.woff2"],"fonts/CoFoSans-Regular.woff2"],"./..\\fonts\\CoFoSans-Regular.woff":[["CoFoSans-Regular.a6b1662c.woff","fonts/CoFoSans-Regular.woff"],"fonts/CoFoSans-Regular.woff"],"./..\\fonts\\CoFoSans-Medium.woff2":[["CoFoSans-Medium.bedf3bed.woff2","fonts/CoFoSans-Medium.woff2"],"fonts/CoFoSans-Medium.woff2"],"./..\\fonts\\CoFoSans-Medium.woff":[["CoFoSans-Medium.cf098130.woff","fonts/CoFoSans-Medium.woff"],"fonts/CoFoSans-Medium.woff"],"./..\\fonts\\CoFoSans-Bold.woff2":[["CoFoSans-Bold.6efed0d4.woff2","fonts/CoFoSans-Bold.woff2"],"fonts/CoFoSans-Bold.woff2"],"./..\\fonts\\CoFoSans-Bold.woff":[["CoFoSans-Bold.147cc9dd.woff","fonts/CoFoSans-Bold.woff"],"fonts/CoFoSans-Bold.woff"],"./..\\fonts\\CoFoSans-Black.woff2":[["CoFoSans-Black.8f20e73b.woff2","fonts/CoFoSans-Black.woff2"],"fonts/CoFoSans-Black.woff2"],"./..\\fonts\\CoFoSans-Black.woff":[["CoFoSans-Black.fa351239.woff","fonts/CoFoSans-Black.woff"],"fonts/CoFoSans-Black.woff"],"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -217,7 +217,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56339" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55163" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

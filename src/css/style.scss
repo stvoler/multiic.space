@@ -1,35 +1,4 @@
-$regular: "CoFoSans-Regular";
-$medium: "CoFoSans-Medium";
-$bold: "CoFoSans-Bold";
-$black: "CoFoSans-Black";
-
-@font-face {
-  font-family: $regular;
-  src: url("../fonts/CoFoSans-Regular.woff2") format("woff2"), url("../fonts/CoFoSans-Regular.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: $medium;
-  src: url("../fonts/CoFoSans-Medium.woff2") format("woff2"), url("../fonts/CoFoSans-Medium.woff") format("woff");
-  font-weight: 500;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: $bold;
-  src: url("../fonts/CoFoSans-Bold.woff2") format("woff2"), url("../fonts/CoFoSans-Bold.woff") format("woff");
-  font-weight: bold;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: $black;
-  src: url("../fonts/CoFoSans-Black.woff2") format("woff2"), url("../fonts/CoFoSans-Black.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap');
 
 *,
 *::after,
@@ -43,20 +12,20 @@ $black: "CoFoSans-Black";
 
 body {
   margin: 0;
-  --color-text: #112200;
-  --color-bg: #E5E5E5;
-  --color-link: #112200;
+  --color-bg: #191919;
+  --color-text: #fff ;
+  --color-link: #CBFF33;
   --color-link-hover: #414141;
   --color-menu: #112200;
   --color-menu-hover: #E7411F;
   color: var(--color-text);
   background-color: var(--color-bg);
-  --cursor-stroke: #000;
-  --cursor-fill: #000;
+  --cursor-stroke: #CBFF33;
+  --cursor-fill: #fff;
   --cursor-stroke-width: 1px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: $regular, sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 
 .js {
@@ -99,9 +68,21 @@ header {
   width: 100%;
   top: 0;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
   text-transform: uppercase;
-  z-index: 1;
+  padding: 40px;
+  // z-index: 1;
+
+  .button{
+    grid-column: 4;
+    grid-row: 3;
+  }
+
+  .text{
+    grid-column: 4;
+    grid-row: 4;
+  }
 
   .trigger-input{
     display: block;
@@ -113,7 +94,6 @@ header {
     cursor: pointer;
     opacity: 0;
     z-index: 11;
-    order: 3;
     -webkit-touch-callout: none;
     &:checked ~ #trigger {
       filter: grayscale(0.81);
@@ -123,14 +103,36 @@ header {
       filter: opacity(0);
     }
   }
+  .border{
+    width: calc(100vw - 80px);
+    height: calc(100vh - 80px);
+    border: 1px solid #6D6D6D;
+    display: block;
+    padding: 80px;
+    margin: auto;
+    position: fixed;
+    top: 40px;
+    left: 0;
+    right: 0;
+  }
+}
+
+header,
+.item {
+  display: grid;
+
+  .text{
+    font-size: 18px;
+    line-height: 22px;
+  }
 }
 
 .title{
   font-family: Inter;
   font-style: normal;
   font-weight: normal;
-  font-size: 120.268px;
-  line-height: 146px;
+  font-size: 100px;
+  line-height: 100px;
   color: var(--color-text);
   margin: 18px 0 auto 0;
   grid-column-start: 2;
@@ -139,9 +141,8 @@ header {
 .menu{
   display: flex;
   flex-direction: column;
-  margin: 18px 0 auto 5%;
-  order: 2;
-  font:1.8rem $medium;
+  grid-column: 1;
+  grid-row: 1;
   transition: transform 0.3s ease-out;
   a{
     color: var(--color-link);
@@ -165,7 +166,6 @@ header {
   z-index: 10;
   margin: 0 0 0 auto;
   order: 3;
-  font: 1.6rem $bold;
   
   &:before{
     content: attr(title);
@@ -196,8 +196,7 @@ a {
   user-select: none;
   counter-reset: menucounter;
   display: grid;
-  grid-template-columns: 7.5rem 1fr 1fr 0.9fr 0.9fr 1fr 1fr 7.5rem;
-  grid-gap: 6.3rem;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   &.active{
     padding-top: 213px !important;
     .item.active{
@@ -205,16 +204,7 @@ a {
       order: 2;
       margin: auto;
       height: auto;
-      font-family: $regular;
       color: var(--color-text) !important;
-      picture{
-        &::before{
-          display: none;
-        }
-      }
-      img{
-        transform: none !important;
-      }
       .item-text{
         display: block;
       }
@@ -231,8 +221,12 @@ a {
 }
 
 .item {
-  position: relative;
   order: 2;
+  position: relative;
+  grid-template-columns: 1fr;
+  padding: 80px;
+  height: 100vh;
+  grid-column: 1/-1;
   &:hover {
     h4 {
       color: var(--color-menu-hover);
@@ -261,21 +255,6 @@ a {
   //   grid-column: 2/4;
   //   max-width: 48.5rem;
   // }
-  &:nth-child(2) {
-    grid-column: 4/6;
-  }
-  &:nth-child(3) {
-    grid-column: 6/8;
-    max-width: 48.5rem;
-  }
-  &:nth-child(4) {
-    grid-column: 3/6;
-    max-width: 48rem;
-  }
-  &:nth-child(5) {
-    grid-column: 6/8;
-    max-width: 48rem;
-  }
   &.active{
     grid-column: 1/-1;
     order: 1;
@@ -283,7 +262,6 @@ a {
     width: 100vw;
     height: 100vh;
     position: relative;
-    font:16.9rem/0.81 $medium;
     color: var(--color-text);
     &:before{
       display: none;
@@ -315,31 +293,24 @@ a {
   }
 }
 
-.item-text {
-  position: relative;
-  cursor: pointer;
-  display: block;
-  overflow: hidden;
-  font-size: 2.6rem;
-  margin-top: 20px;
-}
-
-h4 {
-  display: block;
-  font: 1.6rem/1.2 $bold;
-  text-transform: uppercase;
-  white-space: nowrap;
-  color: var(--color-menu);
-  margin-bottom: 12px;
+.text {
+  font-size: 18px;
+  line-height: 22px;
 }
 
 p {
-  font-size: 3.4rem;
   margin: 0;
 }
 
 .js h4 {
   transform: translateY(100%);
+}
+
+.block-1{
+  grid-template-columns: 1fr 1fr;
+  .title{
+    grid-column: 2;
+  }
 }
 
 .hover {

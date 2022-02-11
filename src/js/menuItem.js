@@ -13,7 +13,7 @@ export default class MenuItem {
         this.DOM = {el: el};
         this.inMenuPosition = inMenuPosition;
         this.animatableProperties = animatableProperties;
-        this.DOM.textInner = this.DOM.el.querySelector('h4');
+        this.DOM.textInner = this.DOM.el.querySelector('.text');
         this.layout();
         this.initEvents();
     }
