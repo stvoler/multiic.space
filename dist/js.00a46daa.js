@@ -11319,10 +11319,14 @@ var _menu = _interopRequireDefault(require("./menu"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 _gsap.gsap.registerPlugin(_ScrollTrigger.ScrollTrigger);
 
 var menuEl = document.querySelector('[data-scroll-container]');
 (0, _preloader.preloader)('.item').then(function () {
+  var _scrollTrigger;
+
   var scroll = new _locomotiveScroll.default({
     el: menuEl,
     smooth: true
@@ -11357,38 +11361,37 @@ var menuEl = document.querySelector('[data-scroll-container]');
   });
 
   var tl = _gsap.gsap.timeline({
-    scrollTrigger: {
+    scrollTrigger: (_scrollTrigger = {
       trigger: ".item.active",
       repeat: true,
       scrub: true,
       pin: ".items",
-      start: "0 0",
-      end: "+=250%"
-    },
+      start: "0 0"
+    }, _defineProperty(_scrollTrigger, "scrub", 1), _defineProperty(_scrollTrigger, "end", "+=250%"), _scrollTrigger),
     onComplete: aClass,
     onUpdate: rClass
   }).fromTo("header .border", {
-    translateY: 0,
+    width: 1,
     scale: 1
   }, {
     delay: 2.7,
     duration: 4.5,
-    translateY: 0,
-    scale: 0.24,
+    width: 'calc(100vw - 80px)',
+    scale: 1,
     ease: "[0.74,0.2,1,-0.22]"
-  }).fromTo(".item.active .border", {
-    translateY: 0,
+  }).fromTo(".item .border", {
+    borderColor: '#000',
     scale: 1
   }, {
     delay: 2.7,
     duration: 4.5,
-    translateY: 0,
-    scale: 0.24,
+    borderColor: '#fff',
+    scale: 1,
     ease: "[0.74,0.2,1,-0.22]"
-  }).to(".item.active", {
+  }).to(".item .text", {
     duration: 4,
     fontSize: 108
-  }, 0).to(".item.active", {
+  }, 0).to(".item .text", {
     delay: 5,
     duration: 2,
     color: "#E5E5E5",
@@ -11447,7 +11450,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55163" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61362" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

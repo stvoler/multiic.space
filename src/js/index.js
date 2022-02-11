@@ -50,15 +50,16 @@ preloader('.item').then(() => {
         scrub: true,
         pin: ".items",
         start: "0 0",
+        scrub: 1,
         end: "+=250%"
       },
       onComplete: aClass,
       onUpdate: rClass
     })
 
-    .fromTo("header .border", {translateY: 0, scale: 1}, {delay: 2.7, duration: 4.5, translateY: 0, scale: 0.24, ease: "[0.74,0.2,1,-0.22]"})
-    .fromTo(".item.active .border", {translateY: 0, scale: 1}, {delay: 2.7, duration: 4.5, translateY: 0, scale: 0.24, ease: "[0.74,0.2,1,-0.22]"})
-    .to(".item.active", {duration: 4, fontSize: 108}, 0).to(".item.active", {delay: 5, duration: 2, color: "#E5E5E5",fontSize: 15}, 0)
+    .fromTo("header .border", {width: 1, scale: 1}, {delay: 2.7, duration: 4.5, width: 'calc(100vw - 80px)', scale: 1, ease: "[0.74,0.2,1,-0.22]"})
+    .fromTo(".item .border", {borderColor: '#000', scale: 1}, {delay: 2.7, duration: 4.5, borderColor: '#fff', scale: 1, ease: "[0.74,0.2,1,-0.22]"})
+    .to(".item .text", {duration: 4, fontSize: 108}, 0).to(".item .text", {delay: 5, duration: 2, color: "#E5E5E5",fontSize: 15}, 0)
     .to(".menu", {duration: 3, translateY: -300}, 0).to("#trigger", {duration: 4, translateX: 100}, 0)
     .fromTo("header", {background: "linear-gradient(to bottom, rgba(229,229,229,0) 0%,rgba(0,0,0,0) 100%)"}, {background: "linear-gradient(to bottom, rgba(229,229,229,0.65) 0%,rgba(0,0,0,0) 100%)"})
 
