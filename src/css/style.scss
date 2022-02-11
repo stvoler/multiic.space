@@ -197,22 +197,22 @@ a {
   counter-reset: menucounter;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  &.active{
-    padding-top: 213px !important;
-    .item.active{
-      grid-column: 4/6;
-      order: 2;
-      margin: auto;
-      height: auto;
-      color: var(--color-text) !important;
-      .item-text{
-        display: block;
-      }
-      .hover{
-        display: block;
-      }
-    }
-  }
+  // &.active{
+  //   padding-top: 213px !important;
+  //   .item.active{
+  //     grid-column: 4/6;
+  //     order: 2;
+  //     margin: auto;
+  //     height: auto;
+  //     color: var(--color-text) !important;
+  //     .item-text{
+  //       display: block;
+  //     }
+  //     .hover{
+  //       display: block;
+  //     }
+  //   }
+  // }
   .item.active{
     .hover{
       display: none;
@@ -296,6 +296,9 @@ a {
 .text {
   font-size: 18px;
   line-height: 22px;
+  max-height: 371px;
+  max-width: 136px;
+  overflow: hidden;
 }
 
 p {
