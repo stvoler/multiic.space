@@ -464,6 +464,18 @@ p {
   display: none;
 }
 
+canvas{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 20vw !important;
+  height: 20vw !important;
+  margin: auto;
+  overflow: hidden;
+  // z-index: -1;
+}
+
 @media (any-pointer: fine) {
   .cursor {
     position: fixed;

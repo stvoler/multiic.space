@@ -1,3 +1,7 @@
+import * as THREE from 'three';
+
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+
 import {gsap} from 'gsap';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Cursor from './cursor';
@@ -163,3 +167,114 @@ preloader('.item').then(() => {
 });
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// let camera;
+// let renderer;
+// let scene;
+// let controls;
+
+// init();
+// animate();
+
+// function init() {
+
+//   scene = new THREE.Scene();
+
+//   const fov = 60;
+//   const aspect = window.innerWidth / ( window.innerHeight * 2 );
+//   const near = 0.1;
+//   const far = 1500;
+
+//   camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+//   camera.position.set(0, 0, - 200);
+
+//   const ambient = new THREE.AmbientLight(0x212121, 10);
+//   scene.add(ambient);
+
+//   const light = new THREE.DirectionalLight(0xffffff, 2);
+//   light.position.set(50, 50, 100);
+//   scene.add(light);
+
+//   const geometry = new THREE.BoxGeometry(20, 20, 20);
+//   const material = new THREE.MeshNormalMaterial();
+
+//   const mesh = new THREE.Mesh(geometry, material);
+//   scene.add(mesh);
+
+//   let helper = new THREE.AxesHelper(50);
+//   scene.add(helper);
+
+//   renderer = new THREE.WebGLRenderer({
+//     antialias: true
+//   });
+// 	renderer.setPixelRatio( window.devicePixelRatio );
+//   renderer.setSize(window.innerWidth, window.innerHeight * 2);
+//   document.body.appendChild(renderer.domElement);
+	
+//   controls = new OrbitControls(camera, renderer.domElement);
+//   controls.enableDamping = true;
+//   controls.enableZoom = false;
+//   controls.enablePan = false;
+
+//   gsap.registerPlugin(ScrollTrigger);
+
+//   gsap.to(mesh.rotation, {
+// 		scrollTrigger: {
+// 				trigger: "#trigger",
+// 				start: "top top",
+// 				end: "bottom top",
+// 				markers: true,
+// 				scrub: true,
+// 				toggleActions: "restart pause resume pause"
+// 			},
+//       y: Math.PI
+//     });
+
+// }
+
+// function animate() {
+//   requestAnimationFrame(animate);
+// 	controls.update();
+//   renderer.render(scene, camera);
+// }
