@@ -47,7 +47,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  
+
   &::after {
     content: "";
     background-color: var(--color-bg);
@@ -415,7 +415,7 @@ p {
   }
 }
 
-/*! locomotive-scroll v3.5.4 | MIT License | https://github.com/locomotivemtl/locomotive-scroll */
+/* locomotive-scroll */
 html.has-scroll-smooth {
   overflow: hidden;
 }
@@ -468,6 +468,7 @@ html.has-scroll-dragging {
   cursor: -webkit-grab;
   cursor: grab;
 }
+
 .has-scroll-dragging .c-scrollbar_thumb {
   cursor: -webkit-grabbing;
   cursor: grabbing;
