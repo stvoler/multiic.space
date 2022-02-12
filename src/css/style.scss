@@ -273,27 +273,6 @@ a {
   padding: 80px;
   height: 100vh;
   grid-column: 1/-1;
-  &:hover {
-    &::before {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-  &::before {
-    counter-increment: menucounter;
-    content: counters(menucounter, ".", decimal-leading-zero);
-    position: absolute;
-    color: white;
-    left: 1.2rem;
-    top: 1.2rem;
-    display: flex;
-    align-items: center;
-    line-height: 1;
-    font-weight: bold;
-    opacity: 0;
-    transform: translateX(-1rem);
-    transition: transform 0.3s, opacity 0.3s;
-  }
   &.active {
     grid-column: 1/-1;
     order: 1;
@@ -305,22 +284,6 @@ a {
     &:before {
       display: none;
     }
-    .border {
-      border: 1px solid --color-border;
-    }
-  }
-
-  .border {
-    width: calc(100vw - 80px);
-    height: calc(100vh - 80px);
-    display: block;
-    padding: 80px;
-    margin: auto;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
   }
 
   .hover{
@@ -427,6 +390,44 @@ p {
     grid-column: 3;
     grid-row: 3/5;
     padding: 0 10% 0 0;
+  }
+}
+
+.block-5 {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  .title {
+    grid-column: 1/-1;
+    grid-row: 1;
+    margin-top: 0;
+    text-align: center;
+    color: var(--color-link);
+  }
+
+  .text{
+    max-width:none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    grid-column: 1/-1;
+    grid-row: 2;
+    font-size: 50px;
+    line-height: 1;
+    div{
+      width: 113px;
+      height: 113px;
+      color: var(--color-link);
+      border: 1px solid var(--color-link);
+      margin: auto clamp(40px, 11vw, 112px);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.1s color ease-in-out;
+      &:hover{
+        color: var(--color-text);
+      }
+    }
   }
 }
 

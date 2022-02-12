@@ -61,7 +61,6 @@ export default class MenuItem {
         // kill any current tweens
         gsap.killTweensOf(this.DOM.revealInner);
         gsap.killTweensOf(this.DOM.revealImage);
-        gsap.killTweensOf(".hover");
         
         this.tl = gsap.timeline({
             onStart: () => {

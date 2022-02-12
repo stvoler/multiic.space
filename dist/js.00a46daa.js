@@ -11078,8 +11078,6 @@ var MenuItem = /*#__PURE__*/function () {
 
       _gsap.gsap.killTweensOf(this.DOM.revealImage);
 
-      _gsap.gsap.killTweensOf(".hover");
-
       this.tl = _gsap.gsap.timeline({
         onStart: function onStart() {
           // show the image element
@@ -11435,7 +11433,7 @@ var menuEl = document.querySelector('[data-scroll-container]');
       pin: ".items2",
       start: "0 0",
       scrub: 2,
-      end: "+=270%"
+      end: "+=350%"
     },
     onComplete: aClass,
     onUpdate: rClass
@@ -11662,7 +11660,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56324" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57313" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

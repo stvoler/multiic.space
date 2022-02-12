@@ -73,7 +73,7 @@ preloader('.item').then(() => {
         pin: ".items2",
         start: "0 0",
         scrub: 2,
-        end: "+=270%"
+        end: "+=350%"
       },
       onComplete: aClass,
       onUpdate: rClass
