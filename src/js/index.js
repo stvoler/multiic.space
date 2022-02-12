@@ -62,7 +62,7 @@ preloader('.item').then(() => {
     tl.fromTo(".block-1 .text", {transform: 'translateY(0px) scaleY(1)', lineHeight: 1.2}, {delay: 0.3, duration: 2.5, transform: 'translateY(-560px) scaleY(3.5)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"})
     tl.to(".menu", {duration: 3, translateY: '-300px'}, 0).to("#trigger", {duration: 4, translateX: '30vw'}, 0)
     tl.fromTo("header .line-1", {filter: 'opacity(0.5)', right: 0}, {delay: 1.7, duration: 2.5, filter: 'opacity(1)', right: '50%', ease: "[0.74,0.2,1,-0.22]"})
-
+  
     // .to(".item .text", {duration: 4, transform: 'translateY(0px) scaleY(0)'}, 0).to(".item .text", { duration: 2, transform: 'translateY(0px) scaleY(4.5)'}, 0)
     // .fromTo("header", {background: "linear-gradient(to bottom, rgba(229,229,229,0) 0%,rgba(0,0,0,0) 100%)"}, {background: "linear-gradient(to bottom, rgba(229,229,229,0.65) 0%,rgba(0,0,0,0) 100%)"})
 
@@ -85,6 +85,7 @@ preloader('.item').then(() => {
     tl2.fromTo(".block-2 .text-2", {transform: 'translateY(0px) scaleY(1)', lineHeight: 1.2}, {delay: 0.2, duration: 2.5, transform: 'translateY(-900px) scaleY(3.5)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"})
     tl2.fromTo("header .line-1", {filter: 'opacity(0.5)', right: '50%'}, {delay: 1.7, duration: 2.5, filter: 'opacity(1)', right: '33%', ease: "[0.74,0.2,1,-0.22]"})
     tl2.fromTo("header .line-2", {filter: 'opacity(0.5)', right: '40px'}, {delay: 0.7, duration: 0.5, filter: 'opacity(1)', right: '66%', ease: "[0.74,0.2,1,-0.22]"})
+    // tl2.fromTo("header .line-3", {filter: 'opacity(0)', right: 0}, {delay: 0.7, duration: 0.5, filter: 'opacity(0)', right: 0, ease: "[0.74,0.2,1,-0.22]"}, 0)
 
     let tl3 = gsap.timeline({
       scrollTrigger: {
@@ -120,7 +121,10 @@ preloader('.item').then(() => {
 
     tl4.fromTo(".block-4 .title", {transform: 'translateY(0px) scaleY(1)', lineHeight: 1.2}, {delay: 0.3, duration: 3, transform: 'translateY(-300px) scaleY(4.5)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"})
     tl4.fromTo(".block-4 .text", {transform: 'translateY(0px) scaleY(1)', lineHeight: 1.2}, {delay: 0.2, duration: 2.5, transform: 'translateY(-500px) scaleY(3.5)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"})
-
+    
+    tl4.fromTo("header .line-1", {filter: 'opacity(0.5)', right: 0}, {delay: 0.7, duration: 0.5, filter: 'opacity(1)', right: '25%', ease: "[0.74,0.2,1,-0.22]"}, 0)
+    tl4.fromTo("header .line-2", {filter: 'opacity(0.5)', right: 0}, {delay: 0.7, duration: 0.5, filter: 'opacity(1)', right: '50%', ease: "[0.74,0.2,1,-0.22]"}, 0)
+    tl4.fromTo("header .line-3", {filter: 'opacity(0.5)', right: 0}, {delay: 0.7, duration: 0.5, filter: 'opacity(1)', right: '75%', ease: "[0.74,0.2,1,-0.22]"}, 0)
 
     function aClass(){
       items.classList.add("active");

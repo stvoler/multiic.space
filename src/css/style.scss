@@ -106,6 +106,22 @@ header {
   padding: 40px;
   // z-index: 1;
 
+  &::before,
+  &::after{
+    content: '';
+    z-index: 2;
+    position: absolute;
+    left: 0;
+    width: 100vw;
+    height: 10vh;
+  }
+  &::before{
+    top: 0;
+  }
+  &::after{
+    bottom: 0;
+  }
+
   .title {
     grid-column: 3/-1;
     grid-row: 1;
@@ -159,8 +175,8 @@ header {
     display: block;
     padding: 0;
     margin: auto;
-    position: fixed;
-    top: 40px;
+    position: absolute;
+    top: 0;
     right: 40px;
     left: auto;
   }
@@ -394,7 +410,7 @@ p {
   .text-1 {
     grid-row: 1;
     grid-column: 1;
-    padding: 10% 0 0 0;
+    padding: 10% 10% 0 0;
     box-sizing: content-box;
   }
   .text-2 {
@@ -405,10 +421,12 @@ p {
   .text-3 {
     grid-column: 1;
     grid-row: 3/5;
+    padding: 0 10% 0 0;
   }
   .text-4 {
     grid-column: 3;
     grid-row: 3/5;
+    padding: 0 10% 0 0;
   }
 }
 

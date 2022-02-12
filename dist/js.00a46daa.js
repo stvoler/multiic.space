@@ -11490,7 +11490,7 @@ var menuEl = document.querySelector('[data-scroll-container]');
     filter: 'opacity(1)',
     right: '66%',
     ease: "[0.74,0.2,1,-0.22]"
-  });
+  }); // tl2.fromTo("header .line-3", {filter: 'opacity(0)', right: 0}, {delay: 0.7, duration: 0.5, filter: 'opacity(0)', right: 0, ease: "[0.74,0.2,1,-0.22]"}, 0)
 
   var tl3 = _gsap.gsap.timeline({
     scrollTrigger: {
@@ -11589,6 +11589,36 @@ var menuEl = document.querySelector('[data-scroll-container]');
     lineHeight: 0.8,
     ease: "[0.74,0.2,1,-0.22]"
   });
+  tl4.fromTo("header .line-1", {
+    filter: 'opacity(0.5)',
+    right: 0
+  }, {
+    delay: 0.7,
+    duration: 0.5,
+    filter: 'opacity(1)',
+    right: '25%',
+    ease: "[0.74,0.2,1,-0.22]"
+  }, 0);
+  tl4.fromTo("header .line-2", {
+    filter: 'opacity(0.5)',
+    right: 0
+  }, {
+    delay: 0.7,
+    duration: 0.5,
+    filter: 'opacity(1)',
+    right: '50%',
+    ease: "[0.74,0.2,1,-0.22]"
+  }, 0);
+  tl4.fromTo("header .line-3", {
+    filter: 'opacity(0.5)',
+    right: 0
+  }, {
+    delay: 0.7,
+    duration: 0.5,
+    filter: 'opacity(1)',
+    right: '75%',
+    ease: "[0.74,0.2,1,-0.22]"
+  }, 0);
 
   function aClass() {
     items.classList.add("active");
@@ -11632,7 +11662,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51762" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56324" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
