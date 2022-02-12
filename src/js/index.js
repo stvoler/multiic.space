@@ -126,6 +126,28 @@ preloader('.item').then(() => {
     tl4.fromTo("header .line-2", {filter: 'opacity(0.5)', right: 0}, {delay: 0.7, duration: 0.5, filter: 'opacity(1)', right: '50%', ease: "[0.74,0.2,1,-0.22]"}, 0)
     tl4.fromTo("header .line-3", {filter: 'opacity(0.5)', right: 0}, {delay: 0.7, duration: 0.5, filter: 'opacity(1)', right: '75%', ease: "[0.74,0.2,1,-0.22]"}, 0)
 
+    let tl5 = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".items5 .item.active",
+        repeat: true,
+        pin: ".items5",
+        start: "0 0",
+        scrub: 1,
+        end: "+=100%"
+      },
+      onComplete: aClass,
+      onUpdate: rClass
+    })
+    
+    tl5.fromTo("header .line-1", {filter: 'opacity(0)', right: '25%'}, {delay: 0.7, duration: 2.5, filter: 'opacity(0)', right: 0, ease: "[0.74,0.2,1,-0.22]"}, 0)
+    tl5.fromTo("header .line-2", {filter: 'opacity(0)', right: '50%'}, {delay: 0.7, duration: 2.5, filter: 'opacity(0)', right: 0, ease: "[0.74,0.2,1,-0.22]"}, 0)
+    tl5.fromTo("header .line-3", {filter: 'opacity(0)', right: '75%'}, {delay: 0.7, duration: 2.5, filter: 'opacity(0)', right: 0, ease: "[0.74,0.2,1,-0.22]"}, 0)
+
+    tl5.fromTo("header .border", {height: 'calc(100vh - 80px)', top: '40px', bottom: 'auto'}, {delay: 2.7, duration: 4.5, height: '20vh', top: '60%', ease: "[0.74,0.2,1,-0.22]"})
+
+    tl5.fromTo(".block-5 .title", {transform: 'translateY(0px) scaleY(2)', lineHeight: 1.2}, {delay: 0.3, duration: 3, transform: 'translateY(150px) scaleY(1)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"})
+    tl5.fromTo(".block-5 .text", {transform: 'translateY(50px) scale(0.4)', lineHeight: 1.2}, {delay: 0.2, duration: 2.5, transform: 'translateY(0px) scale(1)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"})
+
     function aClass(){
       items.classList.add("active");
     }
