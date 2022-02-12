@@ -61,6 +61,7 @@ export default class MenuItem {
         // kill any current tweens
         gsap.killTweensOf(this.DOM.revealInner);
         gsap.killTweensOf(this.DOM.revealImage);
+        gsap.killTweensOf(".hover");
         
         this.tl = gsap.timeline({
             onStart: () => {
@@ -71,13 +72,13 @@ export default class MenuItem {
             }
         })
         // animate the image wrap
-        .to(this.DOM.revealInner, 0.2, {
+        .to(this.DOM.revealInner, 0.5, {
             ease: 'Sine.easeOut',
             startAt: {x: direction.x < 0 ? '-100%' : '100%'},
             x: '0%'
         })
         // animate the image element
-        .to(this.DOM.revealImage, 0.2, {
+        .to(this.DOM.revealImage, 0.5, {
             ease: 'Sine.easeOut',
             startAt: {x: direction.x < 0 ? '100%': '-100%'},
             x: '0%'

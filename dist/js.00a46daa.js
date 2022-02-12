@@ -11078,6 +11078,8 @@ var MenuItem = /*#__PURE__*/function () {
 
       _gsap.gsap.killTweensOf(this.DOM.revealImage);
 
+      _gsap.gsap.killTweensOf(".hover");
+
       this.tl = _gsap.gsap.timeline({
         onStart: function onStart() {
           // show the image element
@@ -11088,14 +11090,14 @@ var MenuItem = /*#__PURE__*/function () {
           });
         }
       }) // animate the image wrap
-      .to(this.DOM.revealInner, 0.2, {
+      .to(this.DOM.revealInner, 0.5, {
         ease: 'Sine.easeOut',
         startAt: {
           x: direction.x < 0 ? '-100%' : '100%'
         },
         x: '0%'
       }) // animate the image element
-      .to(this.DOM.revealImage, 0.2, {
+      .to(this.DOM.revealImage, 0.5, {
         ease: 'Sine.easeOut',
         startAt: {
           x: direction.x < 0 ? '100%' : '-100%'
@@ -11247,7 +11249,7 @@ var Menu = /*#__PURE__*/function () {
     this.DOM = {
       el: el
     };
-    this.DOM.menuItems = this.DOM.el.querySelectorAll('.item');
+    this.DOM.menuItems = this.DOM.el.querySelectorAll('.item.active');
     this.animatableProperties = {
       tx: {
         previous: 0,
@@ -11414,9 +11416,9 @@ var menuEl = document.querySelector('[data-scroll-container]');
     duration: 4,
     translateX: '30vw'
   }, 0);
-  tl.fromTo("header .border-half", {
-    filter: 'opacity(0)',
-    right: '40px'
+  tl.fromTo("header .line-1", {
+    filter: 'opacity(0.5)',
+    right: 0
   }, {
     delay: 1.7,
     duration: 2.5,
@@ -11469,7 +11471,41 @@ var menuEl = document.querySelector('[data-scroll-container]');
     lineHeight: 0.8,
     ease: "[0.74,0.2,1,-0.22]"
   });
-  tl2.fromTo(".block-3 .title", {
+  tl2.fromTo("header .line-1", {
+    filter: 'opacity(0.5)',
+    right: '50%'
+  }, {
+    delay: 1.7,
+    duration: 2.5,
+    filter: 'opacity(1)',
+    right: '33%',
+    ease: "[0.74,0.2,1,-0.22]"
+  });
+  tl2.fromTo("header .line-2", {
+    filter: 'opacity(0.5)',
+    right: '40px'
+  }, {
+    delay: 0.7,
+    duration: 0.5,
+    filter: 'opacity(1)',
+    right: '66%',
+    ease: "[0.74,0.2,1,-0.22]"
+  });
+
+  var tl3 = _gsap.gsap.timeline({
+    scrollTrigger: {
+      trigger: ".items3 .item.active",
+      repeat: true,
+      pin: ".items3",
+      start: "0 0",
+      scrub: 2,
+      end: "+=270%"
+    },
+    onComplete: aClass,
+    onUpdate: rClass
+  });
+
+  tl3.fromTo(".block-3 .title", {
     transform: 'translateY(0px) scaleY(1)',
     lineHeight: 1.2
   }, {
@@ -11479,7 +11515,71 @@ var menuEl = document.querySelector('[data-scroll-container]');
     lineHeight: 0.8,
     ease: "[0.74,0.2,1,-0.22]"
   });
-  tl2.fromTo(".block-3 .text", {
+  tl3.fromTo(".block-3 .text", {
+    transform: 'translateY(0px) scaleY(1)',
+    lineHeight: 1.2
+  }, {
+    delay: 0.2,
+    duration: 2.5,
+    transform: 'translateY(-500px) scaleY(3.5)',
+    lineHeight: 0.8,
+    ease: "[0.74,0.2,1,-0.22]"
+  });
+  tl3.fromTo("header .line-1", {
+    filter: 'opacity(0.5)',
+    right: '33%'
+  }, {
+    delay: 1.7,
+    duration: 2.5,
+    filter: 'opacity(1)',
+    right: '25%',
+    ease: "[0.74,0.2,1,-0.22]"
+  });
+  tl3.fromTo("header .line-2", {
+    filter: 'opacity(0.5)',
+    right: '66%'
+  }, {
+    delay: 0.7,
+    duration: 0.5,
+    filter: 'opacity(1)',
+    right: '50%',
+    ease: "[0.74,0.2,1,-0.22]"
+  });
+  tl3.fromTo("header .line-3", {
+    filter: 'opacity(0.5)',
+    right: 0
+  }, {
+    delay: 0.7,
+    duration: 0.5,
+    filter: 'opacity(1)',
+    right: '75%',
+    ease: "[0.74,0.2,1,-0.22]"
+  });
+
+  var tl4 = _gsap.gsap.timeline({
+    scrollTrigger: {
+      trigger: ".items4 .item.active",
+      repeat: true,
+      pin: ".items4",
+      start: "0 0",
+      scrub: 2,
+      end: "+=270%"
+    },
+    onComplete: aClass,
+    onUpdate: rClass
+  });
+
+  tl4.fromTo(".block-4 .title", {
+    transform: 'translateY(0px) scaleY(1)',
+    lineHeight: 1.2
+  }, {
+    delay: 0.3,
+    duration: 3,
+    transform: 'translateY(-300px) scaleY(4.5)',
+    lineHeight: 0.8,
+    ease: "[0.74,0.2,1,-0.22]"
+  });
+  tl4.fromTo(".block-4 .text", {
     transform: 'translateY(0px) scaleY(1)',
     lineHeight: 1.2
   }, {
@@ -11532,7 +11632,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52647" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51762" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
