@@ -249,7 +249,7 @@ a {
   grid-template-columns: 1fr 1fr 1fr 1fr;
   .item.active {
     .hover {
-      display: none;
+      display: block;
     }
   }
 }
@@ -309,6 +309,10 @@ a {
     left: 0;
     right: 0;
     bottom: 0;
+  }
+
+  .hover{
+    display: none;
   }
 }
 
