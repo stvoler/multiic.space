@@ -11370,13 +11370,11 @@ var menuEl = document.querySelector('[data-scroll-container]');
   });
 
   tl.fromTo("header .border", {
-    width: 1,
-    scale: 1
+    width: 1
   }, {
     delay: 2.7,
     duration: 4.5,
     width: 'calc(100vw - 80px)',
-    scale: 1,
     ease: "[0.74,0.2,1,-0.22]"
   });
   tl.fromTo(".item .border", {
@@ -11418,7 +11416,31 @@ var menuEl = document.querySelector('[data-scroll-container]');
     translateX: '30vw'
   }, 0); // .fromTo("header", {background: "linear-gradient(to bottom, rgba(229,229,229,0) 0%,rgba(0,0,0,0) 100%)"}, {background: "linear-gradient(to bottom, rgba(229,229,229,0.65) 0%,rgba(0,0,0,0) 100%)"})
 
-  tl.fromTo(".block-2 .title", {
+  tl.fromTo("header .border-half", {
+    filter: 'opacity(0)',
+    right: '40px'
+  }, {
+    delay: 1.7,
+    duration: 2.5,
+    filter: 'opacity(1)',
+    right: '50%',
+    ease: "[0.74,0.2,1,-0.22]"
+  });
+
+  var tl2 = _gsap.gsap.timeline({
+    scrollTrigger: {
+      trigger: ".items2 .item.active",
+      repeat: true,
+      pin: ".items2",
+      start: "0 0",
+      scrub: 2,
+      end: "+=270%"
+    },
+    onComplete: aClass,
+    onUpdate: rClass
+  });
+
+  tl2.fromTo(".block-2 .title", {
     transform: 'translateY(0px) scaleY(1)',
     lineHeight: 1.2
   }, {
@@ -11428,7 +11450,7 @@ var menuEl = document.querySelector('[data-scroll-container]');
     lineHeight: 0.8,
     ease: "[0.74,0.2,1,-0.22]"
   });
-  tl.fromTo(".block-2 .text", {
+  tl2.fromTo(".block-2 .text-1", {
     transform: 'translateY(0px) scaleY(1)',
     lineHeight: 1.2
   }, {
@@ -11438,7 +11460,17 @@ var menuEl = document.querySelector('[data-scroll-container]');
     lineHeight: 0.8,
     ease: "[0.74,0.2,1,-0.22]"
   });
-  tl.fromTo(".block-3 .title", {
+  tl2.fromTo(".block-2 .text-2", {
+    transform: 'translateY(0px) scaleY(1)',
+    lineHeight: 1.2
+  }, {
+    delay: 0.2,
+    duration: 2.5,
+    transform: 'translateY(-900px) scaleY(3.5)',
+    lineHeight: 0.8,
+    ease: "[0.74,0.2,1,-0.22]"
+  });
+  tl2.fromTo(".block-3 .title", {
     transform: 'translateY(0px) scaleY(1)',
     lineHeight: 1.2
   }, {
@@ -11448,7 +11480,7 @@ var menuEl = document.querySelector('[data-scroll-container]');
     lineHeight: 0.8,
     ease: "[0.74,0.2,1,-0.22]"
   });
-  tl.fromTo(".block-3 .text", {
+  tl2.fromTo(".block-3 .text", {
     transform: 'translateY(0px) scaleY(1)',
     lineHeight: 1.2
   }, {
@@ -11501,7 +11533,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61362" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60305" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
