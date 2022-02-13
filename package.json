@@ -21,6 +21,7 @@
     "url": ""
   },
   "dependencies": {
+    "dat.gui": "^0.7.7",
     "gsap": "^3.3.4",
     "imagesloaded": "^4.1.4",
     "locomotive-scroll": "^3.5.4",

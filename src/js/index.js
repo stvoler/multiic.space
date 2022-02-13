@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 import {gsap} from 'gsap';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -209,72 +210,106 @@ preloader('.item').then(() => {
 
 
 
-// let camera;
-// let renderer;
-// let scene;
-// let controls;
+console.clear();
 
-// init();
-// animate();
+const renderer = new THREE.WebGLRenderer({ alpha: true, antialiase: true });
+const w = document.querySelector('.w');
+renderer.setSize(window.innerWidth, window.innerHeight);
+w.appendChild(renderer.domElement);
 
-// function init() {
+const scene = new THREE.Scene();
 
-//   scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(
+  80, window.innerWidth / window.innerHeight, 0.1, 1000
+);
+camera.position.z = 5;
+camera.position.y = 1.5;
 
-//   const fov = 60;
-//   const aspect = window.innerWidth / ( window.innerHeight * 2 );
-//   const near = 0.1;
-//   const far = 1500;
+let light = new THREE.DirectionalLight(0xefefff, 3);
+light.position.set(1, 1, 1).normalize();
+scene.add(light);
 
-//   camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
-//   camera.position.set(0, 0, - 200);
+window.addEventListener("resize", function () {
+  let width = window.innerWidth;
+  let height = window.innerHeight;
+  renderer.setSize(width, height);
+  camera.aspect = width / height;
+  camera.updateProjectionMatrix();
+});
 
-//   const ambient = new THREE.AmbientLight(0x212121, 10);
-//   scene.add(ambient);
+const loader = new GLTFLoader();
+let mixer;
+let model;
+loader.load(
+  "dinosaur.glb",
+  function (gltf) {
+    gltf.scene.traverse(function (node) {
+      if (node instanceof THREE.Mesh) {
+        node.castShadow = true;
+        node.material.side = THREE.DoubleSide;
+      }
+    });
 
-//   const light = new THREE.DirectionalLight(0xffffff, 2);
-//   light.position.set(50, 50, 100);
-//   scene.add(light);
+    model = gltf.scene;
+    scene.add(model);
 
-//   const geometry = new THREE.BoxGeometry(20, 20, 20);
-//   const material = new THREE.MeshNormalMaterial();
+    mixer = new THREE.AnimationMixer(model);
+    const action = mixer.clipAction(gltf.animations[0]);
+    action.play();
 
-//   const mesh = new THREE.Mesh(geometry, material);
-//   scene.add(mesh);
+    createAnimation(mixer, action, gltf.animations[0]);
+  }
+);
 
-//   let helper = new THREE.AxesHelper(50);
-//   scene.add(helper);
+const clock = new THREE.Clock();
+function render() {
+  requestAnimationFrame(render);
+  const delta = clock.getDelta();
+  if (mixer != null) mixer.update(delta);
+  if (model) model.rotation.y += 0.0025;
 
-//   renderer = new THREE.WebGLRenderer({
-//     antialias: true
-//   });
-// 	renderer.setPixelRatio( window.devicePixelRatio );
-//   renderer.setSize(window.innerWidth, window.innerHeight * 2);
-//   document.body.appendChild(renderer.domElement);
-	
-//   controls = new OrbitControls(camera, renderer.domElement);
-//   controls.enableDamping = true;
-//   controls.enableZoom = false;
-//   controls.enablePan = false;
+  renderer.render(scene, camera);
+}
 
-//   gsap.registerPlugin(ScrollTrigger);
+render();
 
-//   gsap.to(mesh.rotation, {
-// 		scrollTrigger: {
-// 				trigger: "#trigger",
-// 				start: "top top",
-// 				end: "bottom top",
-// 				markers: true,
-// 				scrub: true,
-// 				toggleActions: "restart pause resume pause"
-// 			},
-//       y: Math.PI
-//     });
+function createAnimation(mixer, action, clip) {
+  let proxy = {
+    get time() {
+      return mixer.time;
+    },
+    set time(value) {
+      action.paused = false;
+      mixer.setTime(value);
+      action.paused = true;
+    }
+  };
 
-// }
+  let scrollingTL = gsap.timeline({
+    scrollTrigger: {
+      trigger: renderer.domElement,
+      start: "top center",
+      end: "bottom center",
+      scrub: 18,
+      onUpdate: function () {
+        camera.updateProjectionMatrix();
+      }
+    }
+  });
 
-// function animate() {
-//   requestAnimationFrame(animate);
-// 	controls.update();
-//   renderer.render(scene, camera);
-// }
+  scrollingTL.to(proxy, {
+    time: clip.duration,
+    repeat: 1
+  });
+}
+
+function onMouseMove(e) {
+  const x = e.clientX
+  const y = e.clientY
+
+  gsap.to(scene.rotation, {
+    y: gsap.utils.mapRange(0, window.innerWidth, 1, -1, x),
+    x: gsap.utils.mapRange(0, window.innerHeight, 1, -1, y),
+  })
+}
+window.addEventListener('mousemove', onMouseMove)
