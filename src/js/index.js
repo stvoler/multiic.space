@@ -210,106 +210,106 @@ preloader('.item').then(() => {
 
 
 
-console.clear();
+// console.clear();
 
-const renderer = new THREE.WebGLRenderer({ alpha: true, antialiase: true });
-const w = document.querySelector('.w');
-renderer.setSize(window.innerWidth, window.innerHeight);
-w.appendChild(renderer.domElement);
+// const renderer = new THREE.WebGLRenderer({ alpha: true, antialiase: true });
+// const w = document.querySelector('.w');
+// renderer.setSize(window.innerWidth, window.innerHeight);
+// w.appendChild(renderer.domElement);
 
-const scene = new THREE.Scene();
+// const scene = new THREE.Scene();
 
-const camera = new THREE.PerspectiveCamera(
-  80, window.innerWidth / window.innerHeight, 0.1, 1000
-);
-camera.position.z = 5;
-camera.position.y = 1.5;
+// const camera = new THREE.PerspectiveCamera(
+//   80, window.innerWidth / window.innerHeight, 0.1, 1000
+// );
+// camera.position.z = 5;
+// camera.position.y = 1.5;
 
-let light = new THREE.DirectionalLight(0xefefff, 3);
-light.position.set(1, 1, 1).normalize();
-scene.add(light);
+// let light = new THREE.DirectionalLight(0xefefff, 3);
+// light.position.set(1, 1, 1).normalize();
+// scene.add(light);
 
-window.addEventListener("resize", function () {
-  let width = window.innerWidth;
-  let height = window.innerHeight;
-  renderer.setSize(width, height);
-  camera.aspect = width / height;
-  camera.updateProjectionMatrix();
-});
+// window.addEventListener("resize", function () {
+//   let width = window.innerWidth;
+//   let height = window.innerHeight;
+//   renderer.setSize(width, height);
+//   camera.aspect = width / height;
+//   camera.updateProjectionMatrix();
+// });
 
-const loader = new GLTFLoader();
-let mixer;
-let model;
-loader.load(
-  "dinosaur.glb",
-  function (gltf) {
-    gltf.scene.traverse(function (node) {
-      if (node instanceof THREE.Mesh) {
-        node.castShadow = true;
-        node.material.side = THREE.DoubleSide;
-      }
-    });
+// const loader = new GLTFLoader();
+// let mixer;
+// let model;
+// loader.load(
+//   "dinosaur.glb",
+//   function (gltf) {
+//     gltf.scene.traverse(function (node) {
+//       if (node instanceof THREE.Mesh) {
+//         node.castShadow = true;
+//         node.material.side = THREE.DoubleSide;
+//       }
+//     });
 
-    model = gltf.scene;
-    scene.add(model);
+//     model = gltf.scene;
+//     scene.add(model);
 
-    mixer = new THREE.AnimationMixer(model);
-    const action = mixer.clipAction(gltf.animations[0]);
-    action.play();
+//     mixer = new THREE.AnimationMixer(model);
+//     const action = mixer.clipAction(gltf.animations[0]);
+//     action.play();
 
-    createAnimation(mixer, action, gltf.animations[0]);
-  }
-);
+//     createAnimation(mixer, action, gltf.animations[0]);
+//   }
+// );
 
-const clock = new THREE.Clock();
-function render() {
-  requestAnimationFrame(render);
-  const delta = clock.getDelta();
-  if (mixer != null) mixer.update(delta);
-  if (model) model.rotation.y += 0.0025;
+// const clock = new THREE.Clock();
+// function render() {
+//   requestAnimationFrame(render);
+//   const delta = clock.getDelta();
+//   if (mixer != null) mixer.update(delta);
+//   if (model) model.rotation.y += 0.0025;
 
-  renderer.render(scene, camera);
-}
+//   renderer.render(scene, camera);
+// }
 
-render();
+// render();
 
-function createAnimation(mixer, action, clip) {
-  let proxy = {
-    get time() {
-      return mixer.time;
-    },
-    set time(value) {
-      action.paused = false;
-      mixer.setTime(value);
-      action.paused = true;
-    }
-  };
+// function createAnimation(mixer, action, clip) {
+//   let proxy = {
+//     get time() {
+//       return mixer.time;
+//     },
+//     set time(value) {
+//       action.paused = false;
+//       mixer.setTime(value);
+//       action.paused = true;
+//     }
+//   };
 
-  let scrollingTL = gsap.timeline({
-    scrollTrigger: {
-      trigger: renderer.domElement,
-      start: "top center",
-      end: "bottom center",
-      scrub: 18,
-      onUpdate: function () {
-        camera.updateProjectionMatrix();
-      }
-    }
-  });
+//   let scrollingTL = gsap.timeline({
+//     scrollTrigger: {
+//       trigger: renderer.domElement,
+//       start: "top center",
+//       end: "bottom center",
+//       scrub: 18,
+//       onUpdate: function () {
+//         camera.updateProjectionMatrix();
+//       }
+//     }
+//   });
 
-  scrollingTL.to(proxy, {
-    time: clip.duration,
-    repeat: 1
-  });
-}
+//   scrollingTL.to(proxy, {
+//     time: clip.duration,
+//     repeat: 1
+//   });
+// }
 
-function onMouseMove(e) {
-  const x = e.clientX
-  const y = e.clientY
+// function onMouseMove(e) {
+//   const x = e.clientX
+//   const y = e.clientY
 
-  gsap.to(scene.rotation, {
-    y: gsap.utils.mapRange(0, window.innerWidth, 1, -1, x),
-    x: gsap.utils.mapRange(0, window.innerHeight, 1, -1, y),
-  })
-}
-window.addEventListener('mousemove', onMouseMove)
+//   gsap.to(scene.rotation, {
+//     y: gsap.utils.mapRange(0, window.innerWidth, 1, -1, x),
+//     x: gsap.utils.mapRange(0, window.innerHeight, 1, -1, y),
+//   })
+// }
+// window.addEventListener('mousemove', onMouseMove)

@@ -52347,101 +52347,92 @@ var menuEl = document.querySelector('[data-scroll-container]');
   });
 
   _ScrollTrigger.ScrollTrigger.refresh();
-});
-console.clear();
-var renderer = new THREE.WebGLRenderer({
-  alpha: true,
-  antialiase: true
-});
-var w = document.querySelector('.w');
-renderer.setSize(window.innerWidth, window.innerHeight);
-w.appendChild(renderer.domElement);
-var scene = new THREE.Scene();
-var camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 0.1, 1000);
-camera.position.z = 5;
-camera.position.y = 1.5;
-var light = new THREE.DirectionalLight(0xefefff, 3);
-light.position.set(1, 1, 1).normalize();
-scene.add(light);
-window.addEventListener("resize", function () {
-  var width = window.innerWidth;
-  var height = window.innerHeight;
-  renderer.setSize(width, height);
-  camera.aspect = width / height;
-  camera.updateProjectionMatrix();
-});
-var loader = new _GLTFLoader.GLTFLoader();
-var mixer;
-var model;
-loader.load("dinosaur.glb", function (gltf) {
-  gltf.scene.traverse(function (node) {
-    if (node instanceof THREE.Mesh) {
-      node.castShadow = true;
-      node.material.side = THREE.DoubleSide;
-    }
-  });
-  model = gltf.scene;
-  scene.add(model);
-  mixer = new THREE.AnimationMixer(model);
-  var action = mixer.clipAction(gltf.animations[0]);
-  action.play();
-  createAnimation(mixer, action, gltf.animations[0]);
-});
-var clock = new THREE.Clock();
-
-function render() {
-  requestAnimationFrame(render);
-  var delta = clock.getDelta();
-  if (mixer != null) mixer.update(delta);
-  if (model) model.rotation.y += 0.0025;
-  renderer.render(scene, camera);
-}
-
-render();
-
-function createAnimation(mixer, action, clip) {
-  var proxy = {
-    get time() {
-      return mixer.time;
-    },
-
-    set time(value) {
-      action.paused = false;
-      mixer.setTime(value);
-      action.paused = true;
-    }
-
-  };
-
-  var scrollingTL = _gsap.gsap.timeline({
-    scrollTrigger: {
-      trigger: renderer.domElement,
-      start: "top center",
-      end: "bottom center",
-      scrub: 18,
-      onUpdate: function onUpdate() {
-        camera.updateProjectionMatrix();
-      }
-    }
-  });
-
-  scrollingTL.to(proxy, {
-    time: clip.duration,
-    repeat: 1
-  });
-}
-
-function onMouseMove(e) {
-  var x = e.clientX;
-  var y = e.clientY;
-
-  _gsap.gsap.to(scene.rotation, {
-    y: _gsap.gsap.utils.mapRange(0, window.innerWidth, 1, -1, x),
-    x: _gsap.gsap.utils.mapRange(0, window.innerHeight, 1, -1, y)
-  });
-}
-
-window.addEventListener('mousemove', onMouseMove);
+}); // console.clear();
+// const renderer = new THREE.WebGLRenderer({ alpha: true, antialiase: true });
+// const w = document.querySelector('.w');
+// renderer.setSize(window.innerWidth, window.innerHeight);
+// w.appendChild(renderer.domElement);
+// const scene = new THREE.Scene();
+// const camera = new THREE.PerspectiveCamera(
+//   80, window.innerWidth / window.innerHeight, 0.1, 1000
+// );
+// camera.position.z = 5;
+// camera.position.y = 1.5;
+// let light = new THREE.DirectionalLight(0xefefff, 3);
+// light.position.set(1, 1, 1).normalize();
+// scene.add(light);
+// window.addEventListener("resize", function () {
+//   let width = window.innerWidth;
+//   let height = window.innerHeight;
+//   renderer.setSize(width, height);
+//   camera.aspect = width / height;
+//   camera.updateProjectionMatrix();
+// });
+// const loader = new GLTFLoader();
+// let mixer;
+// let model;
+// loader.load(
+//   "dinosaur.glb",
+//   function (gltf) {
+//     gltf.scene.traverse(function (node) {
+//       if (node instanceof THREE.Mesh) {
+//         node.castShadow = true;
+//         node.material.side = THREE.DoubleSide;
+//       }
+//     });
+//     model = gltf.scene;
+//     scene.add(model);
+//     mixer = new THREE.AnimationMixer(model);
+//     const action = mixer.clipAction(gltf.animations[0]);
+//     action.play();
+//     createAnimation(mixer, action, gltf.animations[0]);
+//   }
+// );
+// const clock = new THREE.Clock();
+// function render() {
+//   requestAnimationFrame(render);
+//   const delta = clock.getDelta();
+//   if (mixer != null) mixer.update(delta);
+//   if (model) model.rotation.y += 0.0025;
+//   renderer.render(scene, camera);
+// }
+// render();
+// function createAnimation(mixer, action, clip) {
+//   let proxy = {
+//     get time() {
+//       return mixer.time;
+//     },
+//     set time(value) {
+//       action.paused = false;
+//       mixer.setTime(value);
+//       action.paused = true;
+//     }
+//   };
+//   let scrollingTL = gsap.timeline({
+//     scrollTrigger: {
+//       trigger: renderer.domElement,
+//       start: "top center",
+//       end: "bottom center",
+//       scrub: 18,
+//       onUpdate: function () {
+//         camera.updateProjectionMatrix();
+//       }
+//     }
+//   });
+//   scrollingTL.to(proxy, {
+//     time: clip.duration,
+//     repeat: 1
+//   });
+// }
+// function onMouseMove(e) {
+//   const x = e.clientX
+//   const y = e.clientY
+//   gsap.to(scene.rotation, {
+//     y: gsap.utils.mapRange(0, window.innerWidth, 1, -1, x),
+//     x: gsap.utils.mapRange(0, window.innerHeight, 1, -1, y),
+//   })
+// }
+// window.addEventListener('mousemove', onMouseMove)
 },{"three":"../node_modules/three/build/three.module.js","three/examples/jsm/controls/OrbitControls.js":"../node_modules/three/examples/jsm/controls/OrbitControls.js","three/examples/jsm/loaders/GLTFLoader.js":"../node_modules/three/examples/jsm/loaders/GLTFLoader.js","gsap":"../node_modules/gsap/index.js","gsap/ScrollTrigger":"../node_modules/gsap/ScrollTrigger.js","./cursor":"js/cursor.js","./preloader":"js/preloader.js","locomotive-scroll":"../node_modules/locomotive-scroll/dist/locomotive-scroll.esm.js","./menu":"js/menu.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -52470,7 +52461,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53550" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58585" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
