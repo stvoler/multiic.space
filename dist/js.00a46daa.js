@@ -52074,7 +52074,7 @@ var menuEl = document.querySelector('[data-scroll-container]');
       pin: ".items2",
       start: "0 0",
       scrub: 2,
-      end: "+=350%"
+      end: "+=400%"
     },
     onComplete: aClass,
     onUpdate: rClass
@@ -52089,7 +52089,7 @@ var menuEl = document.querySelector('[data-scroll-container]');
     transform: 'translateY(-300px) scaleY(4.5)',
     lineHeight: 0.8,
     ease: "[0.74,0.2,1,-0.22]"
-  });
+  }, "1.8");
   tl2.fromTo(".block-2 .text-1", {
     transform: 'translateY(0px) scaleY(1)',
     lineHeight: 1.2
@@ -52109,7 +52109,7 @@ var menuEl = document.querySelector('[data-scroll-container]');
     transform: 'translateY(-900px) scaleY(3.5)',
     lineHeight: 0.8,
     ease: "[0.74,0.2,1,-0.22]"
-  });
+  }, "<+=0.2");
   tl2.fromTo("header .line-1", {
     filter: 'opacity(0.5)',
     right: '50%'
@@ -52153,8 +52153,8 @@ var menuEl = document.querySelector('[data-scroll-container]');
     transform: 'translateY(-300px) scaleY(4.5)',
     lineHeight: 0.8,
     ease: "[0.74,0.2,1,-0.22]"
-  });
-  tl3.fromTo(".block-3 .text", {
+  }, "1.8");
+  tl3.fromTo(".block-3 .text-1", {
     transform: 'translateY(0px) scaleY(1)',
     lineHeight: 1.2
   }, {
@@ -52164,6 +52164,26 @@ var menuEl = document.querySelector('[data-scroll-container]');
     lineHeight: 0.8,
     ease: "[0.74,0.2,1,-0.22]"
   });
+  tl3.fromTo(".block-3 .text-2", {
+    transform: 'translateY(0px) scaleY(1)',
+    lineHeight: 1.2
+  }, {
+    delay: 0.2,
+    duration: 2.5,
+    transform: 'translateY(-500px) scaleY(3.5)',
+    lineHeight: 0.8,
+    ease: "[0.74,0.2,1,-0.22]"
+  }, "<+=0.2");
+  tl3.fromTo(".block-3 .text-3, .block-3 .text-4", {
+    transform: 'translateY(0px) scaleY(1)',
+    lineHeight: 1.2
+  }, {
+    delay: 0.2,
+    duration: 2.5,
+    transform: 'translateY(-500px) scaleY(3.5)',
+    lineHeight: 0.8,
+    ease: "[0.74,0.2,1,-0.22]"
+  }, "<+=0.35");
   tl3.fromTo("header .line-1", {
     filter: 'opacity(0.5)',
     right: '33%'
@@ -52347,92 +52367,124 @@ var menuEl = document.querySelector('[data-scroll-container]');
   });
 
   _ScrollTrigger.ScrollTrigger.refresh();
-}); // console.clear();
-// const renderer = new THREE.WebGLRenderer({ alpha: true, antialiase: true });
-// const w = document.querySelector('.w');
-// renderer.setSize(window.innerWidth, window.innerHeight);
-// w.appendChild(renderer.domElement);
-// const scene = new THREE.Scene();
-// const camera = new THREE.PerspectiveCamera(
-//   80, window.innerWidth / window.innerHeight, 0.1, 1000
-// );
-// camera.position.z = 5;
-// camera.position.y = 1.5;
-// let light = new THREE.DirectionalLight(0xefefff, 3);
-// light.position.set(1, 1, 1).normalize();
-// scene.add(light);
-// window.addEventListener("resize", function () {
-//   let width = window.innerWidth;
-//   let height = window.innerHeight;
-//   renderer.setSize(width, height);
-//   camera.aspect = width / height;
-//   camera.updateProjectionMatrix();
-// });
-// const loader = new GLTFLoader();
-// let mixer;
-// let model;
-// loader.load(
-//   "dinosaur.glb",
-//   function (gltf) {
-//     gltf.scene.traverse(function (node) {
-//       if (node instanceof THREE.Mesh) {
-//         node.castShadow = true;
-//         node.material.side = THREE.DoubleSide;
-//       }
-//     });
-//     model = gltf.scene;
-//     scene.add(model);
-//     mixer = new THREE.AnimationMixer(model);
-//     const action = mixer.clipAction(gltf.animations[0]);
-//     action.play();
-//     createAnimation(mixer, action, gltf.animations[0]);
-//   }
-// );
-// const clock = new THREE.Clock();
-// function render() {
-//   requestAnimationFrame(render);
-//   const delta = clock.getDelta();
-//   if (mixer != null) mixer.update(delta);
-//   if (model) model.rotation.y += 0.0025;
-//   renderer.render(scene, camera);
-// }
-// render();
-// function createAnimation(mixer, action, clip) {
-//   let proxy = {
-//     get time() {
-//       return mixer.time;
-//     },
-//     set time(value) {
-//       action.paused = false;
-//       mixer.setTime(value);
-//       action.paused = true;
-//     }
-//   };
-//   let scrollingTL = gsap.timeline({
+});
+console.clear();
+var renderer = new THREE.WebGLRenderer({
+  alpha: true,
+  antialiase: true
+});
+var w = document.querySelector('.w');
+renderer.setSize(window.innerWidth, window.innerHeight);
+w.appendChild(renderer.domElement);
+var scene = new THREE.Scene();
+var camera = new THREE.PerspectiveCamera(80, window.innerWidth / window.innerHeight, 1, 1000); // camera.position.z = 540;
+
+camera.position.z = 7;
+/* for dino */
+
+camera.position.y = 1.5;
+var light = new THREE.DirectionalLight(0xefefff, 1.8);
+light.position.set(1, 1, 1).normalize();
+scene.add(light);
+window.addEventListener("resize", function () {
+  var width = window.innerWidth;
+  var height = window.innerHeight;
+  renderer.setSize(width, height);
+  camera.aspect = width / height;
+  camera.updateProjectionMatrix();
+});
+var loader = new _GLTFLoader.GLTFLoader();
+var mixer;
+var model;
+loader.load( // "glass_circles_copy.gltf",
+"dinosaur.glb", function (gltf) {
+  gltf.scene.traverse(function (node) {
+    if (node instanceof THREE.Mesh) {
+      node.castShadow = true;
+      node.material.side = THREE.DoubleSide;
+    }
+  });
+  model = gltf.scene;
+  scene.add(model);
+  mixer = new THREE.AnimationMixer(model);
+  var action = mixer.clipAction(gltf.animations[0]);
+  action.play();
+  createAnimation(mixer, action, gltf.animations[0]);
+});
+var clock = new THREE.Clock();
+
+function render() {
+  requestAnimationFrame(render);
+  var delta = clock.getDelta();
+  if (mixer != null) mixer.update(delta); // if (model) model.rotation.y += 0.0025;
+
+  renderer.render(scene, camera);
+}
+
+render();
+
+function createAnimation(mixer, action, clip) {
+  var proxy = {
+    get time() {
+      return mixer.time;
+    },
+
+    set time(value) {
+      action.paused = false;
+      mixer.setTime(value);
+      action.paused = true;
+    }
+
+  };
+
+  var scrollingTL = _gsap.gsap.timeline({
+    scrollTrigger: {
+      // trigger: renderer.domElement,
+      start: "top center",
+      end: "bottom center",
+      scrub: 1,
+      onUpdate: function onUpdate() {
+        camera.updateProjectionMatrix();
+      }
+    }
+  });
+
+  scrollingTL.to(proxy, {
+    time: clip.duration,
+    repeat: 0
+  });
+} // init();
+// animate();
+// function init() {
+//   gsap.to('.w', {
 //     scrollTrigger: {
 //       trigger: renderer.domElement,
 //       start: "top center",
-//       end: "bottom center",
-//       scrub: 18,
-//       onUpdate: function () {
-//         camera.updateProjectionMatrix();
-//       }
-//     }
+//       end: "bottom top",
+//       scrub: true,
+//       toggleActions: "restart pause resume pause"
+//     },
+//     y: Math.PI
 //   });
-//   scrollingTL.to(proxy, {
-//     time: clip.duration,
-//     repeat: 1
-//   });
+//   gsap.to('.w', {duration: 3, translateY: '-300px'}, 0)
 // }
-// function onMouseMove(e) {
-//   const x = e.clientX
-//   const y = e.clientY
-//   gsap.to(scene.rotation, {
-//     y: gsap.utils.mapRange(0, window.innerWidth, 1, -1, x),
-//     x: gsap.utils.mapRange(0, window.innerHeight, 1, -1, y),
-//   })
+// function animate() {
+//   requestAnimationFrame(animate);
+//   renderer.render(scene, camera);
 // }
-// window.addEventListener('mousemove', onMouseMove)
+
+
+function onMouseMove(e) {
+  var x = e.clientX;
+  var y = e.clientY;
+
+  _gsap.gsap.to(scene.rotation, {
+    y: _gsap.gsap.utils.mapRange(0, window.innerWidth, 1, -1, x),
+    x: _gsap.gsap.utils.mapRange(0, window.innerHeight, 1, -1, y)
+  });
+}
+
+window.addEventListener('mousemove', onMouseMove);
 },{"three":"../node_modules/three/build/three.module.js","three/examples/jsm/controls/OrbitControls.js":"../node_modules/three/examples/jsm/controls/OrbitControls.js","three/examples/jsm/loaders/GLTFLoader.js":"../node_modules/three/examples/jsm/loaders/GLTFLoader.js","gsap":"../node_modules/gsap/index.js","gsap/ScrollTrigger":"../node_modules/gsap/ScrollTrigger.js","./cursor":"js/cursor.js","./preloader":"js/preloader.js","locomotive-scroll":"../node_modules/locomotive-scroll/dist/locomotive-scroll.esm.js","./menu":"js/menu.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -52461,7 +52513,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58585" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60060" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
