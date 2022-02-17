@@ -52292,32 +52292,32 @@ var menuEl = document.querySelector('[data-scroll-container]');
     filter: 'opacity(0.5)',
     right: '25%'
   }, {
-    delay: 0.7,
-    duration: 0.5,
+    delay: 1.7,
+    duration: 0.9,
     filter: 'opacity(1)',
-    right: '25%',
+    right: '0%',
     ease: "[0.74,0.2,1,-0.22]"
-  }, 0);
+  }, 2.8);
   tl4.fromTo("header .line-2", {
     filter: 'opacity(0.5)',
     right: '50%'
   }, {
     delay: 0.7,
-    duration: 0.5,
+    duration: 0.9,
     filter: 'opacity(1)',
-    right: '50%',
+    right: '0%',
     ease: "[0.74,0.2,1,-0.22]"
-  }, 0);
+  }, "<+=0.2");
   tl4.fromTo("header .line-3", {
     filter: 'opacity(0.5)',
     right: '75%'
   }, {
     delay: 0.7,
-    duration: 0.5,
+    duration: 0.9,
     filter: 'opacity(1)',
-    right: '75%',
+    right: '0%',
     ease: "[0.74,0.2,1,-0.22]"
-  }, 0);
+  }, "<+=0.35");
 
   var tl5 = _gsap.gsap.timeline({
     scrollTrigger: {
@@ -52325,43 +52325,43 @@ var menuEl = document.querySelector('[data-scroll-container]');
       repeat: true,
       pin: ".items5",
       start: "0 0",
-      scrub: 1,
-      end: "+=100%"
+      scrub: 2,
+      end: "+=270%"
     },
     onComplete: aClass,
     onUpdate: rClass
   });
 
   tl5.fromTo("header .line-1", {
-    filter: 'opacity(0)',
-    right: '25%'
+    filter: 'opacity(0.5)',
+    right: 0
   }, {
     delay: 0.7,
-    duration: 2.5,
-    filter: 'opacity(0)',
+    duration: 1.5,
+    filter: 'opacity(0.5)',
     right: 0,
     ease: "[0.74,0.2,1,-0.22]"
-  }, 0);
+  });
   tl5.fromTo("header .line-2", {
-    filter: 'opacity(0)',
-    right: '50%'
+    filter: 'opacity(0.5)',
+    right: 0
   }, {
     delay: 0.7,
-    duration: 2.5,
-    filter: 'opacity(0)',
+    duration: 0.5,
+    filter: 'opacity(0.5)',
     right: 0,
     ease: "[0.74,0.2,1,-0.22]"
-  }, 0);
+  });
   tl5.fromTo("header .line-3", {
-    filter: 'opacity(0)',
-    right: '75%'
+    filter: 'opacity(0.5)',
+    right: 0
   }, {
     delay: 0.7,
-    duration: 2.5,
-    filter: 'opacity(0)',
+    duration: 0.5,
+    filter: 'opacity(0.5)',
     right: 0,
     ease: "[0.74,0.2,1,-0.22]"
-  }, 0);
+  });
   tl5.fromTo("header .border", {
     height: 'calc(100vh - 80px)',
     top: '40px',
