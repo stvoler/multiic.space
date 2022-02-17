@@ -52064,6 +52064,16 @@ var menuEl = document.querySelector('[data-scroll-container]');
     filter: 'opacity(1)',
     right: '50%',
     ease: "[0.74,0.2,1,-0.22]"
+  });
+  tl.fromTo("header .line-3", {
+    filter: 'opacity(0.5)',
+    right: 0
+  }, {
+    delay: 0.7,
+    duration: 0.5,
+    filter: 'opacity(1)',
+    right: 0,
+    ease: "[0.74,0.2,1,-0.22]"
   }); // .to(".item .text", {duration: 4, transform: 'translateY(0px) scaleY(0)'}, 0).to(".item .text", { duration: 2, transform: 'translateY(0px) scaleY(4.5)'}, 0)
   // .fromTo("header", {background: "linear-gradient(to bottom, rgba(229,229,229,0) 0%,rgba(0,0,0,0) 100%)"}, {background: "linear-gradient(to bottom, rgba(229,229,229,0.65) 0%,rgba(0,0,0,0) 100%)"})
 
@@ -52086,7 +52096,7 @@ var menuEl = document.querySelector('[data-scroll-container]');
   }, {
     delay: 0.3,
     duration: 3,
-    transform: 'translateY(-300px) scaleY(4.5)',
+    transform: 'translateY(-400px) scaleY(4.5)',
     lineHeight: 0.8,
     ease: "[0.74,0.2,1,-0.22]"
   }, "1.8");
@@ -52122,14 +52132,24 @@ var menuEl = document.querySelector('[data-scroll-container]');
   });
   tl2.fromTo("header .line-2", {
     filter: 'opacity(0.5)',
-    right: '40px'
+    right: 0
   }, {
     delay: 0.7,
     duration: 0.5,
     filter: 'opacity(1)',
     right: '66%',
     ease: "[0.74,0.2,1,-0.22]"
-  }); // tl2.fromTo("header .line-3", {filter: 'opacity(0)', right: 0}, {delay: 0.7, duration: 0.5, filter: 'opacity(0)', right: 0, ease: "[0.74,0.2,1,-0.22]"}, 0)
+  });
+  tl2.fromTo("header .line-3", {
+    filter: 'opacity(0.5)',
+    right: 0
+  }, {
+    delay: 0.7,
+    duration: 0.5,
+    filter: 'opacity(1)',
+    right: 0,
+    ease: "[0.74,0.2,1,-0.22]"
+  });
 
   var tl3 = _gsap.gsap.timeline({
     scrollTrigger: {
@@ -52174,7 +52194,7 @@ var menuEl = document.querySelector('[data-scroll-container]');
     lineHeight: 0.8,
     ease: "[0.74,0.2,1,-0.22]"
   }, "<+=0.2");
-  tl3.fromTo(".block-3 .text-3, .block-3 .text-4", {
+  tl3.fromTo(".block-3 .text-3", {
     transform: 'translateY(0px) scaleY(1)',
     lineHeight: 1.2
   }, {
@@ -52237,8 +52257,8 @@ var menuEl = document.querySelector('[data-scroll-container]');
     transform: 'translateY(-300px) scaleY(4.5)',
     lineHeight: 0.8,
     ease: "[0.74,0.2,1,-0.22]"
-  });
-  tl4.fromTo(".block-4 .text", {
+  }, "1.8");
+  tl4.fromTo(".block-4 .text-1", {
     transform: 'translateY(0px) scaleY(1)',
     lineHeight: 1.2
   }, {
@@ -52248,6 +52268,26 @@ var menuEl = document.querySelector('[data-scroll-container]');
     lineHeight: 0.8,
     ease: "[0.74,0.2,1,-0.22]"
   });
+  tl4.fromTo(".block-4 .text-2", {
+    transform: 'translateY(0px) scaleY(1)',
+    lineHeight: 1.2
+  }, {
+    delay: 0.2,
+    duration: 2.5,
+    transform: 'translateY(-500px) scaleY(3.5)',
+    lineHeight: 0.8,
+    ease: "[0.74,0.2,1,-0.22]"
+  }, "<+=0.2");
+  tl4.fromTo(".block-4 .text-3, .block-4 .text-3", {
+    transform: 'translateY(0px) scaleY(1)',
+    lineHeight: 1.2
+  }, {
+    delay: 0.2,
+    duration: 2.5,
+    transform: 'translateY(-500px) scaleY(3.5)',
+    lineHeight: 0.8,
+    ease: "[0.74,0.2,1,-0.22]"
+  }, "<+=0.35");
   tl4.fromTo("header .line-1", {
     filter: 'opacity(0.5)',
     right: '25%'
@@ -52342,7 +52382,7 @@ var menuEl = document.querySelector('[data-scroll-container]');
     transform: 'translateY(50px) scaleY(1)',
     lineHeight: 1.2,
     ease: "[0.74,0.2,1,-0.22]"
-  });
+  }, "1.8");
   tl5.fromTo(".block-5 .text", {
     transform: 'translateY(50px) scale(0.4)',
     lineHeight: 1.2
@@ -52513,7 +52553,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60060" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53853" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
