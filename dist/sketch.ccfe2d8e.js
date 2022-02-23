@@ -117,79 +117,79 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
-var bundleURL = null;
+})({"js/sketch.js":[function(require,module,exports) {
+var tree;
+var input, button, playStopBtn;
+var angInp, depInp, sizeInp;
 
-function getBundleURLCached() {
-  if (!bundleURL) {
-    bundleURL = getBundleURL();
-  }
-
-  return bundleURL;
+function setup() {
+  createCanvas(window.innerWidth, window.innerHeight);
+  frameRate(30);
+  stroke(255, 200);
+  var size = min(height / 8, width / 8);
+  tree = new PythagorasTree(width / 2 - size / 2, height - size * 2 - 2, 9, QUARTER_PI, size);
+  angInp = createInput(tree.getAngle());
+  depInp = createInput(tree.getDepth());
+  sizeInp = createInput(tree.getSize());
+  createP('Manual settings:').attribute('align', 'center').child(createDiv('Set angle:  ').attribute('align', 'left').child(angInp).child(createButton('Set').mousePressed(setAngleFunc))).child(createDiv('Set depth:  ').attribute('align', 'left').child(depInp).child(createButton('Set').mousePressed(setDepthFunc))).child(createDiv('Set start height:  ').attribute('align', 'left').child(sizeInp).child(createButton('Set').mousePressed(setSizeFunc)));
 }
 
-function getBundleURL() {
-  // Attempt to find the URL of the current script and use that as the base URL
-  try {
-    throw new Error();
-  } catch (err) {
-    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
+var isPlay = true;
 
-    if (matches) {
-      return getBaseURL(matches[0]);
+function draw() {
+  background(0);
+  tree.show();
+  if (isPlay) tree.setAngle(radians(frameCount % 90));
+  /* Show info */
+
+  fill(255);
+  text('FPS:' + int(getFrameRate()), 0, 10);
+  text('Angle:' + tree.getAngle(), 0, 25);
+  text('Depth:' + tree.getDepth(), 0, 40);
+}
+
+function mousePressed() {
+  if (mouseY < height) {
+    isPlay = !isPlay;
+    isPlay ? loop() : noLoop();
+  }
+}
+
+function setAngleFunc() {
+  var newAngle = angInp.value();
+
+  if (newAngle < 90 && newAngle > 0) {
+    noLoop();
+    isPlay = false;
+    tree.setAngle(radians(newAngle));
+    redraw();
+  }
+}
+
+function setDepthFunc() {
+  var newDepth = depInp.value();
+
+  if (newDepth > 0 && newDepth < 15) {
+    tree.setDepth(newDepth);
+
+    if (!isPlay) {
+      redraw();
     }
   }
-
-  return '/';
 }
 
-function getBaseURL(url) {
-  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)?\/[^/]+(?:\?.*)?$/, '$1') + '/';
-}
+function setSizeFunc() {
+  var newSize = sizeInp.value();
 
-exports.getBundleURL = getBundleURLCached;
-exports.getBaseURL = getBaseURL;
-},{}],"../node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
-var bundle = require('./bundle-url');
+  if (newSize > 0 && newSize < height) {
+    tree.setSize(newSize);
 
-function updateLink(link) {
-  var newLink = link.cloneNode();
-
-  newLink.onload = function () {
-    link.remove();
-  };
-
-  newLink.href = link.href.split('?')[0] + '?' + Date.now();
-  link.parentNode.insertBefore(newLink, link.nextSibling);
-}
-
-var cssTimeout = null;
-
-function reloadCSS() {
-  if (cssTimeout) {
-    return;
-  }
-
-  cssTimeout = setTimeout(function () {
-    var links = document.querySelectorAll('link[rel="stylesheet"]');
-
-    for (var i = 0; i < links.length; i++) {
-      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
-        updateLink(links[i]);
-      }
+    if (!isPlay) {
+      redraw();
     }
-
-    cssTimeout = null;
-  }, 50);
+  }
 }
-
-module.exports = reloadCSS;
-},{"./bundle-url":"../node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"css/style.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
-
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -217,7 +217,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60954" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62916" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -393,5 +393,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../node_modules/parcel-bundler/src/builtins/hmr-runtime.js"], null)
-//# sourceMappingURL=/style.78032849.js.map
+},{}]},{},["../node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/sketch.js"], null)
+//# sourceMappingURL=/sketch.ccfe2d8e.js.map

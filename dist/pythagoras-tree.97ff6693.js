@@ -117,79 +117,286 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
-var bundleURL = null;
+})({"js/pythagoras-tree.js":[function(require,module,exports) {
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-function getBundleURLCached() {
-  if (!bundleURL) {
-    bundleURL = getBundleURL();
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+
+var Tree = /*#__PURE__*/function () {
+  function Tree() {
+    _classCallCheck(this, Tree);
+
+    this.canvas = document.querySelector('#ctx');
+    this.Drange = document.querySelector('#set_degr');
+    this.ctx = this.canvas.getContext('2d');
+    this.ctx.lineWidth = 1; // толщина линии
+
+    this.ctx.strokeStyle = 'white'; // цвет    линии
+
+    this.degrBase = 45;
+    this.degr = this.degrBase;
+    this.set_default();
+    this.handleRange();
   }
 
-  return bundleURL;
-}
+  _createClass(Tree, [{
+    key: "set_default",
+    value: function set_default() {
+      this.length = 160; // первоначальная длинна лнии
 
-function getBundleURL() {
-  // Attempt to find the URL of the current script and use that as the base URL
-  try {
-    throw new Error();
-  } catch (err) {
-    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
+      this.step_value = 10; // кол-во шагов (рисования)
 
-    if (matches) {
-      return getBaseURL(matches[0]);
+      this.baseX = 600; // дефолтная ширина
+
+      this.baseY = 720; // дефолтная высота (в самом низу)
+      // координаты столба дерева
+
+      this.lineX = 600;
+      this.lineY = 500;
     }
-  }
+  }, {
+    key: "handleRange",
+    value: function handleRange() {
+      var _this = this;
 
-  return '/';
-}
+      this.Drange.addEventListener('mousemove', function (e) {
+        if (e.which == 1) {
+          _this.rangeFunc(Number(e.target.value));
+        }
+      }, false);
+      this.Drange.addEventListener('change', function (e) {
+        _this.rangeFunc(Number(e.target.value));
+      }, false);
+    }
+  }, {
+    key: "rangeFunc",
+    value: function rangeFunc(value) {
+      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+      var degrees_monitor = document.querySelector('.degrees_monitor');
+      degrees_monitor.textContent = value;
+      this.degrBase = value;
+      this.degr = value;
+      this.set_default();
+      this.makeTree();
+    }
+  }, {
+    key: "makeTree",
+    value: function makeTree() {
+      // отрисовываем столб дерева
+      this.ctx.beginPath(); // clear field
 
-function getBaseURL(url) {
-  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)?\/[^/]+(?:\?.*)?$/, '$1') + '/';
-}
+      this.ctx.moveTo(this.baseX, this.baseY); // передвигаем перо
 
-exports.getBundleURL = getBundleURLCached;
-exports.getBaseURL = getBaseURL;
-},{}],"../node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
-var bundle = require('./bundle-url');
+      this.ctx.lineTo(this.lineX, this.lineY); // рисуем линию
 
-function updateLink(link) {
-  var newLink = link.cloneNode();
+      this.createBranch(this.step_value, true, this.degr, this.length, this.lineX, this.lineY);
+      this.set_default();
+      this.ctx.moveTo(this.lineX, this.lineY); // передвигаем перо
 
-  newLink.onload = function () {
-    link.remove();
-  };
+      this.degr = this.degrBase;
+      this.createBranch(this.step_value, false, this.degr, this.length, this.lineX, this.lineY);
+      this.ctx.stroke();
+      this.ctx.closePath();
+    }
+  }, {
+    key: "createBranch",
+    value: function createBranch() {
+      var stepValue = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 10;
+      var sideBool = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+      var degr = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 45;
+      var length = arguments.length > 3 ? arguments[3] : undefined;
+      var lineX = arguments.length > 4 ? arguments[4] : undefined;
+      var lineY = arguments.length > 5 ? arguments[5] : undefined;
+      var direction = sideBool ? 'right' : 'left';
 
-  newLink.href = link.href.split('?')[0] + '?' + Date.now();
-  link.parentNode.insertBefore(newLink, link.nextSibling);
-}
-
-var cssTimeout = null;
-
-function reloadCSS() {
-  if (cssTimeout) {
-    return;
-  }
-
-  cssTimeout = setTimeout(function () {
-    var links = document.querySelectorAll('link[rel="stylesheet"]');
-
-    for (var i = 0; i < links.length; i++) {
-      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
-        updateLink(links[i]);
+      if (stepValue > 0) {
+        // processing
+        var result = this.count_angle(degr, length, lineX, lineY, direction);
+        this.ctx.moveTo(lineX, lineY);
+        this.ctx.lineTo(result.lineX, result.lineY);
+        length = length / 1.6;
+        stepValue--;
+        this.createBranch(stepValue, sideBool, degr - Number(this.degrBase), length, result.lineX, result.lineY);
+        this.createBranch(stepValue, sideBool, degr + Number(this.degrBase), length, result.lineX, result.lineY);
       }
     }
+  }, {
+    key: "count_angle",
+    value: function count_angle(degr, length, lineX, lineY, side) {
+      degr = Number(degr);
+      if (degr <= 0) degr = 360 + degr;
 
-    cssTimeout = null;
-  }, 50);
-}
+      if (degr > 0 && degr < 90) {
+        var result = this.do_1_section_new(lineX, lineY, length, degr, side);
+        lineX = result.lineX;
+        lineY = result.lineY;
+      }
 
-module.exports = reloadCSS;
-},{"./bundle-url":"../node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"css/style.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
+      if (degr > 90 && degr < 180) {
+        var _result = this.do_2_section_new(lineX, lineY, length, degr, side);
 
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+        lineX = _result.lineX;
+        lineY = _result.lineY;
+      }
+
+      if (degr > 180 && degr < 270) {
+        var _result2 = this.do_3_section_new(lineX, lineY, length, degr, side);
+
+        lineX = _result2.lineX;
+        lineY = _result2.lineY;
+      }
+
+      if (degr > 270 && degr < 360) {
+        var _result3 = this.do_4_section_new(lineX, lineY, length, degr, side);
+
+        lineX = _result3.lineX;
+        lineY = _result3.lineY;
+      } /////////
+
+
+      if (degr == 90) lineY -= length;
+
+      if (degr == 180) {
+        if (side == "right") {
+          lineX -= length;
+        }
+
+        if (side == "left") {
+          lineX += length;
+        }
+      }
+
+      if (degr == 270) lineY += length;
+
+      if (degr == 360) {
+        if (side == "right") {
+          lineX += length;
+        }
+
+        if (side == "left") {
+          lineX -= length;
+        }
+      }
+
+      return {
+        "lineY": lineY,
+        "lineX": lineX
+      };
+    } ///////
+
+  }, {
+    key: "do_1_section_new",
+    value: function do_1_section_new(lineX, lineY, length, degr, side) {
+      var radian = degr * Math.PI / 180; // if turn right
+
+      var sin = Math.sin(radian);
+      var cos = Math.cos(radian);
+      var yLength = length * sin;
+      var xLength = length * cos;
+
+      if (side == "right") {
+        lineX += xLength;
+        lineY -= yLength;
+      }
+
+      if (side == "left") {
+        lineX -= xLength;
+        lineY -= yLength;
+      }
+
+      return {
+        "lineY": lineY,
+        "lineX": lineX
+      };
+    }
+  }, {
+    key: "do_2_section_new",
+    value: function do_2_section_new(lineX, lineY, length, degr, side) {
+      degr = degr - 90;
+      var radian = degr * Math.PI / 180; // if turn right
+
+      var sin = Math.sin(radian);
+      var cos = Math.cos(radian);
+      var xLength = length * sin;
+      var yLength = length * cos;
+
+      if (side == "right") {
+        lineX -= xLength;
+        lineY -= yLength;
+      }
+
+      if (side == "left") {
+        lineX += xLength;
+        lineY -= yLength;
+      }
+
+      return {
+        "lineY": lineY,
+        "lineX": lineX
+      };
+    }
+  }, {
+    key: "do_3_section_new",
+    value: function do_3_section_new(lineX, lineY, length, degr, side) {
+      degr = degr - 180;
+      var radian = degr * Math.PI / 180; // if turn right
+
+      var sin = Math.sin(radian);
+      var cos = Math.cos(radian);
+      var xLength = length * sin;
+      var yLength = length * cos;
+
+      if (side == "right") {
+        lineX -= xLength;
+        lineY += yLength;
+      }
+
+      if (side == "left") {
+        lineX += xLength;
+        lineY += yLength;
+      }
+
+      return {
+        "lineY": lineY,
+        "lineX": lineX
+      };
+    }
+  }, {
+    key: "do_4_section_new",
+    value: function do_4_section_new(lineX, lineY, length, degr, side) {
+      degr = degr - 270;
+      var radian = degr * Math.PI / 180; // if turn right
+
+      var sin = Math.sin(radian);
+      var cos = Math.cos(radian);
+      var xLength = length * sin;
+      var yLength = length * cos;
+
+      if (side == "right") {
+        lineX += xLength;
+        lineY += yLength;
+      }
+
+      if (side == "left") {
+        lineX -= xLength;
+        lineY += yLength;
+      }
+
+      return {
+        "lineY": lineY,
+        "lineX": lineX
+      };
+    }
+  }]);
+
+  return Tree;
+}();
+
+var Tree_ex = new Tree();
+Tree_ex.makeTree();
+},{}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -217,7 +424,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60954" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62916" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -393,5 +600,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../node_modules/parcel-bundler/src/builtins/hmr-runtime.js"], null)
-//# sourceMappingURL=/style.78032849.js.map
+},{}]},{},["../node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/pythagoras-tree.js"], null)
+//# sourceMappingURL=/pythagoras-tree.97ff6693.js.map
