@@ -52005,9 +52005,9 @@ var menuEl = document.querySelector('[data-scroll-container]');
 
   var tl = _gsap.gsap.timeline({
     scrollTrigger: {
-      trigger: ".item.active",
+      trigger: ".item1",
       repeat: true,
-      pin: ".items",
+      pin: ".items1",
       start: "0 0",
       scrub: 2,
       end: "+=270%"
@@ -52062,22 +52062,22 @@ var menuEl = document.querySelector('[data-scroll-container]');
     translateX: '30vw'
   }, 0);
   tl.fromTo("header .line-1", {
-    filter: 'opacity(0.5)',
+    opacity: 0.5,
     right: 0
   }, {
     delay: 0.7,
     duration: 0.5,
-    filter: 'opacity(1)',
+    opacity: 1,
     right: '50%',
     ease: "[0.74,0.2,1,-0.22]"
   });
   tl.fromTo("header .line-3", {
-    filter: 'opacity(0.5)',
+    opacity: 0.5,
     right: 0
   }, {
     delay: 0.7,
     duration: 0.5,
-    filter: 'opacity(1)',
+    opacity: 1,
     right: 0,
     ease: "[0.74,0.2,1,-0.22]"
   }); // .to(".item .text", {duration: 4, transform: 'translateY(0px) scaleY(0)'}, 0).to(".item .text", { duration: 2, transform: 'translateY(0px) scaleY(4.5)'}, 0)
@@ -52085,7 +52085,7 @@ var menuEl = document.querySelector('[data-scroll-container]');
 
   var tl2 = _gsap.gsap.timeline({
     scrollTrigger: {
-      trigger: ".items2 .item.active",
+      trigger: ".items2",
       repeat: true,
       pin: ".items2",
       start: "0 0",
@@ -52127,39 +52127,39 @@ var menuEl = document.querySelector('[data-scroll-container]');
     ease: "[0.74,0.2,1,-0.22]"
   }, "<+=0.2");
   tl2.fromTo("header .line-1", {
-    filter: 'opacity(0.5)',
+    opacity: 0.5,
     right: '50%'
   }, {
     delay: 1.7,
     duration: 2.5,
-    filter: 'opacity(1)',
+    opacity: 1,
     right: '33%',
     ease: "[0.74,0.2,1,-0.22]"
   });
   tl2.fromTo("header .line-2", {
-    filter: 'opacity(0.5)',
+    opacity: 0.5,
     right: 0
   }, {
     delay: 0.7,
     duration: 0.5,
-    filter: 'opacity(1)',
+    opacity: 1,
     right: '66%',
     ease: "[0.74,0.2,1,-0.22]"
   });
   tl2.fromTo("header .line-3", {
-    filter: 'opacity(0.5)',
+    opacity: 0.5,
     right: 0
   }, {
     delay: 0.7,
     duration: 0.5,
-    filter: 'opacity(1)',
+    opacity: 1,
     right: 0,
     ease: "[0.74,0.2,1,-0.22]"
   });
 
   var tl3 = _gsap.gsap.timeline({
     scrollTrigger: {
-      trigger: ".items3 .item.active",
+      trigger: ".items3",
       repeat: true,
       pin: ".items3",
       start: "0 0",
@@ -52211,39 +52211,39 @@ var menuEl = document.querySelector('[data-scroll-container]');
     ease: "[0.74,0.2,1,-0.22]"
   }, "<+=0.35");
   tl3.fromTo("header .line-1", {
-    filter: 'opacity(0.5)',
+    opacity: 0.5,
     right: '33%'
   }, {
     delay: 1.7,
     duration: 2.5,
-    filter: 'opacity(1)',
+    opacity: 1,
     right: '25%',
     ease: "[0.74,0.2,1,-0.22]"
   });
   tl3.fromTo("header .line-2", {
-    filter: 'opacity(0.5)',
+    opacity: 0.5,
     right: '66%'
   }, {
     delay: 0.7,
     duration: 0.5,
-    filter: 'opacity(1)',
+    opacity: 1,
     right: '50%',
     ease: "[0.74,0.2,1,-0.22]"
   });
   tl3.fromTo("header .line-3", {
-    filter: 'opacity(0.5)',
+    opacity: 0.5,
     right: 0
   }, {
     delay: 0.7,
     duration: 0.5,
-    filter: 'opacity(1)',
+    opacity: 1,
     right: '75%',
     ease: "[0.74,0.2,1,-0.22]"
   });
 
   var tl4 = _gsap.gsap.timeline({
     scrollTrigger: {
-      trigger: ".items4 .item.active",
+      trigger: ".items4",
       repeat: true,
       pin: ".items4",
       start: "0 0",
@@ -52295,39 +52295,39 @@ var menuEl = document.querySelector('[data-scroll-container]');
     ease: "[0.74,0.2,1,-0.22]"
   }, "<+=0.35");
   tl4.fromTo("header .line-1", {
-    filter: 'opacity(0.5)',
+    opacity: 0.5,
     right: '25%'
   }, {
     delay: 1.7,
     duration: 0.9,
-    filter: 'opacity(1)',
+    opacity: 1,
     right: '0%',
     ease: "[0.74,0.2,1,-0.22]"
   }, 2.8);
   tl4.fromTo("header .line-2", {
-    filter: 'opacity(0.5)',
+    opacity: 0.5,
     right: '50%'
   }, {
     delay: 0.7,
     duration: 0.9,
-    filter: 'opacity(1)',
+    opacity: 1,
     right: '0%',
     ease: "[0.74,0.2,1,-0.22]"
   }, "<+=0.2");
   tl4.fromTo("header .line-3", {
-    filter: 'opacity(0.5)',
+    opacity: 0.5,
     right: '75%'
   }, {
     delay: 0.7,
     duration: 0.9,
-    filter: 'opacity(1)',
+    opacity: 1,
     right: '0%',
     ease: "[0.74,0.2,1,-0.22]"
   }, "<+=0.35");
 
   var tl5 = _gsap.gsap.timeline({
     scrollTrigger: {
-      trigger: ".items5 .item.active",
+      trigger: ".items5",
       repeat: true,
       pin: ".items5",
       start: "0 0",
@@ -52339,32 +52339,32 @@ var menuEl = document.querySelector('[data-scroll-container]');
   });
 
   tl5.fromTo("header .line-1", {
-    filter: 'opacity(0.5)',
+    opacity: 0.5,
     right: 0
   }, {
     delay: 0.7,
     duration: 1.5,
-    filter: 'opacity(0.5)',
+    opacity: 0.5,
     right: 0,
     ease: "[0.74,0.2,1,-0.22]"
   });
   tl5.fromTo("header .line-2", {
-    filter: 'opacity(0.5)',
+    opacity: 0.5,
     right: 0
   }, {
     delay: 0.7,
     duration: 0.5,
-    filter: 'opacity(0.5)',
+    opacity: 0.5,
     right: 0,
     ease: "[0.74,0.2,1,-0.22]"
   });
   tl5.fromTo("header .line-3", {
-    filter: 'opacity(0.5)',
+    opacity: 0.5,
     right: 0
   }, {
     delay: 0.7,
     duration: 0.5,
-    filter: 'opacity(0.5)',
+    opacity: 0.5,
     right: 0,
     ease: "[0.74,0.2,1,-0.22]"
   });
@@ -52666,7 +52666,7 @@ var menuEl = document.querySelector('[data-scroll-container]');
     scrollTrigger: {
       start: "top center",
       end: "bottom center",
-      scrub: 1 // onUpdate: treeDegreesUpdateConsole,
+      scrub: 2 // onUpdate: treeDegreesUpdateConsole,
 
     }
   });
@@ -52675,8 +52675,8 @@ var menuEl = document.querySelector('[data-scroll-container]');
     value: 0
   }, {
     delay: 0.3,
-    duration: 1.8,
-    value: 35,
+    duration: 5.4,
+    value: 45,
     roundProps: "value"
   }); // function treeDegreesUpdateConsole (Tree_ex){
   //   console.log(Tree_ex);
@@ -52830,7 +52830,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60954" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53181" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
