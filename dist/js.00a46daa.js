@@ -51586,354 +51586,7 @@ var _default$3 = /*#__PURE__*/function () {
 
 var _default2 = _default$3;
 exports.default = _default2;
-},{}],"img/1.gif":[function(require,module,exports) {
-module.exports = "/1.36387da8.gif";
-},{}],"img/2.gif":[function(require,module,exports) {
-module.exports = "/2.6a53b660.gif";
-},{}],"img/3.gif":[function(require,module,exports) {
-module.exports = "/3.da0d8e8c.gif";
-},{}],"img/4.gif":[function(require,module,exports) {
-module.exports = "/4.c56b3f35.gif";
-},{}],"img/5.gif":[function(require,module,exports) {
-module.exports = "/5.d14f3e33.gif";
-},{}],"img/*.gif":[function(require,module,exports) {
-module.exports = {
-  "1": require("./1.gif"),
-  "2": require("./2.gif"),
-  "3": require("./3.gif"),
-  "4": require("./4.gif"),
-  "5": require("./5.gif")
-};
-},{"./1.gif":"img/1.gif","./2.gif":"img/2.gif","./3.gif":"img/3.gif","./4.gif":"img/4.gif","./5.gif":"img/5.gif"}],"js/menuItem.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _gsap = require("gsap");
-
-var _utils = require("./utils");
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-
-var images = Object.entries(require('../img/*.gif'));
-var mousepos = {
-  x: 0,
-  y: 0
-};
-var mousePosCache = mousepos;
-var direction = {
-  x: mousePosCache.x - mousepos.x,
-  y: mousePosCache.y - mousepos.y
-};
-window.addEventListener('mousemove', function (ev) {
-  return mousepos = (0, _utils.getMousePos)(ev);
-});
-
-var MenuItem = /*#__PURE__*/function () {
-  function MenuItem(el, inMenuPosition, animatableProperties) {
-    _classCallCheck(this, MenuItem);
-
-    this.DOM = {
-      el: el
-    };
-    this.inMenuPosition = inMenuPosition;
-    this.animatableProperties = animatableProperties;
-    this.DOM.textInner = this.DOM.el.querySelector('.text');
-    this.layout();
-    this.initEvents();
-  }
-
-  _createClass(MenuItem, [{
-    key: "layout",
-    value: function layout() {
-      this.DOM.reveal = document.createElement('div');
-      this.DOM.reveal.className = 'hover';
-      this.DOM.revealInner = document.createElement('div');
-      this.DOM.revealInner.className = 'hover-inner';
-      this.DOM.revealImage = document.createElement('div');
-      this.DOM.revealImage.className = 'hover-img';
-      this.DOM.revealImage.style.backgroundImage = "url(".concat(images[this.inMenuPosition][1], ")");
-      this.DOM.revealInner.appendChild(this.DOM.revealImage);
-      this.DOM.reveal.appendChild(this.DOM.revealInner);
-      this.DOM.el.appendChild(this.DOM.reveal);
-    }
-  }, {
-    key: "calcBounds",
-    value: function calcBounds() {
-      this.bounds = {
-        el: this.DOM.el.getBoundingClientRect(),
-        reveal: this.DOM.reveal.getBoundingClientRect()
-      };
-    } // bind some events
-
-  }, {
-    key: "initEvents",
-    value: function initEvents() {
-      var _this = this;
-
-      this.mouseenterFn = function (ev) {
-        // show the image element
-        _this.showImage();
-
-        _this.firstRAFCycle = true; // start the render loop animation (rAF)
-
-        _this.loopRender();
-      };
-
-      this.mouseleaveFn = function () {
-        // stop the render loop animation (rAF)
-        _this.stopRendering(); // hide the image element
-
-
-        _this.hideImage();
-      };
-
-      this.DOM.el.addEventListener('mouseenter', this.mouseenterFn);
-      this.DOM.el.addEventListener('mouseleave', this.mouseleaveFn);
-    } // show the image element
-
-  }, {
-    key: "showImage",
-    value: function showImage() {
-      var _this2 = this;
-
-      // kill any current tweens
-      _gsap.gsap.killTweensOf(this.DOM.revealInner);
-
-      _gsap.gsap.killTweensOf(this.DOM.revealImage);
-
-      this.tl = _gsap.gsap.timeline({
-        onStart: function onStart() {
-          // show the image element
-          _this2.DOM.reveal.style.opacity = 1; // set a high z-index value so image appears on top of other elements
-
-          _gsap.gsap.set(_this2.DOM.el, {
-            zIndex: images.length
-          });
-        }
-      }) // animate the image wrap
-      .to(this.DOM.revealInner, 0.5, {
-        ease: 'Sine.easeOut',
-        startAt: {
-          x: direction.x < 0 ? '-100%' : '100%'
-        },
-        x: '0%'
-      }) // animate the image element
-      .to(this.DOM.revealImage, 0.5, {
-        ease: 'Sine.easeOut',
-        startAt: {
-          x: direction.x < 0 ? '100%' : '-100%'
-        },
-        x: '0%'
-      }, 0);
-    } // hide the image element
-
-  }, {
-    key: "hideImage",
-    value: function hideImage() {
-      var _this3 = this;
-
-      // kill any current tweens
-      _gsap.gsap.killTweensOf(this.DOM.revealInner);
-
-      _gsap.gsap.killTweensOf(this.DOM.revealImage);
-
-      this.tl = _gsap.gsap.timeline({
-        onStart: function onStart() {
-          _gsap.gsap.set(_this3.DOM.el, {
-            zIndex: 1
-          });
-        },
-        onComplete: function onComplete() {
-          _gsap.gsap.set(_this3.DOM.reveal, {
-            opacity: 0
-          });
-        }
-      }).to(this.DOM.revealInner, 0.2, {
-        ease: 'Sine.easeOut',
-        x: direction.x < 0 ? '100%' : '-100%'
-      }).to(this.DOM.revealImage, 0.2, {
-        ease: 'Sine.easeOut',
-        x: direction.x < 0 ? '-100%' : '100%'
-      }, 0);
-    } // start the render loop animation (rAF)
-
-  }, {
-    key: "loopRender",
-    value: function loopRender() {
-      var _this4 = this;
-
-      if (!this.requestId) {
-        this.requestId = requestAnimationFrame(function () {
-          return _this4.render();
-        });
-      }
-    } // stop the render loop animation (rAF)
-
-  }, {
-    key: "stopRendering",
-    value: function stopRendering() {
-      if (this.requestId) {
-        window.cancelAnimationFrame(this.requestId);
-        this.requestId = undefined;
-      }
-    } // translate the item as the mouse moves
-
-  }, {
-    key: "render",
-    value: function render() {
-      this.requestId = undefined; // calculate position/sizes the first time
-
-      if (this.firstRAFCycle) {
-        this.calcBounds();
-      } // calculate the mouse distance (current vs previous cycle)
-
-
-      var mouseDistanceX = (0, _utils.clamp)(Math.abs(mousePosCache.x - mousepos.x), 0, 100); // direction where the mouse is moving
-
-      direction = {
-        x: mousePosCache.x - mousepos.x,
-        y: mousePosCache.y - mousepos.y
-      }; // updated cache values
-
-      mousePosCache = {
-        x: mousepos.x,
-        y: mousepos.y
-      }; // new translation values
-      // the center of the image element is positioned where the mouse is
-
-      this.animatableProperties.tx.current = Math.abs(mousepos.x - this.bounds.el.left) - this.bounds.reveal.width / 2;
-      this.animatableProperties.ty.current = Math.abs(mousepos.y - this.bounds.el.top) - this.bounds.reveal.height / 2; // new rotation value
-
-      this.animatableProperties.rotation.current = this.firstRAFCycle ? 0 : (0, _utils.map)(mouseDistanceX, 0, 100, 0, direction.x < 0 ? 60 : -60); // new filter value
-
-      this.animatableProperties.brightness.current = this.firstRAFCycle ? 1 : (0, _utils.map)(mouseDistanceX, 0, 100, 1, 4);
-      this.animatableProperties.tx.previous = this.firstRAFCycle ? this.animatableProperties.tx.current : (0, _utils.lerp)(this.animatableProperties.tx.previous, this.animatableProperties.tx.current, this.animatableProperties.tx.amt);
-      this.animatableProperties.ty.previous = this.firstRAFCycle ? this.animatableProperties.ty.current : (0, _utils.lerp)(this.animatableProperties.ty.previous, this.animatableProperties.ty.current, this.animatableProperties.ty.amt);
-      this.animatableProperties.rotation.previous = this.firstRAFCycle ? this.animatableProperties.rotation.current : (0, _utils.lerp)(this.animatableProperties.rotation.previous, this.animatableProperties.rotation.current, this.animatableProperties.rotation.amt);
-      this.animatableProperties.brightness.previous = this.firstRAFCycle ? this.animatableProperties.brightness.current : (0, _utils.lerp)(this.animatableProperties.brightness.previous, this.animatableProperties.brightness.current, this.animatableProperties.brightness.amt);
-
-      _gsap.gsap.set(this.DOM.reveal, {
-        x: this.animatableProperties.tx.previous,
-        y: this.animatableProperties.ty.previous,
-        rotation: this.animatableProperties.rotation.previous,
-        filter: "brightness(".concat(this.animatableProperties.brightness.previous, ")")
-      }); // loop
-
-
-      this.firstRAFCycle = false;
-      this.loopRender();
-    }
-  }]);
-
-  return MenuItem;
-}();
-
-exports.default = MenuItem;
-},{"gsap":"../node_modules/gsap/index.js","./utils":"js/utils.js","../img/*.gif":"img/*.gif"}],"js/menu.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _gsap = require("gsap");
-
-var _menuItem = _interopRequireDefault(require("./menuItem"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-
-var Menu = /*#__PURE__*/function () {
-  function Menu(el) {
-    var _this = this;
-
-    _classCallCheck(this, Menu);
-
-    this.DOM = {
-      el: el
-    };
-    this.DOM.menuItems = this.DOM.el.querySelectorAll('.item.active');
-    this.animatableProperties = {
-      tx: {
-        previous: 0,
-        current: 0,
-        amt: 0.08
-      },
-      ty: {
-        previous: 0,
-        current: 0,
-        amt: 0.08
-      },
-      rotation: {
-        previous: 0,
-        current: 0,
-        amt: 0.08
-      },
-      brightness: {
-        previous: 1,
-        current: 1,
-        amt: 0.08
-      }
-    };
-    this.menuItems = [];
-
-    _toConsumableArray(this.DOM.menuItems).forEach(function (item, pos) {
-      return _this.menuItems.push(new _menuItem.default(item, pos, _this.animatableProperties));
-    });
-
-    this.showMenuItems();
-  }
-
-  _createClass(Menu, [{
-    key: "showMenuItems",
-    value: function showMenuItems() {
-      _gsap.gsap.to(this.menuItems.map(function (item) {
-        return item.DOM.textInner;
-      }), {
-        duration: 1.2,
-        ease: 'Expo.easeOut',
-        startAt: {
-          y: '100%'
-        },
-        y: 0,
-        delay: function delay(pos) {
-          return pos * 0.06;
-        }
-      });
-    }
-  }]);
-
-  return Menu;
-}();
-
-exports.default = Menu;
-},{"gsap":"../node_modules/gsap/index.js","./menuItem":"js/menuItem.js"}],"js/index.js":[function(require,module,exports) {
+},{}],"js/index.js":[function(require,module,exports) {
 "use strict";
 
 var THREE = _interopRequireWildcard(require("three"));
@@ -51952,20 +51605,15 @@ var _preloader = require("./preloader");
 
 var _locomotiveScroll = _interopRequireDefault(require("locomotive-scroll"));
 
-var _menu = _interopRequireDefault(require("./menu"));
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
 function _interopRequireWildcard(obj, nodeInterop) { if (!nodeInterop && obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(nodeInterop); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (key !== "default" && Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-
+/* for menu cursor gifs
+  import Menu from './menu';
+*/
 _gsap.gsap.registerPlugin(_ScrollTrigger.ScrollTrigger);
 
 var menuEl = document.querySelector('[data-scroll-container]');
@@ -51975,7 +51623,10 @@ var menuEl = document.querySelector('[data-scroll-container]');
     smooth: true
   });
   var cursor = new _cursor.default(document.querySelector('.cursor'));
-  new _menu.default(menuEl);
+  /* for menu cursor gifs
+  new Menu(menuEl);
+  */
+
   var target = document.querySelector('.item.active');
   var items = document.querySelector('.items');
   var menu = document.querySelector('.menu');
@@ -52398,289 +52049,327 @@ var menuEl = document.querySelector('[data-scroll-container]');
     transform: 'translateY(0px) scale(1)',
     lineHeight: 0.8,
     ease: "[0.74,0.2,1,-0.22]"
-  });
+  }); // class Tree {
+  //   constructor() {
+  //       this.body = document.querySelectorAll("body")[0]
+  //       this.canvas = document.querySelector('#ctx')
+  //       this.Drange = document.querySelector('.tree-degr')
+  //       this.ctx = this.canvas.getContext('2d')
+  //       this.ctx.lineWidth = 1
+  //       this.ctx.strokeStyle = 'white'
+  //       this.degrBase = 1
+  //       this.degr = this.degrBase
+  //       this.set_default()
+  //       this.handleRange()
+  //   }
+  //   set_default() {
+  //       this.length = 133 // первоначальная длинна лнии
+  //       this.step_value = 10 // кол-во шагов (рисования)
+  //       this.baseX = 500 // дефолтная ширина
+  //       this.baseY = 600 // дефолтная высота (в самом низу)
+  //       // координаты столба дерева
+  //       this.lineX = 500
+  //       this.lineY = 416
+  //   }
+  //   handleRange() {
+  //       // this.Drange.addEventListener('click', (e)=>{
+  //       //   this.rangeFunc(Number(e.target.value))
+  //       // }, false)
+  //       this.body.addEventListener('wheel', (e)=>{
+  //         this.rangeFunc(Number(this.Drange.value));
+  //       }, false)
+  //   }
+  //   rangeFunc(value) {
+  //       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
+  //       this.degrBase = value
+  //       this.degr = value
+  //       this.set_default()
+  //       this.makeTree()      
+  //   }
+  //   makeTree() {
+  //       // отрисовываем столб дерева
+  //       this.ctx.beginPath()                     // clear field
+  //       this.ctx.moveTo(this.baseX, this.baseY); // передвигаем перо
+  //       this.ctx.lineTo(this.lineX, this.lineY); // рисуем линию
+  //       this.createBranch(this.step_value, true, this.degr, this.length, this.lineX, this.lineY)
+  //       this.set_default()
+  //       this.ctx.moveTo(this.lineX, this.lineY); // передвигаем перо
+  //       this.degr = this.degrBase
+  //       this.createBranch(this.step_value, false, this.degr, this.length, this.lineX, this.lineY)
+  //       this.ctx.stroke()
+  //       this.ctx.closePath()
+  //   }
+  //   createBranch(stepValue = 10, sideBool = true, degr = 45, length, lineX, lineY) {
+  //       let direction = sideBool ? 'right' : 'left'
+  //       if(stepValue > 0) {
+  //           // processing
+  //           let result = this.count_angle(degr, length, lineX, lineY, direction)
+  //           this.ctx.moveTo(lineX, lineY)
+  //           this.ctx.lineTo(result.lineX, result.lineY)
+  //           length = length / 1.6
+  //           stepValue--
+  //           this.createBranch(stepValue, sideBool, (degr - Number(this.degrBase)), length, result.lineX, result.lineY)
+  //           this.createBranch(stepValue, sideBool, (degr + Number(this.degrBase)), length, result.lineX, result.lineY)
+  //       }
+  //   }
+  //   count_angle(degr, length, lineX, lineY, side) {
+  //       degr = Number(degr)
+  //       if(degr <= 0) degr = 360 + degr
+  //       if(degr > 0 && degr < 90) {
+  //           let result = this.do_1_section_new(lineX, lineY, length, degr, side)
+  //           lineX = result.lineX
+  //           lineY = result.lineY
+  //       }
+  //       if(degr > 90 && degr < 180) {
+  //           let result = this.do_2_section_new(lineX, lineY, length, degr, side)
+  //           lineX = result.lineX
+  //           lineY = result.lineY
+  //       }
+  //       if(degr > 180 && degr < 270) {
+  //           let result = this.do_3_section_new(lineX, lineY, length, degr, side)
+  //           lineX = result.lineX
+  //           lineY = result.lineY
+  //       }
+  //       if(degr > 270 && degr < 360) {
+  //           let result = this.do_4_section_new(lineX, lineY, length, degr, side)
+  //           lineX = result.lineX
+  //           lineY = result.lineY
+  //       }
+  //       if(degr == 90)  lineY -= length
+  //       if(degr == 180) {
+  //           if(side == "right") {
+  //               lineX -= length
+  //           }
+  //           if(side == "left") {
+  //               lineX += length
+  //           }
+  //       }
+  //       if(degr == 270) lineY += length
+  //       if(degr == 360) {
+  //           if(side == "right") {
+  //               lineX += length
+  //           }
+  //           if(side == "left") {
+  //               lineX -= length
+  //           }
+  //       }
+  //       return {
+  //           "lineY": lineY,
+  //           "lineX": lineX
+  //       }
+  //   }
+  //   do_1_section_new(lineX, lineY, length, degr, side) {
+  //       let radian = degr * Math.PI / 180
+  //       let sin = Math.sin(radian)
+  //       let cos = Math.cos(radian)
+  //       let yLength = length * sin
+  //       let xLength = length * cos
+  //       if(side == "right") {
+  //           lineX += xLength
+  //           lineY -= yLength
+  //       }
+  //       if(side == "left") {
+  //           lineX -= xLength
+  //           lineY -= yLength
+  //       }
+  //       return {
+  //           "lineY": lineY,
+  //           "lineX": lineX
+  //       }
+  //   }
+  //   do_2_section_new(lineX, lineY, length, degr, side) {
+  //       degr = degr - 90
+  //       let radian = degr * Math.PI / 180
+  //       let sin = Math.sin(radian)
+  //       let cos = Math.cos(radian)
+  //       let xLength = length * sin
+  //       let yLength = length * cos
+  //       if(side == "right") {
+  //           lineX -= xLength
+  //           lineY -= yLength
+  //       }
+  //       if(side== "left") {
+  //           lineX += xLength
+  //           lineY -= yLength
+  //       }
+  //       return {
+  //           "lineY": lineY,
+  //           "lineX": lineX
+  //       }
+  //   }
+  //   do_3_section_new(lineX, lineY, length, degr, side) {
+  //       degr = degr - 180
+  //       let radian = degr * Math.PI / 180
+  //       let sin = Math.sin(radian)
+  //       let cos = Math.cos(radian)
+  //       let xLength = length * sin
+  //       let yLength = length * cos
+  //       if(side == "right") {
+  //           lineX -= xLength
+  //           lineY += yLength
+  //       }
+  //       if(side == "left") {
+  //           lineX += xLength
+  //           lineY += yLength
+  //       }
+  //       return {
+  //           "lineY": lineY,
+  //           "lineX": lineX
+  //       }
+  //   }
+  //   do_4_section_new(lineX, lineY, length, degr, side) {
+  //       degr = degr - 270
+  //       let radian = degr * Math.PI / 180
+  //       let sin = Math.sin(radian)
+  //       let cos = Math.cos(radian)
+  //       let xLength = length * sin
+  //       let yLength = length * cos
+  //       if(side == "right") {
+  //           lineX += xLength
+  //           lineY += yLength
+  //       }
+  //       if(side == "left") {
+  //           lineX -= xLength
+  //           lineY += yLength
+  //       }
+  //       return {
+  //           "lineY": lineY,
+  //           "lineX": lineX
+  //       }
+  //   }
+  // }
+  // const Tree_ex = new Tree()
+  //     Tree_ex.makeTree()
 
-  var Tree = /*#__PURE__*/function () {
-    function Tree() {
-      _classCallCheck(this, Tree);
+  var settings = {
+    size: 150,
+    angle: 0.4,
+    scale: 0.67,
+    iterations: 10,
+    animate: false,
+    speed: 0.3,
+    offset: 0,
+    slices: 13
+  };
+  var w = document.querySelector('.canvas');
+  var width, height;
+  var canvas = document.querySelector('#ctx');
+  var context = canvas.getContext('2d');
+  var bufferCanvas = document.createElement('canvas');
+  var bufferContext = bufferCanvas.getContext('2d'); // document.body.insertBefore(bufferCanvas, w);
 
-      this.body = document.querySelectorAll("body")[0];
-      this.canvas = document.querySelector('#ctx');
-      this.Drange = document.querySelector('.tree-degr');
-      this.ctx = this.canvas.getContext('2d');
-      this.ctx.lineWidth = 1;
-      this.ctx.strokeStyle = 'white';
-      this.degrBase = 1;
-      this.degr = this.degrBase;
-      this.set_default();
-      this.handleRange();
+  window.addEventListener('resize', resize);
+  resize();
+
+  function resize() {
+    width = bufferCanvas.width = canvas.width = window.innerWidth;
+    height = bufferCanvas.height = canvas.height = window.innerHeight;
+    bufferContext.translate(width * 0.5, height);
+    bufferContext.strokeStyle = '#c3c3c3';
+  }
+
+  function draw() {
+    requestAnimationFrame(draw);
+
+    if (settings.animate) {
+      settings.angle += 0.02 * settings.speed; // angle += settings.angle;
     }
 
-    _createClass(Tree, [{
-      key: "set_default",
-      value: function set_default() {
-        this.length = 133; // первоначальная длинна лнии
+    var points = []; // Clear canvas
 
-        this.step_value = 10; // кол-во шагов (рисования)
+    bufferContext.save();
+    bufferContext.setTransform(1, 0, 0, 1, 0, 0);
+    bufferContext.clearRect(0, 0, width, height);
+    bufferContext.restore(); // Draw stem
 
-        this.baseX = 500; // дефолтная ширина
+    bufferContext.beginPath();
+    bufferContext.moveTo(0, 0);
+    bufferContext.lineTo(0, -settings.size * settings.scale);
+    bufferContext.stroke();
+    drawShape({
+      x: 0,
+      y: -settings.size * settings.scale,
+      angle: -Math.PI * 0.5,
+      size: settings.size
+    });
 
-        this.baseY = 600; // дефолтная высота (в самом низу)
-        // координаты столба дерева
-
-        this.lineX = 500;
-        this.lineY = 416;
+    for (var i = 0; i < settings.iterations; i++) {
+      for (var j = points.length - 1; j >= 0; j--) {
+        drawShape(points.pop());
       }
-    }, {
-      key: "handleRange",
-      value: function handleRange() {
-        var _this = this;
+    }
 
-        // this.Drange.addEventListener('click', (e)=>{
-        //   this.rangeFunc(Number(e.target.value))
-        // }, false)
-        this.body.addEventListener('wheel', function (e) {
-          _this.rangeFunc(Number(_this.Drange.value));
-        }, false);
-      }
-    }, {
-      key: "rangeFunc",
-      value: function rangeFunc(value) {
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        this.degrBase = value;
-        this.degr = value;
-        this.set_default();
-        this.makeTree();
-      }
-    }, {
-      key: "makeTree",
-      value: function makeTree() {
-        // отрисовываем столб дерева
-        this.ctx.beginPath(); // clear field
+    function drawShape(point) {
+      drawBranch(point, 1); // Branch right
 
-        this.ctx.moveTo(this.baseX, this.baseY); // передвигаем перо
+      drawBranch(point, -1); // Branch left
+    }
 
-        this.ctx.lineTo(this.lineX, this.lineY); // рисуем линию
+    function drawBranch(point, direction) {
+      var angle = point.angle + (settings.angle * direction + settings.offset);
+      var obj = {
+        angle: 0
+      };
+      var size = point.size * settings.scale;
+      var x = point.x + Math.cos(angle) * size;
+      var y = point.y + Math.sin(angle) * size;
+      bufferContext.beginPath();
+      bufferContext.moveTo(point.x, point.y);
+      bufferContext.lineTo(x, y);
+      bufferContext.stroke();
+      points.unshift({
+        x: x,
+        y: y,
+        angle: angle,
+        size: size
+      });
+    }
 
-        this.createBranch(this.step_value, true, this.degr, this.length, this.lineX, this.lineY);
-        this.set_default();
-        this.ctx.moveTo(this.lineX, this.lineY); // передвигаем перо
+    var side1 = width * 0.5;
+    var side2 = height * 0.5;
+    var radius = Math.sqrt(side1 * side1 + side2 * side2);
+    bufferContext.globalCompositeOperation = 'destination-in';
+    bufferContext.fillStyle = 'red';
+    bufferContext.beginPath(); // Nice variation
+    // bufferContext.arc(0, 0, radius, -(Math.PI * 0.8 + (Math.PI / settings.slices)), -(Math.PI * 0.5 - (Math.PI / settings.slices)));
 
-        this.degr = this.degrBase;
-        this.createBranch(this.step_value, false, this.degr, this.length, this.lineX, this.lineY);
-        this.ctx.stroke();
-        this.ctx.closePath();
-      }
-    }, {
-      key: "createBranch",
-      value: function createBranch() {
-        var stepValue = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 10;
-        var sideBool = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
-        var degr = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 45;
-        var length = arguments.length > 3 ? arguments[3] : undefined;
-        var lineX = arguments.length > 4 ? arguments[4] : undefined;
-        var lineY = arguments.length > 5 ? arguments[5] : undefined;
-        var direction = sideBool ? 'right' : 'left';
+    bufferContext.arc(0, 0, radius, -(Math.PI * 0.5 + Math.PI / settings.slices), -(Math.PI * 0.5 - Math.PI / settings.slices));
+    bufferContext.lineTo(0, 0);
+    bufferContext.closePath();
+    bufferContext.fill();
+    bufferContext.globalCompositeOperation = 'source-over';
+    context.setTransform(1, 0, 0, 1, 0, 0);
+    context.clearRect(0, 0, width, height);
+    context.translate(width * 0.5, height * 0.5);
 
-        if (stepValue > 0) {
-          // processing
-          var result = this.count_angle(degr, length, lineX, lineY, direction);
-          this.ctx.moveTo(lineX, lineY);
-          this.ctx.lineTo(result.lineX, result.lineY);
-          length = length / 1.6;
-          stepValue--;
-          this.createBranch(stepValue, sideBool, degr - Number(this.degrBase), length, result.lineX, result.lineY);
-          this.createBranch(stepValue, sideBool, degr + Number(this.degrBase), length, result.lineX, result.lineY);
-        }
-      }
-    }, {
-      key: "count_angle",
-      value: function count_angle(degr, length, lineX, lineY, side) {
-        degr = Number(degr);
-        if (degr <= 0) degr = 360 + degr;
+    for (var i = 0; i < settings.slices; i++) {
+      context.rotate(Math.PI * 2 / settings.slices);
+      context.drawImage(bufferCanvas, -width * 0.5, -height);
+    }
+  }
 
-        if (degr > 0 && degr < 90) {
-          var result = this.do_1_section_new(lineX, lineY, length, degr, side);
-          lineX = result.lineX;
-          lineY = result.lineY;
-        }
-
-        if (degr > 90 && degr < 180) {
-          var _result = this.do_2_section_new(lineX, lineY, length, degr, side);
-
-          lineX = _result.lineX;
-          lineY = _result.lineY;
-        }
-
-        if (degr > 180 && degr < 270) {
-          var _result2 = this.do_3_section_new(lineX, lineY, length, degr, side);
-
-          lineX = _result2.lineX;
-          lineY = _result2.lineY;
-        }
-
-        if (degr > 270 && degr < 360) {
-          var _result3 = this.do_4_section_new(lineX, lineY, length, degr, side);
-
-          lineX = _result3.lineX;
-          lineY = _result3.lineY;
-        }
-
-        if (degr == 90) lineY -= length;
-
-        if (degr == 180) {
-          if (side == "right") {
-            lineX -= length;
-          }
-
-          if (side == "left") {
-            lineX += length;
-          }
-        }
-
-        if (degr == 270) lineY += length;
-
-        if (degr == 360) {
-          if (side == "right") {
-            lineX += length;
-          }
-
-          if (side == "left") {
-            lineX -= length;
-          }
-        }
-
-        return {
-          "lineY": lineY,
-          "lineX": lineX
-        };
-      }
-    }, {
-      key: "do_1_section_new",
-      value: function do_1_section_new(lineX, lineY, length, degr, side) {
-        var radian = degr * Math.PI / 180;
-        var sin = Math.sin(radian);
-        var cos = Math.cos(radian);
-        var yLength = length * sin;
-        var xLength = length * cos;
-
-        if (side == "right") {
-          lineX += xLength;
-          lineY -= yLength;
-        }
-
-        if (side == "left") {
-          lineX -= xLength;
-          lineY -= yLength;
-        }
-
-        return {
-          "lineY": lineY,
-          "lineX": lineX
-        };
-      }
-    }, {
-      key: "do_2_section_new",
-      value: function do_2_section_new(lineX, lineY, length, degr, side) {
-        degr = degr - 90;
-        var radian = degr * Math.PI / 180;
-        var sin = Math.sin(radian);
-        var cos = Math.cos(radian);
-        var xLength = length * sin;
-        var yLength = length * cos;
-
-        if (side == "right") {
-          lineX -= xLength;
-          lineY -= yLength;
-        }
-
-        if (side == "left") {
-          lineX += xLength;
-          lineY -= yLength;
-        }
-
-        return {
-          "lineY": lineY,
-          "lineX": lineX
-        };
-      }
-    }, {
-      key: "do_3_section_new",
-      value: function do_3_section_new(lineX, lineY, length, degr, side) {
-        degr = degr - 180;
-        var radian = degr * Math.PI / 180;
-        var sin = Math.sin(radian);
-        var cos = Math.cos(radian);
-        var xLength = length * sin;
-        var yLength = length * cos;
-
-        if (side == "right") {
-          lineX -= xLength;
-          lineY += yLength;
-        }
-
-        if (side == "left") {
-          lineX += xLength;
-          lineY += yLength;
-        }
-
-        return {
-          "lineY": lineY,
-          "lineX": lineX
-        };
-      }
-    }, {
-      key: "do_4_section_new",
-      value: function do_4_section_new(lineX, lineY, length, degr, side) {
-        degr = degr - 270;
-        var radian = degr * Math.PI / 180;
-        var sin = Math.sin(radian);
-        var cos = Math.cos(radian);
-        var xLength = length * sin;
-        var yLength = length * cos;
-
-        if (side == "right") {
-          lineX += xLength;
-          lineY += yLength;
-        }
-
-        if (side == "left") {
-          lineX -= xLength;
-          lineY += yLength;
-        }
-
-        return {
-          "lineY": lineY,
-          "lineX": lineX
-        };
-      }
-    }]);
-
-    return Tree;
-  }();
-
-  var Tree_ex = new Tree();
-  Tree_ex.makeTree();
+  draw();
 
   var tlTree = _gsap.gsap.timeline({
     scrollTrigger: {
       start: "top center",
       end: "bottom center",
-      scrub: 2 // onUpdate: treeDegreesUpdateConsole,
-
+      scrub: 2
     }
   });
 
-  tlTree.fromTo('.tree-degr', {
-    value: 0
+  tlTree.fromTo(settings, {
+    angle: 0
   }, {
-    delay: 0.3,
-    duration: 5.4,
-    value: 45,
-    roundProps: "value"
-  }); // function treeDegreesUpdateConsole (Tree_ex){
-  //   console.log(Tree_ex);
-  // }
+    delay: 0.1,
+    duration: 3.4,
+    angle: 1.14,
+    onUpdate: drawCanvas
+  }); // tlTree.to(obj, 1, {angle:45, ease: "[0.74,0.2,1,-0.22]", onUpdate:drawCanvas});
+
+  function drawCanvas() {
+    console.log("angle:" + settings.angle);
+  }
 
   function aClass() {
     items.classList.add("active");
@@ -52802,7 +52491,7 @@ var menuEl = document.querySelector('[data-scroll-container]');
 //   })
 // }
 // window.addEventListener('mousemove', onMouseMove)
-},{"three":"../node_modules/three/build/three.module.js","three/examples/jsm/controls/OrbitControls.js":"../node_modules/three/examples/jsm/controls/OrbitControls.js","three/examples/jsm/loaders/GLTFLoader.js":"../node_modules/three/examples/jsm/loaders/GLTFLoader.js","gsap":"../node_modules/gsap/index.js","gsap/ScrollTrigger":"../node_modules/gsap/ScrollTrigger.js","./cursor":"js/cursor.js","./preloader":"js/preloader.js","locomotive-scroll":"../node_modules/locomotive-scroll/dist/locomotive-scroll.esm.js","./menu":"js/menu.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"three":"../node_modules/three/build/three.module.js","three/examples/jsm/controls/OrbitControls.js":"../node_modules/three/examples/jsm/controls/OrbitControls.js","three/examples/jsm/loaders/GLTFLoader.js":"../node_modules/three/examples/jsm/loaders/GLTFLoader.js","gsap":"../node_modules/gsap/index.js","gsap/ScrollTrigger":"../node_modules/gsap/ScrollTrigger.js","./cursor":"js/cursor.js","./preloader":"js/preloader.js","locomotive-scroll":"../node_modules/locomotive-scroll/dist/locomotive-scroll.esm.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -52830,7 +52519,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53181" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61974" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
