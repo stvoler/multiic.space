@@ -51,6 +51,12 @@ button {
   align-items: center;
   justify-content: space-between;
 
+  &:hover {
+    &::after{
+      transform: scale(1.8);
+    }
+  }
+
   &::after {
     content: "";
     background-color: var(--color-bg);
@@ -59,6 +65,7 @@ button {
     border-radius: 50%;
     margin: auto 0 auto 18px;
     display: block;
+    transition: transform 0.2s ease-in-out;
   }
 }
 
@@ -133,6 +140,7 @@ header {
   .button {
     grid-column: 4;
     grid-row: 4;
+    z-index: 2;
   }
 
   .text {
@@ -196,10 +204,10 @@ header,
   font-family: Inter;
   font-style: normal;
   font-weight: normal;
-  font-size: 100px;
-  line-height: 100px;
+  font-size: clamp(54px, 8vw, 100px);
+  line-height: 1;
   color: var(--color-text);
-  margin: 18px 0 auto 0;
+  margin: clamp(18px, 4vw, 54px) 0 auto 0;
   grid-column-start: 2;
 }
 
@@ -208,6 +216,7 @@ header,
   flex-direction: column;
   grid-column: 1;
   grid-row: 1;
+  z-index: 2;
   transition: transform 0.3s ease-out;
   a {
     color: var(--color-link);
@@ -246,6 +255,7 @@ a {
   color: var(--color-link);
   outline: none;
   cursor: pointer;
+  transition: color 0.2s ease-in-out;
   &:hover,
   &:focus {
     color: var(--color-link-hover);
@@ -297,7 +307,7 @@ a {
 
 .text {
   font-size: clamp(12px, 1.1vw, 18px);
-  line-height: 22px;
+  line-height: 1.2;
   max-width: 371px;
 }
 
@@ -477,7 +487,7 @@ p {
   height: 100vh !important;
   margin: auto;
   overflow: hidden;
-  z-index: 2;
+  z-index: -1;
   pointer-events: none;
   display: flex;
   align-items: center;
@@ -573,23 +583,6 @@ html.has-scroll-dragging {
 .has-scroll-dragging .c-scrollbar_thumb {
   cursor: -webkit-grabbing;
   cursor: grabbing;
-}
-
-
-
-.slidecontainer {
-  width: 20%;
-  position: absolute;
-  right: 20px;
-  top: 60px;
-  z-index: 1;
-  background-color: rgba(51, 51, 51, 0.5);
-  padding-bottom: 20px;
-  display: none;
-  p {
-    margin: 10px;
-    color: white;
-  }
 }
 
 @media (max-width: 1170px) {
