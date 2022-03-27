@@ -51656,12 +51656,12 @@ var menuEl = document.querySelector('[data-scroll-container]');
 
   var tl = _gsap.gsap.timeline({
     scrollTrigger: {
-      trigger: ".item1",
+      trigger: ".items1",
       repeat: true,
       pin: ".items1",
       start: "0 0",
-      scrub: 2,
-      end: "+=270%"
+      scrub: 1.8,
+      end: "+=180%"
     },
     onComplete: aClass,
     onUpdate: rClass
@@ -51740,8 +51740,8 @@ var menuEl = document.querySelector('[data-scroll-container]');
       repeat: true,
       pin: ".items2",
       start: "0 0",
-      scrub: 2,
-      end: "+=400%"
+      scrub: 1.8,
+      end: "+=180%"
     },
     onComplete: aClass,
     onUpdate: rClass
@@ -51814,8 +51814,8 @@ var menuEl = document.querySelector('[data-scroll-container]');
       repeat: true,
       pin: ".items3",
       start: "0 0",
-      scrub: 2,
-      end: "+=270%"
+      scrub: 1.8,
+      end: "+=180%"
     },
     onComplete: aClass,
     onUpdate: rClass
@@ -51898,8 +51898,8 @@ var menuEl = document.querySelector('[data-scroll-container]');
       repeat: true,
       pin: ".items4",
       start: "0 0",
-      scrub: 2,
-      end: "+=270%"
+      scrub: 1.8,
+      end: "+=180%"
     },
     onComplete: aClass,
     onUpdate: rClass
@@ -51975,6 +51975,18 @@ var menuEl = document.querySelector('[data-scroll-container]');
     right: '0%',
     ease: "[0.74,0.2,1,-0.22]"
   }, "<+=0.35");
+  tl4.set("header .line-1", {
+    opacity: 0,
+    right: 0
+  });
+  tl4.set("header .line-2", {
+    opacity: 0,
+    right: 0
+  });
+  tl4.set("header .line-3", {
+    opacity: 0,
+    right: 0
+  });
 
   var tl5 = _gsap.gsap.timeline({
     scrollTrigger: {
@@ -51982,8 +51994,8 @@ var menuEl = document.querySelector('[data-scroll-container]');
       repeat: true,
       pin: ".items5",
       start: "0 0",
-      scrub: 2,
-      end: "+=270%"
+      scrub: 1.8,
+      end: "+=180%"
     },
     onComplete: aClass,
     onUpdate: rClass
@@ -52126,9 +52138,6 @@ var menuEl = document.querySelector('[data-scroll-container]');
 
     function drawBranch(point, direction) {
       var angle = point.angle + (settings.angle * direction + settings.offset);
-      var obj = {
-        angle: 0
-      };
       var size = point.size * settings.scale;
       var x = point.x + Math.cos(angle) * size;
       var y = point.y + Math.sin(angle) * size;
@@ -52173,7 +52182,7 @@ var menuEl = document.querySelector('[data-scroll-container]');
     scrollTrigger: {
       start: "top center",
       end: "bottom center",
-      scrub: 2
+      scrub: 1.8
     }
   });
 

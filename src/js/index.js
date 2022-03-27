@@ -54,12 +54,12 @@ preloader('.item').then(() => {
 
     let tl = gsap.timeline({
       scrollTrigger: {
-        trigger: ".item1",
+        trigger: ".items1",
         repeat: true,
         pin: ".items1",
         start: "0 0",
-        scrub: 2,
-        end: "+=270%"
+        scrub: 1.8,
+        end: "+=180%"
       },
       onComplete: aClass,
       onUpdate: rClass
@@ -82,8 +82,8 @@ preloader('.item').then(() => {
         repeat: true,
         pin: ".items2",
         start: "0 0",
-        scrub: 2,
-        end: "+=400%"
+        scrub: 1.8,
+        end: "+=180%"
       },
       onComplete: aClass,
       onUpdate: rClass
@@ -103,8 +103,8 @@ preloader('.item').then(() => {
         repeat: true,
         pin: ".items3",
         start: "0 0",
-        scrub: 2,
-        end: "+=270%"
+        scrub: 1.8,
+        end: "+=180%"
       },
       onComplete: aClass,
       onUpdate: rClass
@@ -124,8 +124,8 @@ preloader('.item').then(() => {
         repeat: true,
         pin: ".items4",
         start: "0 0",
-        scrub: 2,
-        end: "+=270%"
+        scrub: 1.8,
+        end: "+=180%"
       },
       onComplete: aClass,
       onUpdate: rClass
@@ -138,6 +138,9 @@ preloader('.item').then(() => {
     tl4.fromTo("header .line-1", {opacity: 0.5, right: '25%'}, {delay: 1.7, duration: 0.9, opacity: 1, right: '0%', ease: "[0.74,0.2,1,-0.22]"}, 2.8)
     tl4.fromTo("header .line-2", {opacity: 0.5, right: '50%'}, {delay: 0.7, duration: 0.9, opacity: 1, right: '0%', ease: "[0.74,0.2,1,-0.22]"}, "<+=0.2")
     tl4.fromTo("header .line-3", {opacity: 0.5, right: '75%'}, {delay: 0.7, duration: 0.9, opacity: 1, right: '0%', ease: "[0.74,0.2,1,-0.22]"}, "<+=0.35")
+    tl4.set("header .line-1", {opacity: 0, right: 0})
+    tl4.set("header .line-2", {opacity: 0, right: 0})
+    tl4.set("header .line-3", {opacity: 0, right: 0})
 
     let tl5 = gsap.timeline({
       scrollTrigger: {
@@ -145,8 +148,8 @@ preloader('.item').then(() => {
         repeat: true,
         pin: ".items5",
         start: "0 0",
-        scrub: 2,
-        end: "+=270%"
+        scrub: 1.8,
+        end: "+=180%"
       },
       onComplete: aClass,
       onUpdate: rClass
@@ -227,7 +230,6 @@ preloader('.item').then(() => {
     
         function drawBranch(point, direction) {
             var angle = point.angle + (settings.angle * direction + settings.offset);
-            var obj = {angle:0};
             var size = point.size * settings.scale;
             var x = point.x + Math.cos(angle) * size;
             var y = point.y + Math.sin(angle) * size;
@@ -272,7 +274,7 @@ preloader('.item').then(() => {
       scrollTrigger: {
         start: "top center",
         end: "bottom center",
-        scrub: 2,
+        scrub: 1.8,
       }
     });
     tlTree.fromTo(settings, {angle: 0}, {delay: 0.1, duration: 1.8, angle: 1.26, onUpdate:drawCanvas})
