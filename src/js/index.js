@@ -1,7 +1,7 @@
-import * as THREE from 'three';
+// import * as THREE from 'three';
 
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+// import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
+// import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 import {gsap} from 'gsap';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -23,7 +23,6 @@ preloader('.item').then(() => {
     /* for menu cursor gifs
     new Menu(menuEl);
     */
-
     const target = document.querySelector('.item.active');
     const items = document.querySelector('section');
     const menu = document.querySelector('.menu');
