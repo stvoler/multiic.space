@@ -196,7 +196,8 @@ header {
 header,
 .item {
   display: grid;
-  grid-gap: 32px;
+  grid-column-gap: clamp(20px, 3vw, 32px);
+  grid-row-gap: clamp(15px, 2.7vh, 32px);
   cursor: none;
 }
 
