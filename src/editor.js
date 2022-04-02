@@ -1,12 +1,12 @@
 var settings = {
 	size: 150,
 	angle: 0.0,
-	scale: 0.67,
+	scale: 0.63,
 	iterations: 10,
 	animate: false,
-	speed: 0.04,
+	speed: 0.036,
 	offset: 0,
-	slices: 11
+	slices: 12
 };
 
 var width, height;
