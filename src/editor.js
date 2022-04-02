@@ -103,10 +103,11 @@ function draw() {
 draw();
 
 var gui = new dat.GUI();
-gui.add(settings, 'scale', 0, 1);
 gui.add(settings, 'angle', 0, Math.PI);
+gui.add(settings, 'size', 135, 189);
+gui.add(settings, 'scale', 0, 1);
 gui.add(settings, 'iterations', 0, 12).step(1);
-gui.add(settings, 'speed', 0, 2);
 gui.add(settings, 'offset', 0, Math.PI * 2);
+gui.add(settings, 'speed', 0, 2);
 gui.add(settings, 'slices', 1, 40).step(1);
 gui.add(settings, 'animate');
