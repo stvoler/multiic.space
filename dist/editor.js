@@ -1,4 +1,4 @@
-var settings = {
+const settings = {
 	size: 150,
 	angle: 0.0,
 	scale: 0.63,
@@ -24,7 +24,7 @@ function resize() {
 	height = bufferCanvas.height = canvas.height = window.innerHeight;
 	
 	bufferContext.translate(width * 0.5, height);
-	bufferContext.strokeStyle = '#c3c3c3';
+	bufferContext.strokeStyle = '#ffffff';
 }
 
 function draw() {
@@ -102,7 +102,7 @@ function draw() {
 
 draw();
 
-var gui = new dat.GUI();
+const gui = new dat.GUI();
 gui.add(settings, 'angle', 0, Math.PI);
 gui.add(settings, 'size', 135, 189);
 gui.add(settings, 'scale', 0, 1);
