@@ -11202,7 +11202,7 @@ var menuEl = document.querySelector('[data-scroll-container]');
     transform: 'translateY(-300px) scaleY(4.5)',
     lineHeight: 0.8,
     ease: "[0.74,0.2,1,-0.22]"
-  }, "<+=10.18");
+  }, "1.8");
   tl3.fromTo(".block-3 .text-1", {
     transform: 'translateY(0px) scaleY(1)',
     lineHeight: 1.2
