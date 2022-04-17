@@ -76,7 +76,7 @@ preloader('.item').then(() => {
     tl.fromTo("header .line-1", {opacity: 0, transform: 'translateX(0px)'}, {delay: 0.5, duration: 0.5, opacity: 0.72, transform: 'translateX(-50vw)', ease: "[0.74,0.2,1,-0.22]"})
     tl.fromTo("header .line-3", {opacity: 0, transform: 'translateX(0px)'}, {delay: 0.7, duration: 0.5, opacity: 0, transform: 'translateX(0px)', ease: "[0.74,0.2,1,-0.22]"})
 
-    tl.fromTo(settings, {scale: 0.01}, {delay: 0.1, duration: 1.8, scale: 0.67, onUpdate:drawCanvas}, 0)
+    tl.fromTo(settings, {scale: 0.01}, {delay: 0.1, duration: 1.8, scale: 0.67}, 0)
 
     // let trigger = document.querySelector('#trigger');
     // trigger.onclick = function() {
@@ -116,6 +116,7 @@ preloader('.item').then(() => {
       onComplete: aClass,
       onUpdate: rClass
     })
+    tl3.fromTo(settings, {scale: 0.67}, {delay: 0.1, duration: 1.8, scale: 0.72}, 0)
     tl3.fromTo(".block-3 .title", {transform: 'translateY(0px) scaleY(1)', lineHeight: 1}, {delay: 0.3, duration: 2.7, transform: 'translateY(-300px) scaleY(4.5)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"}, "1.8")
     tl3.fromTo(".block-3 .text-1", {transform: 'translateY(0px) scaleY(1)', lineHeight: 1.2}, {delay: 0.2, duration: 2.3, transform: 'translateY(-500px) scaleY(3.5)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"}, "-=1")
     tl3.fromTo(".block-3 .text-2", {transform: 'translateY(0px) scaleY(1)', lineHeight: 1.2}, {delay: 0.2, duration: 2.3, transform: 'translateY(-600px) scaleY(3.5)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"}, "<+=0.2")

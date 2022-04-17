@@ -11112,8 +11112,7 @@ var menuEl = document.querySelector('[data-scroll-container]');
   }, {
     delay: 0.1,
     duration: 1.8,
-    scale: 0.67,
-    onUpdate: drawCanvas
+    scale: 0.67
   }, 0); // let trigger = document.querySelector('#trigger');
   // trigger.onclick = function() {
   //   console.log("trigger clicked.");
@@ -11208,6 +11207,13 @@ var menuEl = document.querySelector('[data-scroll-container]');
     onUpdate: rClass
   });
 
+  tl3.fromTo(settings, {
+    scale: 0.67
+  }, {
+    delay: 0.1,
+    duration: 1.8,
+    scale: 0.72
+  }, 0);
   tl3.fromTo(".block-3 .title", {
     transform: 'translateY(0px) scaleY(1)',
     lineHeight: 1
