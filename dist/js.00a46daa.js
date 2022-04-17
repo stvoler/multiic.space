@@ -11011,13 +11011,97 @@ var menuEl = document.querySelector('[data-scroll-container]');
 
   var settings = {
     size: 150,
-    angle: 0.4,
+    angle: 0,
     scale: 0.67,
     iterations: 10,
     speed: 0.3,
     offset: 0,
     slices: 13
   };
+  var canvasWidth, canvasheight;
+  var canvas = document.querySelector('#ctx');
+  var context = canvas.getContext('2d');
+  var bufferCanvas = document.createElement('canvas');
+  var bufferContext = bufferCanvas.getContext('2d');
+  window.addEventListener('resize', resize);
+  resize();
+
+  function resize() {
+    canvasWidth = bufferCanvas.width = canvas.width = window.innerWidth;
+    canvasheight = bufferCanvas.height = canvas.height = window.innerHeight;
+    bufferContext.translate(canvasWidth * 0.5, canvasheight);
+    bufferContext.strokeStyle = '#c3c3c3';
+  }
+
+  function draw() {
+    requestAnimationFrame(draw);
+    var points = [];
+    bufferContext.save();
+    bufferContext.setTransform(1, 0, 0, 1, 0, 0);
+    bufferContext.clearRect(0, 0, canvasWidth, canvasheight);
+    bufferContext.restore();
+    bufferContext.beginPath();
+    bufferContext.moveTo(0, 0);
+    bufferContext.lineTo(0, -settings.size * settings.scale);
+    bufferContext.stroke();
+    drawShape({
+      x: 0,
+      y: -settings.size * settings.scale,
+      angle: -Math.PI * 0.5,
+      size: settings.size
+    });
+
+    for (var i = 0; i < settings.iterations; i++) {
+      for (var j = points.length - 1; j >= 0; j--) {
+        drawShape(points.pop());
+      }
+    }
+
+    function drawShape(point) {
+      drawBranch(point, 1); // Branch right
+
+      drawBranch(point, -1); // Branch left
+    }
+
+    function drawBranch(point, direction) {
+      var angle = point.angle + (settings.angle * direction + settings.offset);
+      var size = point.size * settings.scale;
+      var x = point.x + Math.cos(angle) * size;
+      var y = point.y + Math.sin(angle) * size;
+      bufferContext.beginPath();
+      bufferContext.moveTo(point.x, point.y);
+      bufferContext.lineTo(x, y);
+      bufferContext.stroke();
+      points.unshift({
+        x: x,
+        y: y,
+        angle: angle,
+        size: size
+      });
+    }
+
+    var side1 = canvasWidth * 0.5;
+    var side2 = canvasheight * 0.5;
+    var radius = Math.sqrt(side1 * side1 + side2 * side2);
+    bufferContext.globalCompositeOperation = 'destination-in';
+    bufferContext.fillStyle = '#c3c3c3';
+    bufferContext.beginPath();
+    bufferContext.arc(0, 0, radius, -(Math.PI * 0.5 + Math.PI / settings.slices), -(Math.PI * 0.5 - Math.PI / settings.slices));
+    bufferContext.lineTo(0, 0);
+    bufferContext.closePath();
+    bufferContext.fill();
+    bufferContext.globalCompositeOperation = 'source-over';
+    context.setTransform(1, 0, 0, 1, 0, 0);
+    context.clearRect(0, 0, canvasWidth, canvasheight);
+    context.translate(canvasWidth * 0.5, canvasheight * 0.5);
+
+    for (var i = 0; i < settings.slices; i++) {
+      context.rotate(Math.PI * 2 / settings.slices);
+      context.drawImage(bufferCanvas, -canvasWidth * 0.5, -canvasheight);
+    }
+  }
+
+  draw();
 
   var tl = _gsap.gsap.timeline({
     scrollTrigger: {
@@ -11108,11 +11192,10 @@ var menuEl = document.querySelector('[data-scroll-container]');
     ease: "[0.74,0.2,1,-0.22]"
   });
   tl.fromTo(settings, {
-    scale: 0.01
+    scale: 0.001
   }, {
-    delay: 0.1,
     duration: 1.8,
-    scale: 0.67
+    scale: 0.63
   }, 0); // let trigger = document.querySelector('#trigger');
   // trigger.onclick = function() {
   //   console.log("trigger clicked.");
@@ -11193,6 +11276,12 @@ var menuEl = document.querySelector('[data-scroll-container]');
     transform: 'translateX(0px)',
     ease: "[0.74,0.2,1,-0.22]"
   });
+  tl2.fromTo(settings, {
+    scale: 0.63
+  }, {
+    duration: 1.8,
+    scale: 0.63
+  }, 0);
 
   var tl3 = _gsap.gsap.timeline({
     scrollTrigger: {
@@ -11207,13 +11296,6 @@ var menuEl = document.querySelector('[data-scroll-container]');
     onUpdate: rClass
   });
 
-  tl3.fromTo(settings, {
-    scale: 0.67
-  }, {
-    delay: 0.1,
-    duration: 1.8,
-    scale: 0.72
-  }, 0);
   tl3.fromTo(".block-3 .title", {
     transform: 'translateY(0px) scaleY(1)',
     lineHeight: 1
@@ -11284,6 +11366,12 @@ var menuEl = document.querySelector('[data-scroll-container]');
     transform: 'translateX(-26vw)',
     ease: "[0.74,0.2,1,-0.22]"
   });
+  tl3.fromTo(settings, {
+    scale: 0.63
+  }, {
+    duration: 1.8,
+    scale: 0.63
+  }, 0);
 
   var tl4 = _gsap.gsap.timeline({
     scrollTrigger: {
@@ -11298,7 +11386,6 @@ var menuEl = document.querySelector('[data-scroll-container]');
     onUpdate: rClass
   });
 
-  tl4.add("elements-in-out");
   tl4.fromTo(".block-4 .title", {
     transform: 'translateY(0px) scaleY(1)',
     lineHeight: 1
@@ -11381,6 +11468,12 @@ var menuEl = document.querySelector('[data-scroll-container]');
     opacity: 0,
     transform: 'translateX(0px)'
   });
+  tl4.fromTo(settings, {
+    scale: 0.63
+  }, {
+    duration: 1.8,
+    scale: 0.71
+  }, 0);
 
   var tl5 = _gsap.gsap.timeline({
     scrollTrigger: {
@@ -11437,90 +11530,6 @@ var menuEl = document.querySelector('[data-scroll-container]');
     lineHeight: 1,
     ease: "[0.74,0.2,1,-0.22]"
   });
-  var width, height;
-  var canvas = document.querySelector('#ctx');
-  var context = canvas.getContext('2d');
-  var bufferCanvas = document.createElement('canvas');
-  var bufferContext = bufferCanvas.getContext('2d');
-  window.addEventListener('resize', resize);
-  resize();
-
-  function resize() {
-    width = bufferCanvas.width = canvas.width = window.innerWidth;
-    height = bufferCanvas.height = canvas.height = window.innerHeight;
-    bufferContext.translate(width * 0.5, height);
-    bufferContext.strokeStyle = '#c3c3c3';
-  }
-
-  function draw() {
-    requestAnimationFrame(draw);
-    var points = [];
-    bufferContext.save();
-    bufferContext.setTransform(1, 0, 0, 1, 0, 0);
-    bufferContext.clearRect(0, 0, width, height);
-    bufferContext.restore();
-    bufferContext.beginPath();
-    bufferContext.moveTo(0, 0);
-    bufferContext.lineTo(0, -settings.size * settings.scale);
-    bufferContext.stroke();
-    drawShape({
-      x: 0,
-      y: -settings.size * settings.scale,
-      angle: -Math.PI * 0.5,
-      size: settings.size
-    });
-
-    for (var i = 0; i < settings.iterations; i++) {
-      for (var j = points.length - 1; j >= 0; j--) {
-        drawShape(points.pop());
-      }
-    }
-
-    function drawShape(point) {
-      drawBranch(point, 1); // Branch right
-
-      drawBranch(point, -1); // Branch left
-    }
-
-    function drawBranch(point, direction) {
-      var angle = point.angle + (settings.angle * direction + settings.offset);
-      var size = point.size * settings.scale;
-      var x = point.x + Math.cos(angle) * size;
-      var y = point.y + Math.sin(angle) * size;
-      bufferContext.beginPath();
-      bufferContext.moveTo(point.x, point.y);
-      bufferContext.lineTo(x, y);
-      bufferContext.stroke();
-      points.unshift({
-        x: x,
-        y: y,
-        angle: angle,
-        size: size
-      });
-    }
-
-    var side1 = width * 0.5;
-    var side2 = height * 0.5;
-    var radius = Math.sqrt(side1 * side1 + side2 * side2);
-    bufferContext.globalCompositeOperation = 'destination-in';
-    bufferContext.fillStyle = 'red';
-    bufferContext.beginPath();
-    bufferContext.arc(0, 0, radius, -(Math.PI * 0.5 + Math.PI / settings.slices), -(Math.PI * 0.5 - Math.PI / settings.slices));
-    bufferContext.lineTo(0, 0);
-    bufferContext.closePath();
-    bufferContext.fill();
-    bufferContext.globalCompositeOperation = 'source-over';
-    context.setTransform(1, 0, 0, 1, 0, 0);
-    context.clearRect(0, 0, width, height);
-    context.translate(width * 0.5, height * 0.5);
-
-    for (var i = 0; i < settings.slices; i++) {
-      context.rotate(Math.PI * 2 / settings.slices);
-      context.drawImage(bufferCanvas, -width * 0.5, -height);
-    }
-  }
-
-  draw();
 
   var tlTree = _gsap.gsap.timeline({
     scrollTrigger: {
@@ -11528,24 +11537,21 @@ var menuEl = document.querySelector('[data-scroll-container]');
       end: "bottom center",
       scrub: 1.8
     }
+  }); // tlTree.fromTo(settings, {iterations: 1}, {delay: 0.1, duration: 1.8, iterations: 10}, "elements-in-out")
+  // tlTree.fromTo(settings, {slices: 13}, {delay: 0.1, duration: 1.8, slices: 13}, "elements-in-out")
+  // tlTree.fromTo(settings, {size: 120}, {delay: 0.1, duration: 1.8, size: 150}, "elements-in-out")
+
+
+  tlTree.set(settings, {
+    scale: 0.001
   });
-
-  tlTree.add("elements-in-out"); // tlTree.fromTo(settings, {iterations: 1}, {delay: 0.1, duration: 1.8, iterations: 10, onUpdate:drawCanvas}, "elements-in-out")
-  // tlTree.fromTo(settings, {slices: 13}, {delay: 0.1, duration: 1.8, slices: 13, onUpdate:drawCanvas}, "elements-in-out")
-  // tlTree.fromTo(settings, {size: 120}, {delay: 0.1, duration: 1.8, size: 150, onUpdate:drawCanvas}, "elements-in-out")
-  // tlTree.fromTo(settings, {scale: 0.67}, {delay: 0.1, duration: 1.8, scale: 0.72, onUpdate:drawCanvas}, "elements-in-out")
-
   tlTree.fromTo(settings, {
     angle: 0
   }, {
     delay: 0.1,
     duration: 1.8,
-    angle: 1.89,
-    onUpdate: drawCanvas
-  }, "elements-in-out");
-
-  function drawCanvas() {// console.log("angle:" + settings.angle);
-  }
+    angle: 1.89
+  });
 
   function aClass() {
     items.classList.add("active");
@@ -11695,7 +11701,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60824" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49678" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

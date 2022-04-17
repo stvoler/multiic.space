@@ -45,7 +45,7 @@ preloader('.item').then(() => {
 
     const settings = {
       size: 150,
-      angle: 0.4,
+      angle: 0,
       scale: 0.67,
       iterations: 10,
       speed: 0.3,
@@ -53,124 +53,7 @@ preloader('.item').then(() => {
       slices: 13
     };
 
-    let tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".items1",
-        repeat: true,
-        pin: ".items1",
-        start: "0 0",
-        scrub: 1.8,
-        end: "+=180%"
-      },
-      onComplete: aClass,
-      onUpdate: rClass
-    })
-    tl.set("header .line-1", {opacity: 0, transform: 'translateX(0px)'})
-    tl.set("header .line-2", {opacity: 0, transform: 'translateX(0px)'})
-    tl.set("header .line-3", {opacity: 0, transform: 'translateX(0px)'})
-    tl.fromTo("header .border", {width: '1px'}, {delay: 2.7, duration: 4.5, width: 'calc(100vw - 80px)', ease: "[0.74,0.2,1,-0.22]"})
-    tl.fromTo(".item .border", {borderColor: '#000'}, {delay: 2.7, duration: 4.5, borderColor: '#fff', ease: "[0.74,0.2,1,-0.22]"})
-    tl.fromTo(".block-1 .title", {transform: 'translateY(0px) scaleY(1)', lineHeight: 1}, {delay: 0.3, duration: 2, transform: 'translateY(-300px) scaleY(4.5)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"})
-    tl.fromTo(".block-1 .text", {transform: 'translateY(0px) scaleY(1)', lineHeight: 1.2}, {delay: 0.3, duration: 2, transform: 'translateY(-560px) scaleY(3.5)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"}, "-=1")
-    tl.to(".menu", {duration: 3, translateY: '-300px'}, 0).to("#trigger", {duration: 4, translateX: '30vw'}, 0)
-    tl.fromTo("header .line-1", {opacity: 0, transform: 'translateX(0px)'}, {delay: 0.5, duration: 0.5, opacity: 0.72, transform: 'translateX(-50vw)', ease: "[0.74,0.2,1,-0.22]"})
-    tl.fromTo("header .line-3", {opacity: 0, transform: 'translateX(0px)'}, {delay: 0.7, duration: 0.5, opacity: 0, transform: 'translateX(0px)', ease: "[0.74,0.2,1,-0.22]"})
-
-    tl.fromTo(settings, {scale: 0.01}, {delay: 0.1, duration: 1.8, scale: 0.67}, 0)
-
-    // let trigger = document.querySelector('#trigger');
-    // trigger.onclick = function() {
-    //   console.log("trigger clicked.");
-    //   tl.timeScale(20).play(0);
-    //   tl.to(window, {duration: 1, scrollTo:{y:".items2", offsetY:70}});
-    // };
-  
-    let tl2 = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".items2",
-        repeat: true,
-        pin: ".items2",
-        start: "0 0",
-        scrub: 1.8,
-        end: "+=180%"
-      },
-      onComplete: aClass,
-      onUpdate: rClass
-    }) 
-    tl2.fromTo(".block-2 .title", {transform: 'translateY(0px) scaleY(1)', lineHeight: 1}, {delay: 0.3, duration: 2.1, transform: 'translateY(-400px) scaleY(4.5)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"}, "1.8")
-    tl2.fromTo(".block-2 .text-1", {transform: 'translateY(0px) scaleY(1)', lineHeight: 1.2}, {delay: 0.3, duration: 2.1, transform: 'translateY(-500px) scaleY(3.5)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"}, "-=1")
-    tl2.fromTo(".block-2 .text-2", {transform: 'translateY(0px) scaleY(1)', lineHeight: 1.2}, {delay: 0.3, duration: 2.1, transform: 'translateY(-900px) scaleY(3.5)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"}, "-=1")
-    tl2.fromTo("header .line-1", {opacity: 0.4, transform: 'translateX(-50vw)'}, {delay: 1.7, duration: 2.5, opacity: 0.72, transform: 'translateX(-66vw)', ease: "[0.74,0.2,1,-0.22]"})
-    tl2.fromTo("header .line-2", {opacity: 0, transform: 'translateX(0px)'}, {delay: 0.7, duration: 0.5, opacity: 0.72, transform: 'translateX(-34vw)', ease: "[0.74,0.2,1,-0.22]"})
-    tl2.fromTo("header .line-3", {opacity: 0, transform: 'translateX(0px)'}, {delay: 0.7, duration: 0.5, opacity: 0, transform: 'translateX(0px)', ease: "[0.74,0.2,1,-0.22]"})
-
-    let tl3 = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".items3",
-        repeat: true,
-        pin: ".items3",
-        start: "0 0",
-        scrub: 1.8,
-        end: "+=180%"
-      },
-      onComplete: aClass,
-      onUpdate: rClass
-    })
-    tl3.fromTo(settings, {scale: 0.67}, {delay: 0.1, duration: 1.8, scale: 0.72}, 0)
-    tl3.fromTo(".block-3 .title", {transform: 'translateY(0px) scaleY(1)', lineHeight: 1}, {delay: 0.3, duration: 2.7, transform: 'translateY(-300px) scaleY(4.5)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"}, "1.8")
-    tl3.fromTo(".block-3 .text-1", {transform: 'translateY(0px) scaleY(1)', lineHeight: 1.2}, {delay: 0.2, duration: 2.3, transform: 'translateY(-500px) scaleY(3.5)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"}, "-=1")
-    tl3.fromTo(".block-3 .text-2", {transform: 'translateY(0px) scaleY(1)', lineHeight: 1.2}, {delay: 0.2, duration: 2.3, transform: 'translateY(-600px) scaleY(3.5)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"}, "<+=0.2")
-    tl3.fromTo(".block-3 .text-3", {transform: 'translateY(0px) scaleY(1)', lineHeight: 1.2}, {delay: 0.2, duration: 2.3, transform: 'translateY(-600px) scaleY(3.5)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"}, "<+=0.35")
-    tl3.fromTo("header .line-1", {opacity: 0.4, transform: 'translateX(-66vw)'}, {delay: 1.7, duration: 2.5, opacity: 0.72, transform: 'translateX(-74vw)', ease: "[0.74,0.2,1,-0.22]"})
-    tl3.fromTo("header .line-2", {opacity: 0.4, transform: 'translateX(-34vw)'}, {delay: 0.7, duration: 0.5, opacity: 0.72, transform: 'translateX(-50vw)', ease: "[0.74,0.2,1,-0.22]"})
-    tl3.fromTo("header .line-3", {opacity: 0.4, transform: 'translateX(0px)'}, {delay: 0.7, duration: 0.5, opacity: 0.72, transform: 'translateX(-26vw)', ease: "[0.74,0.2,1,-0.22]"})
-
-    let tl4 = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".items4",
-        repeat: true,
-        pin: ".items4",
-        start: "0 0",
-        scrub: 1.8,
-        end: "+=180%"
-      },
-      onComplete: aClass,
-      onUpdate: rClass
-    })
-    tl4.add("elements-in-out")
-    tl4.fromTo(".block-4 .title", {transform: 'translateY(0px) scaleY(1)', lineHeight: 1}, {delay: 0.3, duration: 2.7, transform: 'translateY(-500px) scaleY(4.5)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"}, "1.8")
-    tl4.fromTo(".block-4 .text-1", {transform: 'translateY(0px) scaleY(1)', lineHeight: 1.2}, {delay: 0.2, duration: 2.3, transform: 'translateY(-500px) scaleY(3.5)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"}, "<+=0.1")
-    tl4.fromTo(".block-4 .text-2", {transform: 'translateY(0px) scaleY(1)', lineHeight: 1.2}, {delay: 0.2, duration: 2.3, transform: 'translateY(-500px) scaleY(3.5)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"}, "<+=0.2")
-    tl4.fromTo(".block-4 .text-3, .block-4 .text-4", {transform: 'translateY(0px) scaleY(1)', lineHeight: 1.2}, {delay: 0.2, duration: 2.3, transform: 'translateY(-600px) scaleY(3.5)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"}, "<+=0.35") 
-    tl4.fromTo("header .line-1", {opacity: 0.72, transform: 'translateX(-74vw)'}, {delay: 0.7, duration: 0.9, opacity: 0, transform: 'translateX(0px)', ease: "[0.74,0.2,1,-0.22]"}, 1.8)
-    tl4.fromTo("header .line-2", {opacity: 0.72, transform: 'translateX(-50vw)'}, {delay: 0.7, duration: 0.9, opacity: 0, transform: 'translateX(0px)', ease: "[0.74,0.2,1,-0.22]"}, "<+=0.2")
-    tl4.fromTo("header .line-3", {opacity: 0.72, transform: 'translateX(-26vw)'}, {delay: 0.7, duration: 0.9, opacity: 0, transform: 'translateX(0px)', ease: "[0.74,0.2,1,-0.22]"}, "<+=0.35")
-    tl4.set("header .line-1", {opacity: 0, transform: 'translateX(0px)'})
-    tl4.set("header .line-2", {opacity: 0, transform: 'translateX(0px)'})
-    tl4.set("header .line-3", {opacity: 0, transform: 'translateX(0px)'})
-
-    let tl5 = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".items5",
-        repeat: true,
-        pin: ".items5",
-        start: "0 0",
-        scrub: 1.8,
-        end: "+=180%"
-      },
-      onComplete: aClass,
-      onUpdate: rClass
-    })
-    tl5.set("header .line-1", {opacity: 0, transform: 'translateX(0px)'})
-    tl5.set("header .line-2", {opacity: 0, transform: 'translateX(0px)'})
-    tl5.set("header .line-3", {opacity: 0, transform: 'translateX(0px)'})
-    tl5.fromTo("header .border", {height: 'calc(100vh - 80px)', transform: 'translateY(40px)'}, {delay: 1.8, duration: 3.5, height: '20vh', transform: 'translateY(72vh)', ease: "[0.74,0.2,1,-0.22]"})
-    tl5.fromTo(".block-5 .title", {transform: 'translateY(1000px) scaleY(2)', lineHeight: 0.8}, {delay: 0.3, duration: 1, transform: 'translateY(80px) scaleY(1)', lineHeight: 1, ease: "[0.74,0.2,1,-0.22]"}, "1.8")
-    tl5.fromTo(".block-5 .text", {transform: 'translateY(50px) scale(0.4)', lineHeight: 1.2}, {delay: 0.2, duration: 1, transform: 'translateY(0px) scale(1)', lineHeight: 1, ease: "[0.74,0.2,1,-0.22]"})
-
-    
-    
-    let width, height;
+    let canvasWidth, canvasheight;
     let canvas = document.querySelector('#ctx');
     let context = canvas.getContext('2d');
     let bufferCanvas = document.createElement('canvas');
@@ -179,9 +62,9 @@ preloader('.item').then(() => {
     window.addEventListener('resize', resize);
     resize();
     function resize() {
-        width = bufferCanvas.width = canvas.width = window.innerWidth;
-        height = bufferCanvas.height = canvas.height = window.innerHeight;
-        bufferContext.translate(width * 0.5, height);
+        canvasWidth = bufferCanvas.width = canvas.width = window.innerWidth;
+        canvasheight = bufferCanvas.height = canvas.height = window.innerHeight;
+        bufferContext.translate(canvasWidth * 0.5, canvasheight);
         bufferContext.strokeStyle = '#c3c3c3';
     }
     
@@ -191,7 +74,7 @@ preloader('.item').then(() => {
     
         bufferContext.save();
         bufferContext.setTransform(1, 0, 0, 1, 0, 0);
-        bufferContext.clearRect(0, 0, width, height);
+        bufferContext.clearRect(0, 0, canvasWidth, canvasheight);
         bufferContext.restore();
     
         bufferContext.beginPath();
@@ -224,12 +107,12 @@ preloader('.item').then(() => {
             points.unshift({x: x, y: y, angle: angle, size: size});
         }
     
-        var side1 = width * 0.5;
-        var side2 = height * 0.5;
+        var side1 = canvasWidth * 0.5;
+        var side2 = canvasheight * 0.5;
         var radius = Math.sqrt(side1 * side1 + side2 * side2);
       
         bufferContext.globalCompositeOperation = 'destination-in';
-        bufferContext.fillStyle = 'red';
+        bufferContext.fillStyle = '#c3c3c3';
         bufferContext.beginPath();
       
         bufferContext.arc(0, 0, radius, -(Math.PI * 0.5 + (Math.PI / settings.slices)), -(Math.PI * 0.5 - (Math.PI / settings.slices)));
@@ -239,16 +122,132 @@ preloader('.item').then(() => {
         bufferContext.globalCompositeOperation = 'source-over';
     
         context.setTransform(1, 0, 0, 1, 0, 0);
-        context.clearRect(0, 0, width, height);
-        context.translate(width * 0.5, height * 0.5);
+        context.clearRect(0, 0, canvasWidth, canvasheight);
+        context.translate(canvasWidth * 0.5, canvasheight * 0.5);
         
         for (var i = 0; i < settings.slices; i++) {
             context.rotate(Math.PI * 2 / settings.slices);
-            context.drawImage(bufferCanvas, -width * 0.5, -height);
+            context.drawImage(bufferCanvas, -canvasWidth * 0.5, -canvasheight);
         }
     }
     
     draw();
+
+    let tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".items1",
+        repeat: true,
+        pin: ".items1",
+        start: "0 0",
+        scrub: 1.8,
+        end: "+=180%"
+      },
+      onComplete: aClass,
+      onUpdate: rClass
+    })
+    
+    tl.set("header .line-1", {opacity: 0, transform: 'translateX(0px)'})
+    tl.set("header .line-2", {opacity: 0, transform: 'translateX(0px)'})
+    tl.set("header .line-3", {opacity: 0, transform: 'translateX(0px)'})
+    tl.fromTo("header .border", {width: '1px'}, {delay: 2.7, duration: 4.5, width: 'calc(100vw - 80px)', ease: "[0.74,0.2,1,-0.22]"})
+    tl.fromTo(".item .border", {borderColor: '#000'}, {delay: 2.7, duration: 4.5, borderColor: '#fff', ease: "[0.74,0.2,1,-0.22]"})
+    tl.fromTo(".block-1 .title", {transform: 'translateY(0px) scaleY(1)', lineHeight: 1}, {delay: 0.3, duration: 2, transform: 'translateY(-300px) scaleY(4.5)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"})
+    tl.fromTo(".block-1 .text", {transform: 'translateY(0px) scaleY(1)', lineHeight: 1.2}, {delay: 0.3, duration: 2, transform: 'translateY(-560px) scaleY(3.5)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"}, "-=1")
+    tl.to(".menu", {duration: 3, translateY: '-300px'}, 0).to("#trigger", {duration: 4, translateX: '30vw'}, 0)
+    tl.fromTo("header .line-1", {opacity: 0, transform: 'translateX(0px)'}, {delay: 0.5, duration: 0.5, opacity: 0.72, transform: 'translateX(-50vw)', ease: "[0.74,0.2,1,-0.22]"})
+    tl.fromTo("header .line-3", {opacity: 0, transform: 'translateX(0px)'}, {delay: 0.7, duration: 0.5, opacity: 0, transform: 'translateX(0px)', ease: "[0.74,0.2,1,-0.22]"})
+    tl.fromTo(settings, {scale: 0.001}, {duration: 1.8, scale: 0.63}, 0)
+
+    // let trigger = document.querySelector('#trigger');
+    // trigger.onclick = function() {
+    //   console.log("trigger clicked.");
+    //   tl.timeScale(20).play(0);
+    //   tl.to(window, {duration: 1, scrollTo:{y:".items2", offsetY:70}});
+    // };
+  
+    let tl2 = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".items2",
+        repeat: true,
+        pin: ".items2",
+        start: "0 0",
+        scrub: 1.8,
+        end: "+=180%"
+      },
+      onComplete: aClass,
+      onUpdate: rClass
+    })
+    tl2.fromTo(".block-2 .title", {transform: 'translateY(0px) scaleY(1)', lineHeight: 1}, {delay: 0.3, duration: 2.1, transform: 'translateY(-400px) scaleY(4.5)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"}, "1.8")
+    tl2.fromTo(".block-2 .text-1", {transform: 'translateY(0px) scaleY(1)', lineHeight: 1.2}, {delay: 0.3, duration: 2.1, transform: 'translateY(-500px) scaleY(3.5)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"}, "-=1")
+    tl2.fromTo(".block-2 .text-2", {transform: 'translateY(0px) scaleY(1)', lineHeight: 1.2}, {delay: 0.3, duration: 2.1, transform: 'translateY(-900px) scaleY(3.5)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"}, "-=1")
+    tl2.fromTo("header .line-1", {opacity: 0.4, transform: 'translateX(-50vw)'}, {delay: 1.7, duration: 2.5, opacity: 0.72, transform: 'translateX(-66vw)', ease: "[0.74,0.2,1,-0.22]"})
+    tl2.fromTo("header .line-2", {opacity: 0, transform: 'translateX(0px)'}, {delay: 0.7, duration: 0.5, opacity: 0.72, transform: 'translateX(-34vw)', ease: "[0.74,0.2,1,-0.22]"})
+    tl2.fromTo("header .line-3", {opacity: 0, transform: 'translateX(0px)'}, {delay: 0.7, duration: 0.5, opacity: 0, transform: 'translateX(0px)', ease: "[0.74,0.2,1,-0.22]"})
+    tl2.fromTo(settings, {scale: 0.63}, {duration: 1.8, scale: 0.63}, 0)
+
+    let tl3 = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".items3",
+        repeat: true,
+        pin: ".items3",
+        start: "0 0",
+        scrub: 1.8,
+        end: "+=180%"
+      },
+      onComplete: aClass,
+      onUpdate: rClass
+    })
+    tl3.fromTo(".block-3 .title", {transform: 'translateY(0px) scaleY(1)', lineHeight: 1}, {delay: 0.3, duration: 2.7, transform: 'translateY(-300px) scaleY(4.5)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"}, "1.8")
+    tl3.fromTo(".block-3 .text-1", {transform: 'translateY(0px) scaleY(1)', lineHeight: 1.2}, {delay: 0.2, duration: 2.3, transform: 'translateY(-500px) scaleY(3.5)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"}, "-=1")
+    tl3.fromTo(".block-3 .text-2", {transform: 'translateY(0px) scaleY(1)', lineHeight: 1.2}, {delay: 0.2, duration: 2.3, transform: 'translateY(-600px) scaleY(3.5)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"}, "<+=0.2")
+    tl3.fromTo(".block-3 .text-3", {transform: 'translateY(0px) scaleY(1)', lineHeight: 1.2}, {delay: 0.2, duration: 2.3, transform: 'translateY(-600px) scaleY(3.5)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"}, "<+=0.35")
+    tl3.fromTo("header .line-1", {opacity: 0.4, transform: 'translateX(-66vw)'}, {delay: 1.7, duration: 2.5, opacity: 0.72, transform: 'translateX(-74vw)', ease: "[0.74,0.2,1,-0.22]"})
+    tl3.fromTo("header .line-2", {opacity: 0.4, transform: 'translateX(-34vw)'}, {delay: 0.7, duration: 0.5, opacity: 0.72, transform: 'translateX(-50vw)', ease: "[0.74,0.2,1,-0.22]"})
+    tl3.fromTo("header .line-3", {opacity: 0.4, transform: 'translateX(0px)'}, {delay: 0.7, duration: 0.5, opacity: 0.72, transform: 'translateX(-26vw)', ease: "[0.74,0.2,1,-0.22]"})
+    tl3.fromTo(settings, {scale: 0.63}, {duration: 1.8, scale: 0.63}, 0)
+
+    let tl4 = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".items4",
+        repeat: true,
+        pin: ".items4",
+        start: "0 0",
+        scrub: 1.8,
+        end: "+=180%"
+      },
+      onComplete: aClass,
+      onUpdate: rClass
+    })
+    tl4.fromTo(".block-4 .title", {transform: 'translateY(0px) scaleY(1)', lineHeight: 1}, {delay: 0.3, duration: 2.7, transform: 'translateY(-500px) scaleY(4.5)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"}, "1.8")
+    tl4.fromTo(".block-4 .text-1", {transform: 'translateY(0px) scaleY(1)', lineHeight: 1.2}, {delay: 0.2, duration: 2.3, transform: 'translateY(-500px) scaleY(3.5)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"}, "<+=0.1")
+    tl4.fromTo(".block-4 .text-2", {transform: 'translateY(0px) scaleY(1)', lineHeight: 1.2}, {delay: 0.2, duration: 2.3, transform: 'translateY(-500px) scaleY(3.5)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"}, "<+=0.2")
+    tl4.fromTo(".block-4 .text-3, .block-4 .text-4", {transform: 'translateY(0px) scaleY(1)', lineHeight: 1.2}, {delay: 0.2, duration: 2.3, transform: 'translateY(-600px) scaleY(3.5)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"}, "<+=0.35") 
+    tl4.fromTo("header .line-1", {opacity: 0.72, transform: 'translateX(-74vw)'}, {delay: 0.7, duration: 0.9, opacity: 0, transform: 'translateX(0px)', ease: "[0.74,0.2,1,-0.22]"}, 1.8)
+    tl4.fromTo("header .line-2", {opacity: 0.72, transform: 'translateX(-50vw)'}, {delay: 0.7, duration: 0.9, opacity: 0, transform: 'translateX(0px)', ease: "[0.74,0.2,1,-0.22]"}, "<+=0.2")
+    tl4.fromTo("header .line-3", {opacity: 0.72, transform: 'translateX(-26vw)'}, {delay: 0.7, duration: 0.9, opacity: 0, transform: 'translateX(0px)', ease: "[0.74,0.2,1,-0.22]"}, "<+=0.35")
+    tl4.set("header .line-1", {opacity: 0, transform: 'translateX(0px)'})
+    tl4.set("header .line-2", {opacity: 0, transform: 'translateX(0px)'})
+    tl4.set("header .line-3", {opacity: 0, transform: 'translateX(0px)'})
+    tl4.fromTo(settings, {scale: 0.63}, {duration: 1.8, scale: 0.71}, 0)
+
+    let tl5 = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".items5",
+        repeat: true,
+        pin: ".items5",
+        start: "0 0",
+        scrub: 1.8,
+        end: "+=180%"
+      },
+      onComplete: aClass,
+      onUpdate: rClass
+    })
+    tl5.set("header .line-1", {opacity: 0, transform: 'translateX(0px)'})
+    tl5.set("header .line-2", {opacity: 0, transform: 'translateX(0px)'})
+    tl5.set("header .line-3", {opacity: 0, transform: 'translateX(0px)'})
+    tl5.fromTo("header .border", {height: 'calc(100vh - 80px)', transform: 'translateY(40px)'}, {delay: 1.8, duration: 3.5, height: '20vh', transform: 'translateY(72vh)', ease: "[0.74,0.2,1,-0.22]"})
+    tl5.fromTo(".block-5 .title", {transform: 'translateY(1000px) scaleY(2)', lineHeight: 0.8}, {delay: 0.3, duration: 1, transform: 'translateY(80px) scaleY(1)', lineHeight: 1, ease: "[0.74,0.2,1,-0.22]"}, "1.8")
+    tl5.fromTo(".block-5 .text", {transform: 'translateY(50px) scale(0.4)', lineHeight: 1.2}, {delay: 0.2, duration: 1, transform: 'translateY(0px) scale(1)', lineHeight: 1, ease: "[0.74,0.2,1,-0.22]"})
     
     let tlTree = gsap.timeline({
       scrollTrigger: {
@@ -257,15 +256,11 @@ preloader('.item').then(() => {
         scrub: 1.8,
       }
     });
-    tlTree.add("elements-in-out")
-    // tlTree.fromTo(settings, {iterations: 1}, {delay: 0.1, duration: 1.8, iterations: 10, onUpdate:drawCanvas}, "elements-in-out")
-    // tlTree.fromTo(settings, {slices: 13}, {delay: 0.1, duration: 1.8, slices: 13, onUpdate:drawCanvas}, "elements-in-out")
-    // tlTree.fromTo(settings, {size: 120}, {delay: 0.1, duration: 1.8, size: 150, onUpdate:drawCanvas}, "elements-in-out")
-    // tlTree.fromTo(settings, {scale: 0.67}, {delay: 0.1, duration: 1.8, scale: 0.72, onUpdate:drawCanvas}, "elements-in-out")
-    tlTree.fromTo(settings, {angle: 0}, {delay: 0.1, duration: 1.8, angle: 1.89, onUpdate:drawCanvas}, "elements-in-out")
-    function drawCanvas() {
-      // console.log("angle:" + settings.angle);
-    }
+    // tlTree.fromTo(settings, {iterations: 1}, {delay: 0.1, duration: 1.8, iterations: 10}, "elements-in-out")
+    // tlTree.fromTo(settings, {slices: 13}, {delay: 0.1, duration: 1.8, slices: 13}, "elements-in-out")
+    // tlTree.fromTo(settings, {size: 120}, {delay: 0.1, duration: 1.8, size: 150}, "elements-in-out")
+    tlTree.set(settings, {scale: 0.001})
+    tlTree.fromTo(settings, {angle: 0}, {delay: 0.1, duration: 1.8, angle: 1.89})
 
     function aClass(){items.classList.add("active")}
     function rClass(){items.classList.remove("active")}
