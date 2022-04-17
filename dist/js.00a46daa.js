@@ -117,7 +117,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"TNS6":[function(require,module,exports) {
+})({"../node_modules/gsap/gsap-core.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -4182,7 +4182,7 @@ exports.Power3 = Power3;
 exports.Power2 = Power2;
 exports.Power1 = Power1;
 exports.Power0 = Power0;
-},{}],"bp4Z":[function(require,module,exports) {
+},{}],"../node_modules/gsap/CSSPlugin.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5603,7 +5603,7 @@ _gsapCore.gsap.utils.checkPrefix = _checkPropPrefix;
 });
 
 _gsapCore.gsap.registerPlugin(CSSPlugin);
-},{"./gsap-core.js":"TNS6"}],"TpQl":[function(require,module,exports) {
+},{"./gsap-core.js":"../node_modules/gsap/gsap-core.js"}],"../node_modules/gsap/index.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -5753,7 +5753,7 @@ TweenMaxWithCSS = gsapWithCSS.core.Tween;
 
 exports.TweenMax = TweenMaxWithCSS;
 exports.default = exports.gsap = gsapWithCSS;
-},{"./gsap-core.js":"TNS6","./CSSPlugin.js":"bp4Z"}],"TgBN":[function(require,module,exports) {
+},{"./gsap-core.js":"../node_modules/gsap/gsap-core.js","./CSSPlugin.js":"../node_modules/gsap/CSSPlugin.js"}],"../node_modules/gsap/ScrollTrigger.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -7685,7 +7685,7 @@ ScrollTrigger.sort = function (func) {
 };
 
 _getGSAP() && gsap.registerPlugin(ScrollTrigger);
-},{}],"MgTz":[function(require,module,exports) {
+},{}],"js/utils.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -7734,7 +7734,7 @@ var getMousePos = function getMousePos(e) {
 };
 
 exports.getMousePos = getMousePos;
-},{}],"LMRJ":[function(require,module,exports) {
+},{}],"js/cursor.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -7827,7 +7827,7 @@ var Cursor = /*#__PURE__*/function () {
 }();
 
 exports.default = Cursor;
-},{"gsap":"TpQl","./utils":"MgTz"}],"BQvw":[function(require,module,exports) {
+},{"gsap":"../node_modules/gsap/index.js","./utils":"js/utils.js"}],"../node_modules/ev-emitter/ev-emitter.js":[function(require,module,exports) {
 var define;
 var global = arguments[3];
 /**
@@ -7943,7 +7943,7 @@ return EvEmitter;
 
 }));
 
-},{}],"lc7f":[function(require,module,exports) {
+},{}],"../node_modules/imagesloaded/imagesloaded.js":[function(require,module,exports) {
 var define;
 /*!
  * imagesLoaded v4.1.4
@@ -8323,7 +8323,7 @@ return ImagesLoaded;
 
 });
 
-},{"ev-emitter":"BQvw"}],"BeZ8":[function(require,module,exports) {
+},{"ev-emitter":"../node_modules/ev-emitter/ev-emitter.js"}],"js/preloader.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -8370,7 +8370,7 @@ var preloader = function preloader(selector) {
 };
 
 exports.preloader = preloader;
-},{"imagesloaded":"lc7f"}],"ez7q":[function(require,module,exports) {
+},{"imagesloaded":"../node_modules/imagesloaded/imagesloaded.js"}],"../node_modules/locomotive-scroll/dist/locomotive-scroll.esm.js":[function(require,module,exports) {
 var global = arguments[3];
 "use strict";
 
@@ -10955,7 +10955,7 @@ var _default$3 = /*#__PURE__*/function () {
 
 var _default2 = _default$3;
 exports.default = _default2;
-},{}],"QvaY":[function(require,module,exports) {
+},{}],"js/index.js":[function(require,module,exports) {
 "use strict";
 
 var _gsap = require("gsap");
@@ -10973,12 +10973,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // import * as THREE from 'three';
 // import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 // import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-
-/* for menu cursor gifs
-  import Menu from './menu';
-*/
-// import { ScrollToPlugin } from "gsap/ScrollToPlugin";
-// gsap.registerPlugin(ScrollToPlugin);
 _gsap.gsap.registerPlugin(_ScrollTrigger.ScrollTrigger);
 
 var menuEl = document.querySelector('[data-scroll-container]');
@@ -10988,10 +10982,6 @@ var menuEl = document.querySelector('[data-scroll-container]');
     smooth: true
   });
   var cursor = new _cursor.default(document.querySelector('.cursor'));
-  /* for menu cursor gifs
-  new Menu(menuEl);
-  */
-
   var target = document.querySelector('.item.active');
   var items = document.querySelector('section');
   var menu = document.querySelector('.menu');
@@ -11034,18 +11024,18 @@ var menuEl = document.querySelector('[data-scroll-container]');
 
   tl.set("header .line-1", {
     opacity: 0,
-    right: 0
+    transform: 'translateX(0px)'
   });
   tl.set("header .line-2", {
     opacity: 0,
-    right: 0
+    transform: 'translateX(0px)'
   });
   tl.set("header .line-3", {
     opacity: 0,
-    right: 0
+    transform: 'translateX(0px)'
   });
   tl.fromTo("header .border", {
-    width: 1
+    width: '1px'
   }, {
     delay: 2.7,
     duration: 4.5,
@@ -11090,25 +11080,26 @@ var menuEl = document.querySelector('[data-scroll-container]');
     translateX: '30vw'
   }, 0);
   tl.fromTo("header .line-1", {
-    opacity: 0.5,
-    right: 0
+    opacity: 0,
+    transform: 'translateX(0px)'
   }, {
     delay: 0.5,
     duration: 0.5,
-    opacity: 1,
-    right: '50%',
+    opacity: 0.72,
+    transform: 'translateX(-50vw)',
     ease: "[0.74,0.2,1,-0.22]"
   });
   tl.fromTo("header .line-3", {
-    opacity: 0.5,
-    right: 0
+    opacity: 0,
+    transform: 'translateX(0px)'
   }, {
     delay: 0.7,
     duration: 0.5,
-    opacity: 1,
-    right: 0,
+    opacity: 0,
+    transform: 'translateX(0px)',
     ease: "[0.74,0.2,1,-0.22]"
-  }); // let trigger = document.querySelector('#trigger');
+  }); // tl.fromTo(settings, {scale: 0.01}, {delay: 0.1, duration: 1.8, scale: 0.72, onUpdate:drawCanvas}, 0)
+  // let trigger = document.querySelector('#trigger');
   // trigger.onclick = function() {
   //   console.log("trigger clicked.");
   //   tl.timeScale(20).play(0);
@@ -11159,33 +11150,33 @@ var menuEl = document.querySelector('[data-scroll-container]');
     ease: "[0.74,0.2,1,-0.22]"
   }, "-=1");
   tl2.fromTo("header .line-1", {
-    opacity: 0.5,
-    right: '50%'
+    opacity: 0.4,
+    transform: 'translateX(-50vw)'
   }, {
     delay: 1.7,
     duration: 2.5,
-    opacity: 1,
-    right: '33%',
+    opacity: 0.72,
+    transform: 'translateX(-66vw)',
     ease: "[0.74,0.2,1,-0.22]"
   });
   tl2.fromTo("header .line-2", {
-    opacity: 0.5,
-    right: 0
-  }, {
-    delay: 0.5,
-    duration: 0.5,
-    opacity: 1,
-    right: '66%',
-    ease: "[0.74,0.2,1,-0.22]"
-  });
-  tl2.fromTo("header .line-3", {
-    opacity: 0.5,
-    right: 0
+    opacity: 0,
+    transform: 'translateX(0px)'
   }, {
     delay: 0.7,
     duration: 0.5,
-    opacity: 1,
-    right: 0,
+    opacity: 0.72,
+    transform: 'translateX(-34vw)',
+    ease: "[0.74,0.2,1,-0.22]"
+  });
+  tl2.fromTo("header .line-3", {
+    opacity: 0,
+    transform: 'translateX(0px)'
+  }, {
+    delay: 0.7,
+    duration: 0.5,
+    opacity: 0,
+    transform: 'translateX(0px)',
     ease: "[0.74,0.2,1,-0.22]"
   });
 
@@ -11211,7 +11202,7 @@ var menuEl = document.querySelector('[data-scroll-container]');
     transform: 'translateY(-300px) scaleY(4.5)',
     lineHeight: 0.8,
     ease: "[0.74,0.2,1,-0.22]"
-  }, "1.8");
+  }, "<+=10.18");
   tl3.fromTo(".block-3 .text-1", {
     transform: 'translateY(0px) scaleY(1)',
     lineHeight: 1.2
@@ -11243,33 +11234,33 @@ var menuEl = document.querySelector('[data-scroll-container]');
     ease: "[0.74,0.2,1,-0.22]"
   }, "<+=0.35");
   tl3.fromTo("header .line-1", {
-    opacity: 0.5,
-    right: '33%'
+    opacity: 0.4,
+    transform: 'translateX(-66vw)'
   }, {
     delay: 1.7,
     duration: 2.5,
-    opacity: 1,
-    right: '25%',
+    opacity: 0.72,
+    transform: 'translateX(-74vw)',
     ease: "[0.74,0.2,1,-0.22]"
   });
   tl3.fromTo("header .line-2", {
-    opacity: 0.5,
-    right: '66%'
+    opacity: 0.4,
+    transform: 'translateX(-34vw)'
   }, {
     delay: 0.7,
     duration: 0.5,
-    opacity: 1,
-    right: '50%',
+    opacity: 0.72,
+    transform: 'translateX(-50vw)',
     ease: "[0.74,0.2,1,-0.22]"
   });
   tl3.fromTo("header .line-3", {
-    opacity: 0.5,
-    right: 0
+    opacity: 0.4,
+    transform: 'translateX(0px)'
   }, {
     delay: 0.7,
     duration: 0.5,
-    opacity: 1,
-    right: '75%',
+    opacity: 0.72,
+    transform: 'translateX(-26vw)',
     ease: "[0.74,0.2,1,-0.22]"
   });
 
@@ -11328,46 +11319,46 @@ var menuEl = document.querySelector('[data-scroll-container]');
     ease: "[0.74,0.2,1,-0.22]"
   }, "<+=0.35");
   tl4.fromTo("header .line-1", {
-    opacity: 0.5,
-    right: '25%'
+    opacity: 0.72,
+    transform: 'translateX(-74vw)'
   }, {
     delay: 0.7,
     duration: 0.9,
-    opacity: 1,
-    right: '0%',
+    opacity: 0,
+    transform: 'translateX(0px)',
     ease: "[0.74,0.2,1,-0.22]"
   }, 1.8);
   tl4.fromTo("header .line-2", {
-    opacity: 0.5,
-    right: '50%'
+    opacity: 0.72,
+    transform: 'translateX(-50vw)'
   }, {
     delay: 0.7,
     duration: 0.9,
-    opacity: 1,
-    right: '0%',
+    opacity: 0,
+    transform: 'translateX(0px)',
     ease: "[0.74,0.2,1,-0.22]"
   }, "<+=0.2");
   tl4.fromTo("header .line-3", {
-    opacity: 0.5,
-    right: '75%'
+    opacity: 0.72,
+    transform: 'translateX(-26vw)'
   }, {
     delay: 0.7,
     duration: 0.9,
-    opacity: 1,
-    right: '0%',
+    opacity: 0,
+    transform: 'translateX(0px)',
     ease: "[0.74,0.2,1,-0.22]"
   }, "<+=0.35");
   tl4.set("header .line-1", {
     opacity: 0,
-    right: 0
+    transform: 'translateX(0px)'
   });
   tl4.set("header .line-2", {
     opacity: 0,
-    right: 0
+    transform: 'translateX(0px)'
   });
   tl4.set("header .line-3", {
     opacity: 0,
-    right: 0
+    transform: 'translateX(0px)'
   });
 
   var tl5 = _gsap.gsap.timeline({
@@ -11385,25 +11376,24 @@ var menuEl = document.querySelector('[data-scroll-container]');
 
   tl5.set("header .line-1", {
     opacity: 0,
-    right: 0
+    transform: 'translateX(0px)'
   });
   tl5.set("header .line-2", {
     opacity: 0,
-    right: 0
+    transform: 'translateX(0px)'
   });
   tl5.set("header .line-3", {
     opacity: 0,
-    right: 0
+    transform: 'translateX(0px)'
   });
   tl5.fromTo("header .border", {
     height: 'calc(100vh - 80px)',
-    top: '40px',
-    bottom: 'auto'
+    transform: 'translateY(40px)'
   }, {
     delay: 1.8,
     duration: 3.5,
     height: '20vh',
-    top: '60%',
+    transform: 'translateY(55vh)',
     ease: "[0.74,0.2,1,-0.22]"
   });
   tl5.fromTo(".block-5 .title", {
@@ -11539,15 +11529,8 @@ var menuEl = document.querySelector('[data-scroll-container]');
   tlTree.add("elements-in-out"); // tlTree.fromTo(settings, {iterations: 1}, {delay: 0.1, duration: 1.8, iterations: 10, onUpdate:drawCanvas}, "elements-in-out")
   // tlTree.fromTo(settings, {slices: 13}, {delay: 0.1, duration: 1.8, slices: 13, onUpdate:drawCanvas}, "elements-in-out")
   // tlTree.fromTo(settings, {size: 120}, {delay: 0.1, duration: 1.8, size: 150, onUpdate:drawCanvas}, "elements-in-out")
+  // tlTree.fromTo(settings, {scale: 0.67}, {delay: 0.1, duration: 1.8, scale: 0.72, onUpdate:drawCanvas}, "elements-in-out")
 
-  tlTree.fromTo(settings, {
-    scale: 0.67
-  }, {
-    delay: 0.1,
-    duration: 1.8,
-    scale: 0.72,
-    onUpdate: drawCanvas
-  }, "elements-in-out");
   tlTree.fromTo(settings, {
     angle: 0
   }, {
@@ -11680,4 +11663,209 @@ var menuEl = document.querySelector('[data-scroll-container]');
 //   })
 // }
 // window.addEventListener('mousemove', onMouseMove)
-},{"gsap":"TpQl","gsap/ScrollTrigger":"TgBN","./cursor":"LMRJ","./preloader":"BeZ8","locomotive-scroll":"ez7q"}]},{},["QvaY"], null)
+},{"gsap":"../node_modules/gsap/index.js","gsap/ScrollTrigger":"../node_modules/gsap/ScrollTrigger.js","./cursor":"js/cursor.js","./preloader":"js/preloader.js","locomotive-scroll":"../node_modules/locomotive-scroll/dist/locomotive-scroll.esm.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+var global = arguments[3];
+var OVERLAY_ID = '__parcel__error__overlay__';
+var OldModule = module.bundle.Module;
+
+function Module(moduleName) {
+  OldModule.call(this, moduleName);
+  this.hot = {
+    data: module.bundle.hotData,
+    _acceptCallbacks: [],
+    _disposeCallbacks: [],
+    accept: function (fn) {
+      this._acceptCallbacks.push(fn || function () {});
+    },
+    dispose: function (fn) {
+      this._disposeCallbacks.push(fn);
+    }
+  };
+  module.bundle.hotData = null;
+}
+
+module.bundle.Module = Module;
+var checkedAssets, assetsToAccept;
+var parent = module.bundle.parent;
+
+if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
+  var hostname = "" || location.hostname;
+  var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60824" + '/');
+
+  ws.onmessage = function (event) {
+    checkedAssets = {};
+    assetsToAccept = [];
+    var data = JSON.parse(event.data);
+
+    if (data.type === 'update') {
+      var handled = false;
+      data.assets.forEach(function (asset) {
+        if (!asset.isNew) {
+          var didAccept = hmrAcceptCheck(global.parcelRequire, asset.id);
+
+          if (didAccept) {
+            handled = true;
+          }
+        }
+      }); // Enable HMR for CSS by default.
+
+      handled = handled || data.assets.every(function (asset) {
+        return asset.type === 'css' && asset.generated.js;
+      });
+
+      if (handled) {
+        console.clear();
+        data.assets.forEach(function (asset) {
+          hmrApply(global.parcelRequire, asset);
+        });
+        assetsToAccept.forEach(function (v) {
+          hmrAcceptRun(v[0], v[1]);
+        });
+      } else if (location.reload) {
+        // `location` global exists in a web worker context but lacks `.reload()` function.
+        location.reload();
+      }
+    }
+
+    if (data.type === 'reload') {
+      ws.close();
+
+      ws.onclose = function () {
+        location.reload();
+      };
+    }
+
+    if (data.type === 'error-resolved') {
+      console.log('[parcel] ✨ Error resolved');
+      removeErrorOverlay();
+    }
+
+    if (data.type === 'error') {
+      console.error('[parcel] 🚨  ' + data.error.message + '\n' + data.error.stack);
+      removeErrorOverlay();
+      var overlay = createErrorOverlay(data);
+      document.body.appendChild(overlay);
+    }
+  };
+}
+
+function removeErrorOverlay() {
+  var overlay = document.getElementById(OVERLAY_ID);
+
+  if (overlay) {
+    overlay.remove();
+  }
+}
+
+function createErrorOverlay(data) {
+  var overlay = document.createElement('div');
+  overlay.id = OVERLAY_ID; // html encode message and stack trace
+
+  var message = document.createElement('div');
+  var stackTrace = document.createElement('pre');
+  message.innerText = data.error.message;
+  stackTrace.innerText = data.error.stack;
+  overlay.innerHTML = '<div style="background: black; font-size: 16px; color: white; position: fixed; height: 100%; width: 100%; top: 0px; left: 0px; padding: 30px; opacity: 0.85; font-family: Menlo, Consolas, monospace; z-index: 9999;">' + '<span style="background: red; padding: 2px 4px; border-radius: 2px;">ERROR</span>' + '<span style="top: 2px; margin-left: 5px; position: relative;">🚨</span>' + '<div style="font-size: 18px; font-weight: bold; margin-top: 20px;">' + message.innerHTML + '</div>' + '<pre>' + stackTrace.innerHTML + '</pre>' + '</div>';
+  return overlay;
+}
+
+function getParents(bundle, id) {
+  var modules = bundle.modules;
+
+  if (!modules) {
+    return [];
+  }
+
+  var parents = [];
+  var k, d, dep;
+
+  for (k in modules) {
+    for (d in modules[k][1]) {
+      dep = modules[k][1][d];
+
+      if (dep === id || Array.isArray(dep) && dep[dep.length - 1] === id) {
+        parents.push(k);
+      }
+    }
+  }
+
+  if (bundle.parent) {
+    parents = parents.concat(getParents(bundle.parent, id));
+  }
+
+  return parents;
+}
+
+function hmrApply(bundle, asset) {
+  var modules = bundle.modules;
+
+  if (!modules) {
+    return;
+  }
+
+  if (modules[asset.id] || !bundle.parent) {
+    var fn = new Function('require', 'module', 'exports', asset.generated.js);
+    asset.isNew = !modules[asset.id];
+    modules[asset.id] = [fn, asset.deps];
+  } else if (bundle.parent) {
+    hmrApply(bundle.parent, asset);
+  }
+}
+
+function hmrAcceptCheck(bundle, id) {
+  var modules = bundle.modules;
+
+  if (!modules) {
+    return;
+  }
+
+  if (!modules[id] && bundle.parent) {
+    return hmrAcceptCheck(bundle.parent, id);
+  }
+
+  if (checkedAssets[id]) {
+    return;
+  }
+
+  checkedAssets[id] = true;
+  var cached = bundle.cache[id];
+  assetsToAccept.push([bundle, id]);
+
+  if (cached && cached.hot && cached.hot._acceptCallbacks.length) {
+    return true;
+  }
+
+  return getParents(global.parcelRequire, id).some(function (id) {
+    return hmrAcceptCheck(global.parcelRequire, id);
+  });
+}
+
+function hmrAcceptRun(bundle, id) {
+  var cached = bundle.cache[id];
+  bundle.hotData = {};
+
+  if (cached) {
+    cached.hot.data = bundle.hotData;
+  }
+
+  if (cached && cached.hot && cached.hot._disposeCallbacks.length) {
+    cached.hot._disposeCallbacks.forEach(function (cb) {
+      cb(bundle.hotData);
+    });
+  }
+
+  delete bundle.cache[id];
+  bundle(id);
+  cached = bundle.cache[id];
+
+  if (cached && cached.hot && cached.hot._acceptCallbacks.length) {
+    cached.hot._acceptCallbacks.forEach(function (cb) {
+      cb();
+    });
+
+    return true;
+  }
+}
+},{}]},{},["../node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/index.js"], null)
+//# sourceMappingURL=/js.00a46daa.js.map
