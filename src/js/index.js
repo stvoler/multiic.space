@@ -1,5 +1,4 @@
 // import * as THREE from 'three';
-
 // import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 // import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
@@ -44,6 +43,16 @@ preloader('.item').then(() => {
       scroller: "[data-scroll-container]"
     });
 
+    const settings = {
+      size: 150,
+      angle: 0.4,
+      scale: 0.67,
+      iterations: 10,
+      speed: 0.3,
+      offset: 0,
+      slices: 13
+    };
+
     let tl = gsap.timeline({
       scrollTrigger: {
         trigger: ".items1",
@@ -63,13 +72,11 @@ preloader('.item').then(() => {
     tl.fromTo(".item .border", {borderColor: '#000'}, {delay: 2.7, duration: 4.5, borderColor: '#fff', ease: "[0.74,0.2,1,-0.22]"})
     tl.fromTo(".block-1 .title", {transform: 'translateY(0px) scaleY(1)', lineHeight: 1}, {delay: 0.3, duration: 2, transform: 'translateY(-300px) scaleY(4.5)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"})
     tl.fromTo(".block-1 .text", {transform: 'translateY(0px) scaleY(1)', lineHeight: 1.2}, {delay: 0.3, duration: 2, transform: 'translateY(-560px) scaleY(3.5)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"}, "-=1")
-    // tl.to(".block-1 .title", {delay: 0.3, duration: 0.5, transform: 'translateY(-300px) scaleY(4.5)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"}, 0)
-    // tl.to(".block-1 .text", {delay: 0.3, duration: 0.5, transform: 'translateY(-560px) scaleY(3.5)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"}, 0)
     tl.to(".menu", {duration: 3, translateY: '-300px'}, 0).to("#trigger", {duration: 4, translateX: '30vw'}, 0)
     tl.fromTo("header .line-1", {opacity: 0, transform: 'translateX(0px)'}, {delay: 0.5, duration: 0.5, opacity: 0.72, transform: 'translateX(-50vw)', ease: "[0.74,0.2,1,-0.22]"})
     tl.fromTo("header .line-3", {opacity: 0, transform: 'translateX(0px)'}, {delay: 0.7, duration: 0.5, opacity: 0, transform: 'translateX(0px)', ease: "[0.74,0.2,1,-0.22]"})
 
-    // tl.fromTo(settings, {scale: 0.01}, {delay: 0.1, duration: 1.8, scale: 0.72, onUpdate:drawCanvas}, 0)
+    tl.fromTo(settings, {scale: 0.01}, {delay: 0.1, duration: 1.8, scale: 0.67, onUpdate:drawCanvas}, 0)
 
     // let trigger = document.querySelector('#trigger');
     // trigger.onclick = function() {
@@ -156,55 +163,36 @@ preloader('.item').then(() => {
     tl5.set("header .line-1", {opacity: 0, transform: 'translateX(0px)'})
     tl5.set("header .line-2", {opacity: 0, transform: 'translateX(0px)'})
     tl5.set("header .line-3", {opacity: 0, transform: 'translateX(0px)'})
-    tl5.fromTo("header .border", {height: 'calc(100vh - 80px)', transform: 'translateY(40px)'}, {delay: 1.8, duration: 3.5, height: '20vh', transform: 'translateY(55vh)', ease: "[0.74,0.2,1,-0.22]"})
+    tl5.fromTo("header .border", {height: 'calc(100vh - 80px)', transform: 'translateY(40px)'}, {delay: 1.8, duration: 3.5, height: '20vh', transform: 'translateY(72vh)', ease: "[0.74,0.2,1,-0.22]"})
     tl5.fromTo(".block-5 .title", {transform: 'translateY(1000px) scaleY(2)', lineHeight: 0.8}, {delay: 0.3, duration: 1, transform: 'translateY(80px) scaleY(1)', lineHeight: 1, ease: "[0.74,0.2,1,-0.22]"}, "1.8")
     tl5.fromTo(".block-5 .text", {transform: 'translateY(50px) scale(0.4)', lineHeight: 1.2}, {delay: 0.2, duration: 1, transform: 'translateY(0px) scale(1)', lineHeight: 1, ease: "[0.74,0.2,1,-0.22]"})
 
-    const settings = {
-      size: 150,
-      angle: 0.4,
-      scale: 0.67,
-      iterations: 10,
-      animate: false,
-      speed: 0.3,
-      offset: 0,
-      slices: 13
-    };
     
-    var width, height;
-    var canvas = document.querySelector('#ctx');
-    var context = canvas.getContext('2d');
     
-    var bufferCanvas = document.createElement('canvas');
-    var bufferContext = bufferCanvas.getContext('2d');
+    let width, height;
+    let canvas = document.querySelector('#ctx');
+    let context = canvas.getContext('2d');
+    let bufferCanvas = document.createElement('canvas');
+    let bufferContext = bufferCanvas.getContext('2d');
     
     window.addEventListener('resize', resize);
     resize();
-    
     function resize() {
         width = bufferCanvas.width = canvas.width = window.innerWidth;
         height = bufferCanvas.height = canvas.height = window.innerHeight;
-        
         bufferContext.translate(width * 0.5, height);
         bufferContext.strokeStyle = '#c3c3c3';
     }
     
     function draw() {
         requestAnimationFrame(draw);
-    
-        if (settings.animate) {
-          settings.angle += 0.02 * settings.speed;
-        }
-          
         var points = [];
     
-        // Clear canvas
         bufferContext.save();
         bufferContext.setTransform(1, 0, 0, 1, 0, 0);
         bufferContext.clearRect(0, 0, width, height);
         bufferContext.restore();
     
-        // Draw stem
         bufferContext.beginPath();
         bufferContext.moveTo(0, 0);
         bufferContext.lineTo(0, -settings.size * settings.scale);
@@ -224,10 +212,10 @@ preloader('.item').then(() => {
         }
     
         function drawBranch(point, direction) {
-            var angle = point.angle + (settings.angle * direction + settings.offset);
-            var size = point.size * settings.scale;
-            var x = point.x + Math.cos(angle) * size;
-            var y = point.y + Math.sin(angle) * size;
+            let angle = point.angle + (settings.angle * direction + settings.offset);
+            let size = point.size * settings.scale;
+            let x = point.x + Math.cos(angle) * size;
+            let y = point.y + Math.sin(angle) * size;
             bufferContext.beginPath();
             bufferContext.moveTo(point.x, point.y);
             bufferContext.lineTo(x, y);

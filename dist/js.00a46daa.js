@@ -11009,6 +11009,16 @@ var menuEl = document.querySelector('[data-scroll-container]');
     scroller: "[data-scroll-container]"
   });
 
+  var settings = {
+    size: 150,
+    angle: 0.4,
+    scale: 0.67,
+    iterations: 10,
+    speed: 0.3,
+    offset: 0,
+    slices: 13
+  };
+
   var tl = _gsap.gsap.timeline({
     scrollTrigger: {
       trigger: ".items1",
@@ -11069,9 +11079,7 @@ var menuEl = document.querySelector('[data-scroll-container]');
     transform: 'translateY(-560px) scaleY(3.5)',
     lineHeight: 0.8,
     ease: "[0.74,0.2,1,-0.22]"
-  }, "-=1"); // tl.to(".block-1 .title", {delay: 0.3, duration: 0.5, transform: 'translateY(-300px) scaleY(4.5)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"}, 0)
-  // tl.to(".block-1 .text", {delay: 0.3, duration: 0.5, transform: 'translateY(-560px) scaleY(3.5)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"}, 0)
-
+  }, "-=1");
   tl.to(".menu", {
     duration: 3,
     translateY: '-300px'
@@ -11098,8 +11106,15 @@ var menuEl = document.querySelector('[data-scroll-container]');
     opacity: 0,
     transform: 'translateX(0px)',
     ease: "[0.74,0.2,1,-0.22]"
-  }); // tl.fromTo(settings, {scale: 0.01}, {delay: 0.1, duration: 1.8, scale: 0.72, onUpdate:drawCanvas}, 0)
-  // let trigger = document.querySelector('#trigger');
+  });
+  tl.fromTo(settings, {
+    scale: 0.01
+  }, {
+    delay: 0.1,
+    duration: 1.8,
+    scale: 0.67,
+    onUpdate: drawCanvas
+  }, 0); // let trigger = document.querySelector('#trigger');
   // trigger.onclick = function() {
   //   console.log("trigger clicked.");
   //   tl.timeScale(20).play(0);
@@ -11393,7 +11408,7 @@ var menuEl = document.querySelector('[data-scroll-container]');
     delay: 1.8,
     duration: 3.5,
     height: '20vh',
-    transform: 'translateY(55vh)',
+    transform: 'translateY(72vh)',
     ease: "[0.74,0.2,1,-0.22]"
   });
   tl5.fromTo(".block-5 .title", {
@@ -11416,16 +11431,6 @@ var menuEl = document.querySelector('[data-scroll-container]');
     lineHeight: 1,
     ease: "[0.74,0.2,1,-0.22]"
   });
-  var settings = {
-    size: 150,
-    angle: 0.4,
-    scale: 0.67,
-    iterations: 10,
-    animate: false,
-    speed: 0.3,
-    offset: 0,
-    slices: 13
-  };
   var width, height;
   var canvas = document.querySelector('#ctx');
   var context = canvas.getContext('2d');
@@ -11443,18 +11448,11 @@ var menuEl = document.querySelector('[data-scroll-container]');
 
   function draw() {
     requestAnimationFrame(draw);
-
-    if (settings.animate) {
-      settings.angle += 0.02 * settings.speed;
-    }
-
-    var points = []; // Clear canvas
-
+    var points = [];
     bufferContext.save();
     bufferContext.setTransform(1, 0, 0, 1, 0, 0);
     bufferContext.clearRect(0, 0, width, height);
-    bufferContext.restore(); // Draw stem
-
+    bufferContext.restore();
     bufferContext.beginPath();
     bufferContext.moveTo(0, 0);
     bufferContext.lineTo(0, -settings.size * settings.scale);
