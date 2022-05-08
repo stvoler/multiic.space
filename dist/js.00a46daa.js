@@ -11102,6 +11102,12 @@ var menuEl = document.querySelector('[data-scroll-container]');
   }
 
   draw();
+  var music = document.querySelector(".music");
+  var triggerMusic = document.querySelector('#trigger');
+
+  triggerMusic.onclick = function () {
+    music.play();
+  };
 
   var tl = _gsap.gsap.timeline({
     scrollTrigger: {
@@ -11110,7 +11116,10 @@ var menuEl = document.querySelector('[data-scroll-container]');
       pin: ".items1",
       start: "0 0",
       scrub: 1.8,
-      end: "+=180%"
+      end: "+=180%",
+      onEnter: function onEnter() {
+        music.play();
+      }
     },
     onComplete: aClass,
     onUpdate: rClass
@@ -11127,6 +11136,12 @@ var menuEl = document.querySelector('[data-scroll-container]');
   tl.set("header .line-3", {
     opacity: 0,
     transform: 'translateX(0px)'
+  });
+  tl.fromTo(music, {
+    playbackRate: 0.99
+  }, {
+    duration: 0.4,
+    playbackRate: 1
   });
   tl.fromTo("header .border", {
     width: '1px'
@@ -11164,6 +11179,9 @@ var menuEl = document.querySelector('[data-scroll-container]');
     lineHeight: 0.8,
     ease: "[0.74,0.2,1,-0.22]"
   }, "-=1");
+  tl.to(music, {
+    playbackRate: 0.18
+  });
   tl.to(".menu", {
     duration: 3,
     translateY: '-300px'
@@ -11196,12 +11214,7 @@ var menuEl = document.querySelector('[data-scroll-container]');
   }, {
     duration: 1.8,
     scale: 0.63
-  }, 0); // let trigger = document.querySelector('#trigger');
-  // trigger.onclick = function() {
-  //   console.log("trigger clicked.");
-  //   tl.timeScale(20).play(0);
-  //   tl.to(window, {duration: 1, scrollTo:{y:".items2", offsetY:70}});
-  // };
+  }, 0);
 
   var tl2 = _gsap.gsap.timeline({
     scrollTrigger: {
@@ -11209,13 +11222,19 @@ var menuEl = document.querySelector('[data-scroll-container]');
       repeat: true,
       pin: ".items2",
       start: "0 0",
-      scrub: 1.8,
-      end: "+=180%"
+      scrub: 1.45,
+      end: "+=110%"
     },
     onComplete: aClass,
     onUpdate: rClass
   });
 
+  tl2.fromTo(music, {
+    playbackRate: 0.18
+  }, {
+    duration: 0.2,
+    playbackRate: 1
+  });
   tl2.fromTo(".block-2 .title", {
     transform: 'translateY(0px) scaleY(1)',
     lineHeight: 1
@@ -11246,6 +11265,9 @@ var menuEl = document.querySelector('[data-scroll-container]');
     lineHeight: 0.8,
     ease: "[0.74,0.2,1,-0.22]"
   }, "-=1");
+  tl2.to(music, {
+    playbackRate: 0.18
+  });
   tl2.fromTo("header .line-1", {
     opacity: 0.4,
     transform: 'translateX(-50vw)'
@@ -11289,13 +11311,19 @@ var menuEl = document.querySelector('[data-scroll-container]');
       repeat: true,
       pin: ".items3",
       start: "0 0",
-      scrub: 1.8,
-      end: "+=180%"
+      scrub: 1.45,
+      end: "+=110%"
     },
     onComplete: aClass,
     onUpdate: rClass
   });
 
+  tl3.fromTo(music, {
+    playbackRate: 0.18
+  }, {
+    duration: 0.2,
+    playbackRate: 1
+  });
   tl3.fromTo(".block-3 .title", {
     transform: 'translateY(0px) scaleY(1)',
     lineHeight: 1
@@ -11336,6 +11364,9 @@ var menuEl = document.querySelector('[data-scroll-container]');
     lineHeight: 0.8,
     ease: "[0.74,0.2,1,-0.22]"
   }, "<+=0.35");
+  tl3.to(music, {
+    playbackRate: 0.18
+  });
   tl3.fromTo("header .line-1", {
     opacity: 0.4,
     transform: 'translateX(-66vw)'
@@ -11379,13 +11410,19 @@ var menuEl = document.querySelector('[data-scroll-container]');
       repeat: true,
       pin: ".items4",
       start: "0 0",
-      scrub: 1.8,
-      end: "+=180%"
+      scrub: 1.45,
+      end: "+=110%"
     },
     onComplete: aClass,
     onUpdate: rClass
   });
 
+  tl4.fromTo(music, {
+    playbackRate: 0.18
+  }, {
+    duration: 0.2,
+    playbackRate: 1
+  });
   tl4.fromTo(".block-4 .title", {
     transform: 'translateY(0px) scaleY(1)',
     lineHeight: 1
@@ -11426,6 +11463,9 @@ var menuEl = document.querySelector('[data-scroll-container]');
     lineHeight: 0.8,
     ease: "[0.74,0.2,1,-0.22]"
   }, "<+=0.35");
+  tl4.to(music, {
+    playbackRate: 0.18
+  });
   tl4.fromTo("header .line-1", {
     opacity: 0.72,
     transform: 'translateX(-74vw)'
@@ -11481,8 +11521,8 @@ var menuEl = document.querySelector('[data-scroll-container]');
       repeat: true,
       pin: ".items5",
       start: "0 0",
-      scrub: 1.8,
-      end: "+=180%"
+      scrub: 1.45,
+      end: "+=110%"
     },
     onComplete: aClass,
     onUpdate: rClass
@@ -11499,6 +11539,12 @@ var menuEl = document.querySelector('[data-scroll-container]');
   tl5.set("header .line-3", {
     opacity: 0,
     transform: 'translateX(0px)'
+  });
+  tl5.fromTo(music, {
+    playbackRate: 0.18
+  }, {
+    duration: 0.2,
+    playbackRate: 1
   });
   tl5.fromTo("header .border", {
     height: 'calc(100vh - 80px)',
@@ -11534,7 +11580,7 @@ var menuEl = document.querySelector('[data-scroll-container]');
   var tlTree = _gsap.gsap.timeline({
     scrollTrigger: {
       start: "top center",
-      end: "bottom center",
+      end: "120%",
       scrub: 1.8
     }
   }); // tlTree.fromTo(settings, {iterations: 1}, {delay: 0.1, duration: 1.8, iterations: 10}, "elements-in-out")
@@ -11548,9 +11594,14 @@ var menuEl = document.querySelector('[data-scroll-container]');
   tlTree.fromTo(settings, {
     angle: 0
   }, {
-    delay: 0.1,
+    delay: 0.135,
     duration: 1.8,
     angle: 1.89
+  });
+  tlTree.fromTo(music, {
+    volume: 0.3
+  }, {
+    volume: 0.7
   });
 
   function aClass() {
@@ -11559,6 +11610,7 @@ var menuEl = document.querySelector('[data-scroll-container]');
 
   function rClass() {
     items.classList.remove("active");
+    console.log(music.playbackRate);
   }
 
   _ScrollTrigger.ScrollTrigger.addEventListener("refresh", function () {
@@ -11701,7 +11753,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49678" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50658" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
