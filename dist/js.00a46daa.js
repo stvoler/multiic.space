@@ -11362,7 +11362,7 @@ var menuEl = document.querySelector('[data-scroll-container]');
   }, {
     delay: 0.3,
     duration: 2.34,
-    opacity: 0,
+    opacity: 0.8,
     transform: 'translateY(-400px) scaleY(4.5)',
     lineHeight: 0.8,
     ease: "[0.74,0.2,1,-0.22]"
@@ -11437,7 +11437,7 @@ var menuEl = document.querySelector('[data-scroll-container]');
     offset: 0
   }, {
     duration: 1.8,
-    offset: 0
+    offset: 0.2
   });
   tl3.fromTo(settings, {
     scale: 0.63
@@ -11479,7 +11479,7 @@ var menuEl = document.querySelector('[data-scroll-container]');
   }, {
     delay: 0.3,
     duration: 2.34,
-    opacity: 0,
+    opacity: 0.8,
     transform: 'translateY(-500px) scaleY(4.5)',
     lineHeight: 0.8,
     ease: "[0.74,0.2,1,-0.22]"
@@ -11551,7 +11551,7 @@ var menuEl = document.querySelector('[data-scroll-container]');
     ease: "[0.74,0.2,1,-0.22]"
   }, "<-=0.1");
   tl4.fromTo(settings, {
-    offset: 0
+    offset: 0.2
   }, {
     duration: 1.8,
     offset: 0.5
@@ -11630,7 +11630,7 @@ var menuEl = document.querySelector('[data-scroll-container]');
   }, {
     delay: 0.11,
     duration: 1.8,
-    offset: 1.15
+    offset: 1.08
   });
   tl5.fromTo(settings, {
     scale: 0.62
