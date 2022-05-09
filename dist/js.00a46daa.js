@@ -11116,10 +11116,10 @@ var menuEl = document.querySelector('[data-scroll-container]');
       pin: ".items1",
       start: "0 0",
       scrub: 1.8,
-      end: "+=180%",
-      onEnter: function onEnter() {
-        music.play();
-      }
+      end: "+=180%" // onEnter: () => {
+      //   music.play()
+      // }
+
     },
     onComplete: aClass,
     onUpdate: rClass
@@ -11142,6 +11142,12 @@ var menuEl = document.querySelector('[data-scroll-container]');
   }, {
     duration: 0.4,
     playbackRate: 1
+  });
+  tl.fromTo("#circles", {
+    filter: "blur(0px)"
+  }, {
+    duration: 0.4,
+    filter: "blur(0px)"
   });
   tl.fromTo("header .border", {
     width: '1px'
@@ -11181,6 +11187,10 @@ var menuEl = document.querySelector('[data-scroll-container]');
     lineHeight: 0.8,
     ease: "[0.74,0.2,1,-0.22]"
   }, "-=1");
+  tl.to("#circles", {
+    duration: 0.4,
+    filter: "blur(2px)"
+  });
   tl.to(music, {
     playbackRate: 0.18
   });
@@ -11239,6 +11249,12 @@ var menuEl = document.querySelector('[data-scroll-container]');
   }); // tl2.fromTo(settings, {angle: 0.6}, {delay: 0.1, duration: 8, angle: 0.8}, 0)
 
 
+  tl2.fromTo("#circles", {
+    filter: "blur(2px)"
+  }, {
+    duration: 0.4,
+    filter: "blur(0px)"
+  });
   tl2.fromTo(music, {
     playbackRate: 0.18
   }, {
@@ -11284,6 +11300,9 @@ var menuEl = document.querySelector('[data-scroll-container]');
     lineHeight: 0.8,
     ease: "[0.74,0.2,1,-0.22]"
   }, ">-=1.8");
+  tl2.to("#circles", {
+    filter: "blur(2px)"
+  });
   tl2.to(music, {
     playbackRate: 0.18
   });
@@ -11344,6 +11363,12 @@ var menuEl = document.querySelector('[data-scroll-container]');
   }); // tl3.fromTo(settings, {angle: 0.9}, {delay: 0.1, duration: 8, angle: 1.1}, 0)
 
 
+  tl3.fromTo("#circles", {
+    filter: "blur(2px)"
+  }, {
+    duration: 0.4,
+    filter: "blur(0px)"
+  });
   tl3.fromTo(music, {
     playbackRate: 0.18
   }, {
@@ -11400,6 +11425,9 @@ var menuEl = document.querySelector('[data-scroll-container]');
     lineHeight: 0.8,
     ease: "[0.74,0.2,1,-0.22]"
   }, ">-=1.8");
+  tl3.to("#circles", {
+    filter: "blur(2px)"
+  });
   tl3.to(music, {
     playbackRate: 0.18
   });
@@ -11460,6 +11488,12 @@ var menuEl = document.querySelector('[data-scroll-container]');
   }); // tl4.fromTo(settings, {angle: 1.3}, {delay: 0.1, duration: 8, angle: 1.5}, 0)
 
 
+  tl4.fromTo("#circles", {
+    filter: "blur(2px)"
+  }, {
+    duration: 0.4,
+    filter: "blur(0px)"
+  });
   tl4.fromTo(music, {
     playbackRate: 0.18
   }, {
@@ -11517,6 +11551,9 @@ var menuEl = document.querySelector('[data-scroll-container]');
     lineHeight: 0.8,
     ease: "[0.74,0.2,1,-0.22]"
   }, ">-=1.8");
+  tl4.to("#circles", {
+    filter: "blur(2px)"
+  });
   tl4.to(music, {
     playbackRate: 0.18
   });
@@ -11589,6 +11626,12 @@ var menuEl = document.querySelector('[data-scroll-container]');
     transform: 'translateX(0px)'
   }); // tl5.fromTo(settings, {angle: 0.4}, {delay: 0.1, duration: 8, angle: 1.8}, 0)
 
+  tl5.fromTo("#circles", {
+    filter: "blur(2px)"
+  }, {
+    duration: 0.4,
+    filter: "blur(0px)"
+  });
   tl5.fromTo(music, {
     playbackRate: 0.18
   }, {
@@ -11647,11 +11690,11 @@ var menuEl = document.querySelector('[data-scroll-container]');
       end: "120%",
       scrub: 1.8
     }
-  }); // tlTree.fromTo(settings, {iterations: 1}, {delay: 0.1, duration: 1.8, iterations: 10}, "elements-in-out")
-  // tlTree.fromTo(settings, {slices: 13}, {delay: 0.1, duration: 1.8, slices: 13}, "elements-in-out")
-  // tlTree.fromTo(settings, {size: 120}, {delay: 0.1, duration: 1.8, size: 150}, "elements-in-out")
+  });
 
-
+  tlTree.set("#circles", {
+    filter: "blur(0px)"
+  });
   tlTree.set(settings, {
     offset: 0
   });
@@ -11660,6 +11703,9 @@ var menuEl = document.querySelector('[data-scroll-container]');
   });
   tlTree.set(settings, {
     angle: 0
+  });
+  tlTree.set(music, {
+    playbackRate: 1
   });
   tlTree.fromTo(settings, {
     angle: 0
@@ -11688,6 +11734,145 @@ var menuEl = document.querySelector('[data-scroll-container]');
   });
 
   _ScrollTrigger.ScrollTrigger.refresh();
+
+  window.AudioContext = window.AudioContext || window.webkitAudioContext || window.mozAudioContext;
+  var renderers = {
+    'circlesTrigger': function () {
+      var circles = [];
+      var initialized = false;
+      var height = 0;
+      var width = 0;
+
+      var init = function init(config) {
+        var count = config.count;
+        width = config.width;
+        height = config.height;
+        var circleMaxWidth = width * 0.66 >> 0;
+        var circlesEl = document.querySelector('#circles');
+
+        for (var i = 0; i < count; i++) {
+          var node = document.createElement('div');
+          node.style.width = node.style.height = i / count * circleMaxWidth + 'px';
+          node.classList.add('circle');
+          circles.push(node);
+          circlesEl.appendChild(node);
+        }
+
+        initialized = true;
+      };
+
+      var max = 256;
+
+      var renderFrame = function renderFrame(frequencyData) {
+        for (var i = 0; i < circles.length; i++) {
+          var circle = circles[i];
+          circle.style.cssText = '-webkit-transform:scale(' + frequencyData[i] / max + ')';
+        }
+      };
+
+      return {
+        init: init,
+        isInitialized: function isInitialized() {
+          return initialized;
+        },
+        renderFrame: renderFrame
+      };
+    }()
+  };
+
+  window.onload = function () {
+    function Visualization(config) {
+      var audio,
+          analyser,
+          source,
+          audioCtx,
+          frequencyData,
+          running = false,
+          renderer = config.renderer,
+          width = config.width || 360,
+          height = config.height || 360;
+
+      var init = function init() {
+        audio = document.querySelector(".music");
+        audioCtx = new AudioContext();
+        analyser = audioCtx.createAnalyser();
+        source = audioCtx.createMediaElementSource(audio);
+        source.connect(analyser);
+        analyser.connect(audioCtx.destination);
+        analyser.fftSize = 64;
+        frequencyData = new Uint8Array(analyser.frequencyBinCount);
+        renderer.init({
+          count: analyser.frequencyBinCount,
+          width: width,
+          height: height
+        });
+      };
+
+      this.start = function () {
+        audio.play();
+        running = true;
+        renderFrame();
+      };
+
+      this.stop = function () {
+        running = false;
+        audio.pause();
+      };
+
+      this.setRenderer = function (r) {
+        if (!r.isInitialized()) {
+          r.init({
+            count: analyser.frequencyBinCount,
+            width: width,
+            height: height
+          });
+        }
+
+        renderer = r;
+      };
+
+      this.isPlaying = function () {
+        return running;
+      };
+
+      var renderFrame = function renderFrame() {
+        analyser.getByteFrequencyData(frequencyData);
+        renderer.renderFrame(frequencyData);
+
+        if (running) {
+          requestAnimationFrame(renderFrame);
+        }
+      };
+
+      init();
+    }
+
+    ;
+    var vis = document.querySelector('.initiator');
+    var v = null;
+
+    vis.onclick = function () {
+      return function () {
+        var el = this;
+        var id = el.parentNode.id;
+
+        if (!v) {
+          v = new Visualization({
+            renderer: renderers[id]
+          });
+        }
+
+        v.setRenderer(renderers[id]);
+
+        if (v.isPlaying()) {
+          el.style.backgroundColor = 'rgba(232,237,218,0.9)';
+        } else {
+          v.start();
+          el.style.backgroundColor = 'rgba(232,237,218,0.9)';
+        }
+      };
+    }();
+  };
 }); // console.clear();
 // const renderer = new THREE.WebGLRenderer({ alpha: true, antialiase: true });
 // const w = document.querySelector('.w');

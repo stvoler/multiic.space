@@ -26,7 +26,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: "Inter", sans-serif;
-  &.loading{
+  &.loading {
     overflow: hidden;
   }
 }
@@ -52,7 +52,7 @@ button {
   justify-content: space-between;
 
   &:hover {
-    &::after{
+    &::after {
       transform: scale(1.8);
     }
   }
@@ -117,18 +117,18 @@ header {
   // z-index: 1;
 
   &::before,
-  &::after{
-    content: '';
+  &::after {
+    content: "";
     z-index: 2;
     position: absolute;
     left: 0;
     width: 100vw;
     height: 10vh;
   }
-  &::before{
+  &::before {
     top: 0;
   }
-  &::after{
+  &::after {
     bottom: 0;
   }
 
@@ -180,10 +180,10 @@ header {
     right: 0;
     // overflow: hidden;
   }
-  .line{
+  .line {
     width: 1px;
     height: calc(100vh - 80px);
-    background-color: #EEEEEE;
+    background-color: #eeeeee;
     display: block;
     padding: 0;
     margin: auto;
@@ -202,7 +202,7 @@ header,
 }
 
 .title,
-.text{
+.text {
   padding-left: clamp(30px, 3.9vw, 54px);
   padding-right: clamp(27px, 3.9vw, 50px);
 }
@@ -310,7 +310,7 @@ a {
     }
   }
 
-  .hover{
+  .hover {
     display: none;
   }
 }
@@ -318,8 +318,8 @@ a {
 .text {
   font-size: clamp(12px, 1.1vw, 18px);
   line-height: 1.2;
-  p{
-    &:nth-last-child(1){
+  p {
+    &:nth-last-child(1) {
       margin-bottom: 0;
     }
   }
@@ -391,7 +391,7 @@ p {
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr;
   .title,
-  .text{
+  .text {
     padding-left: clamp(20px, 3vw, 35px);
     padding-right: clamp(15px, 3vw, 30px);
   }
@@ -432,8 +432,8 @@ p {
     color: var(--color-link);
   }
 
-  .text{
-    max-width:none;
+  .text {
+    max-width: none;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -441,7 +441,7 @@ p {
     grid-row: 2;
     font-size: 50px;
     line-height: 1;
-    div{
+    div {
       width: 113px;
       min-width: 113px;
       height: 113px;
@@ -453,7 +453,7 @@ p {
       align-items: center;
       justify-content: center;
       transition: 0.1s color ease-in-out;
-      &:hover{
+      &:hover {
         color: var(--color-text);
       }
     }
@@ -492,7 +492,7 @@ p {
   display: none;
 }
 
-.w{
+.w {
   position: fixed;
   top: 0;
   left: 0;
@@ -507,7 +507,7 @@ p {
   align-items: center;
   justify-content: center;
 
-  canvas{
+  canvas {
     margin: auto auto 0 auto;
     display: block;
     position: absolute;
@@ -515,12 +515,12 @@ p {
     right: 0;
   }
 
-  .tree-degr{
+  .tree-degr {
     display: none;
   }
 }
 
-canvas{
+canvas {
   max-height: 70vw !important;
 }
 
@@ -597,6 +597,33 @@ html.has-scroll-dragging {
 .has-scroll-dragging .c-scrollbar_thumb {
   cursor: -webkit-grabbing;
   cursor: grabbing;
+}
+
+.area {
+  position: relative;
+  width: 400px;
+  height: 400px;
+}
+
+#circles{
+  transition: filter 0.2s ease-in-out;
+}
+
+.circle {
+  border-radius: 100%;
+  box-shadow: 0 0 1px 1px rgba(255, 255, 255, 0.8);
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  transition: 0.1s ease all;
+}
+
+.initiator {
+  z-index: 10000;
+  cursor: pointer;
 }
 
 @media (max-width: 1170px) {
