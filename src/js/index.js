@@ -175,19 +175,19 @@ preloader('.item').then(() => {
         pin: ".items2",
         start: "0 0",
         scrub: 1.45,
-        end: "+=110%"
+        end: "+=180%"
       },
       onComplete: aClass,
       onUpdate: rClass
     })
     tl2.fromTo(music, {playbackRate: 0.18}, {duration: 0.2, playbackRate: 1})
-    tl2.fromTo(".block-2 .title", {transform: 'translateY(0px) scaleY(1)', lineHeight: 1}, {delay: 0.3, duration: 2.1, transform: 'translateY(-400px) scaleY(4.5)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"}, "1.8")
-    tl2.fromTo(".block-2 .text-1", {transform: 'translateY(0px) scaleY(1)', lineHeight: 1.2}, {delay: 0.3, duration: 2.1, transform: 'translateY(-500px) scaleY(3.5)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"}, "-=1")
-    tl2.fromTo(".block-2 .text-2", {transform: 'translateY(0px) scaleY(1)', lineHeight: 1.2}, {delay: 0.3, duration: 2.1, transform: 'translateY(-900px) scaleY(3.5)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"}, "-=1")
+    tl2.fromTo(".block-2 .title", {transform: 'translateY(0px) scaleY(1)', lineHeight: 1}, {delay: 0.3, duration: 2.1, opacity: 0, transform: 'translateY(-400px) scaleY(4.5)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"}, "1.8")
+    tl2.fromTo(".block-2 .text-1", {transform: 'translateY(0px) scaleY(1)', lineHeight: 1.2}, {delay: 0.2, duration: 2.1, opacity: 0, transform: 'translateY(-500px) scaleY(3.5)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"}, ">-=2.1")
+    tl2.fromTo(".block-2 .text-2", {transform: 'translateY(0px) scaleY(1)', lineHeight: 1.2}, {delay: 0.2, duration: 2.1, opacity: 0, transform: 'translateY(-900px) scaleY(3.5)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"}, ">-=2.1")
     tl2.to(music, {playbackRate: 0.18})
-    tl2.fromTo("header .line-1", {opacity: 0.4, transform: 'translateX(-50vw)'}, {delay: 1.7, duration: 2.5, opacity: 0.72, transform: 'translateX(-66vw)', ease: "[0.74,0.2,1,-0.22]"})
-    tl2.fromTo("header .line-2", {opacity: 0, transform: 'translateX(0px)'}, {delay: 0.7, duration: 0.5, opacity: 0.72, transform: 'translateX(-34vw)', ease: "[0.74,0.2,1,-0.22]"})
-    tl2.fromTo("header .line-3", {opacity: 0, transform: 'translateX(0px)'}, {delay: 0.7, duration: 0.5, opacity: 0, transform: 'translateX(0px)', ease: "[0.74,0.2,1,-0.22]"})
+    tl2.fromTo("header .line-1", {opacity: 0.4, transform: 'translateX(-50vw)'}, {delay: 1.7, duration: 2.5, opacity: 0.72, transform: 'translateX(-66vw)', ease: "[0.74,0.2,1,-0.22]"}, "-=2")
+    tl2.fromTo("header .line-2", {opacity: 0, transform: 'translateX(0px)'}, {delay: 0.7, duration: 0.5, opacity: 0.72, transform: 'translateX(-34vw)', ease: "[0.74,0.2,1,-0.22]"}, "-=2")
+    tl2.fromTo("header .line-3", {opacity: 0, transform: 'translateX(0px)'}, {delay: 0.7, duration: 0.5, opacity: 0, transform: 'translateX(0px)', ease: "[0.74,0.2,1,-0.22]"}, "-=2")
     tl2.fromTo(settings, {scale: 0.63}, {duration: 1.8, scale: 0.63}, 0)
 
     let tl3 = gsap.timeline({
@@ -197,16 +197,16 @@ preloader('.item').then(() => {
         pin: ".items3",
         start: "0 0",
         scrub: 1.45,
-        end: "+=110%"
+        end: "+=180%"
       },
       onComplete: aClass,
       onUpdate: rClass
     })
     tl3.fromTo(music, {playbackRate: 0.18}, {duration: 0.2, playbackRate: 1})
-    tl3.fromTo(".block-3 .title", {transform: 'translateY(0px) scaleY(1)', lineHeight: 1}, {delay: 0.3, duration: 2.7, transform: 'translateY(-300px) scaleY(4.5)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"}, "1.8")
-    tl3.fromTo(".block-3 .text-1", {transform: 'translateY(0px) scaleY(1)', lineHeight: 1.2}, {delay: 0.2, duration: 2.3, transform: 'translateY(-500px) scaleY(3.5)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"}, "-=1")
-    tl3.fromTo(".block-3 .text-2", {transform: 'translateY(0px) scaleY(1)', lineHeight: 1.2}, {delay: 0.2, duration: 2.3, transform: 'translateY(-600px) scaleY(3.5)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"}, "<+=0.2")
-    tl3.fromTo(".block-3 .text-3", {transform: 'translateY(0px) scaleY(1)', lineHeight: 1.2}, {delay: 0.2, duration: 2.3, transform: 'translateY(-600px) scaleY(3.5)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"}, "<+=0.35")
+    tl3.fromTo(".block-3 .title", {transform: 'translateY(0px) scaleY(1)', lineHeight: 1}, {delay: 0.3, duration: 2.1, opacity: 0, transform: 'translateY(-400px) scaleY(4.5)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"}, "1.8")
+    tl3.fromTo(".block-3 .text-1", {transform: 'translateY(0px) scaleY(1)', lineHeight: 1.2}, {delay: 0.2, duration: 2.1, opacity: 0, transform: 'translateY(-500px) scaleY(3.5)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"}, ">-=2.1")
+    tl3.fromTo(".block-3 .text-2", {transform: 'translateY(0px) scaleY(1)', lineHeight: 1.2}, {delay: 0.2, duration: 2.1, opacity: 0, transform: 'translateY(-600px) scaleY(3.5)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"}, ">-=2.1")
+    tl3.fromTo(".block-3 .text-3", {transform: 'translateY(0px) scaleY(1)', lineHeight: 1.2}, {delay: 0.2, duration: 2.1, opacity: 0, transform: 'translateY(-600px) scaleY(3.5)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"}, ">-=2.1")
     tl3.to(music, {playbackRate: 0.18})
     tl3.fromTo("header .line-1", {opacity: 0.4, transform: 'translateX(-66vw)'}, {delay: 1.7, duration: 2.5, opacity: 0.72, transform: 'translateX(-74vw)', ease: "[0.74,0.2,1,-0.22]"})
     tl3.fromTo("header .line-2", {opacity: 0.4, transform: 'translateX(-34vw)'}, {delay: 0.7, duration: 0.5, opacity: 0.72, transform: 'translateX(-50vw)', ease: "[0.74,0.2,1,-0.22]"})
@@ -220,16 +220,16 @@ preloader('.item').then(() => {
         pin: ".items4",
         start: "0 0",
         scrub: 1.45,
-        end: "+=110%"
+        end: "+=180%"
       },
       onComplete: aClass,
       onUpdate: rClass
     })
     tl4.fromTo(music, {playbackRate: 0.18}, {duration: 0.2, playbackRate: 1})
-    tl4.fromTo(".block-4 .title", {transform: 'translateY(0px) scaleY(1)', lineHeight: 1}, {delay: 0.3, duration: 2.7, transform: 'translateY(-500px) scaleY(4.5)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"}, "1.8")
-    tl4.fromTo(".block-4 .text-1", {transform: 'translateY(0px) scaleY(1)', lineHeight: 1.2}, {delay: 0.2, duration: 2.3, transform: 'translateY(-500px) scaleY(3.5)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"}, "<+=0.1")
-    tl4.fromTo(".block-4 .text-2", {transform: 'translateY(0px) scaleY(1)', lineHeight: 1.2}, {delay: 0.2, duration: 2.3, transform: 'translateY(-500px) scaleY(3.5)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"}, "<+=0.2")
-    tl4.fromTo(".block-4 .text-3, .block-4 .text-4", {transform: 'translateY(0px) scaleY(1)', lineHeight: 1.2}, {delay: 0.2, duration: 2.3, transform: 'translateY(-600px) scaleY(3.5)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"}, "<+=0.35") 
+    tl4.fromTo(".block-4 .title", {transform: 'translateY(0px) scaleY(1)', lineHeight: 1}, {delay: 0.3, duration: 2.1, transform: 'translateY(-500px) scaleY(4.5)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"}, "1.8")
+    tl4.fromTo(".block-4 .text-1", {transform: 'translateY(0px) scaleY(1)', lineHeight: 1.2}, {delay: 0.2, duration: 2.1, transform: 'translateY(-500px) scaleY(3.5)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"}, ">-=2.1")
+    tl4.fromTo(".block-4 .text-2", {transform: 'translateY(0px) scaleY(1)', lineHeight: 1.2}, {delay: 0.2, duration: 2.1, transform: 'translateY(-500px) scaleY(3.5)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"}, ">-=2.1")
+    tl4.fromTo(".block-4 .text-3, .block-4 .text-4", {transform: 'translateY(0px) scaleY(1)', lineHeight: 1.2}, {delay: 0.2, duration: 2.1, transform: 'translateY(-600px) scaleY(3.5)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"}, ">-=2.1") 
     tl4.to(music, {playbackRate: 0.18})
     tl4.fromTo("header .line-1", {opacity: 0.72, transform: 'translateX(-74vw)'}, {delay: 0.7, duration: 0.9, opacity: 0, transform: 'translateX(0px)', ease: "[0.74,0.2,1,-0.22]"}, 1.8)
     tl4.fromTo("header .line-2", {opacity: 0.72, transform: 'translateX(-50vw)'}, {delay: 0.7, duration: 0.9, opacity: 0, transform: 'translateX(0px)', ease: "[0.74,0.2,1,-0.22]"}, "<+=0.2")
@@ -256,8 +256,8 @@ preloader('.item').then(() => {
     tl5.set("header .line-3", {opacity: 0, transform: 'translateX(0px)'})
     tl5.fromTo(music, {playbackRate: 0.18}, {duration: 0.2, playbackRate: 1})
     tl5.fromTo("header .border", {height: 'calc(100vh - 80px)', transform: 'translateY(40px)'}, {delay: 1.8, duration: 3.5, height: '20vh', transform: 'translateY(72vh)', ease: "[0.74,0.2,1,-0.22]"})
-    tl5.fromTo(".block-5 .title", {transform: 'translateY(1000px) scaleY(2)', lineHeight: 0.8}, {delay: 0.3, duration: 1, transform: 'translateY(80px) scaleY(1)', lineHeight: 1, ease: "[0.74,0.2,1,-0.22]"}, "1.8")
-    tl5.fromTo(".block-5 .text", {transform: 'translateY(50px) scale(0.4)', lineHeight: 1.2}, {delay: 0.2, duration: 1, transform: 'translateY(0px) scale(1)', lineHeight: 1, ease: "[0.74,0.2,1,-0.22]"})
+    tl5.fromTo(".block-5 .title", {transform: 'translateY(1000px) scaleY(2)', lineHeight: 0.8}, {delay: 0.3, duration: 2.3, transform: 'translateY(80px) scaleY(1)', lineHeight: 1, ease: "[0.74,0.2,1,-0.22]"}, "1.8")
+    tl5.fromTo(".block-5 .text", {transform: 'translateY(50px) scale(0.4)', lineHeight: 1.2}, {delay: 0.2, duration: 2.1, transform: 'translateY(0px) scale(1)', lineHeight: 1, ease: "[0.74,0.2,1,-0.22]"}, ">-=2.1")
     
     let tlTree = gsap.timeline({
       scrollTrigger: {
@@ -270,7 +270,7 @@ preloader('.item').then(() => {
     // tlTree.fromTo(settings, {slices: 13}, {delay: 0.1, duration: 1.8, slices: 13}, "elements-in-out")
     // tlTree.fromTo(settings, {size: 120}, {delay: 0.1, duration: 1.8, size: 150}, "elements-in-out")
     tlTree.set(settings, {scale: 0.001})
-    tlTree.fromTo(settings, {angle: 0}, {delay: 0.135, duration: 1.8, angle: 1.89})
+    tlTree.fromTo(settings, {angle: 0}, {delay: 0.11, duration: 1.8, angle: 1.89})
     tlTree.fromTo(music, {volume: 0.3}, {volume: 0.7})
 
     

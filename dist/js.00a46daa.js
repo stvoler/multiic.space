@@ -11223,7 +11223,7 @@ var menuEl = document.querySelector('[data-scroll-container]');
       pin: ".items2",
       start: "0 0",
       scrub: 1.45,
-      end: "+=110%"
+      end: "+=180%"
     },
     onComplete: aClass,
     onUpdate: rClass
@@ -11241,6 +11241,7 @@ var menuEl = document.querySelector('[data-scroll-container]');
   }, {
     delay: 0.3,
     duration: 2.1,
+    opacity: 0,
     transform: 'translateY(-400px) scaleY(4.5)',
     lineHeight: 0.8,
     ease: "[0.74,0.2,1,-0.22]"
@@ -11249,22 +11250,24 @@ var menuEl = document.querySelector('[data-scroll-container]');
     transform: 'translateY(0px) scaleY(1)',
     lineHeight: 1.2
   }, {
-    delay: 0.3,
+    delay: 0.2,
     duration: 2.1,
+    opacity: 0,
     transform: 'translateY(-500px) scaleY(3.5)',
     lineHeight: 0.8,
     ease: "[0.74,0.2,1,-0.22]"
-  }, "-=1");
+  }, ">-=2.1");
   tl2.fromTo(".block-2 .text-2", {
     transform: 'translateY(0px) scaleY(1)',
     lineHeight: 1.2
   }, {
-    delay: 0.3,
+    delay: 0.2,
     duration: 2.1,
+    opacity: 0,
     transform: 'translateY(-900px) scaleY(3.5)',
     lineHeight: 0.8,
     ease: "[0.74,0.2,1,-0.22]"
-  }, "-=1");
+  }, ">-=2.1");
   tl2.to(music, {
     playbackRate: 0.18
   });
@@ -11277,7 +11280,7 @@ var menuEl = document.querySelector('[data-scroll-container]');
     opacity: 0.72,
     transform: 'translateX(-66vw)',
     ease: "[0.74,0.2,1,-0.22]"
-  });
+  }, "-=2");
   tl2.fromTo("header .line-2", {
     opacity: 0,
     transform: 'translateX(0px)'
@@ -11287,7 +11290,7 @@ var menuEl = document.querySelector('[data-scroll-container]');
     opacity: 0.72,
     transform: 'translateX(-34vw)',
     ease: "[0.74,0.2,1,-0.22]"
-  });
+  }, "-=2");
   tl2.fromTo("header .line-3", {
     opacity: 0,
     transform: 'translateX(0px)'
@@ -11297,7 +11300,7 @@ var menuEl = document.querySelector('[data-scroll-container]');
     opacity: 0,
     transform: 'translateX(0px)',
     ease: "[0.74,0.2,1,-0.22]"
-  });
+  }, "-=2");
   tl2.fromTo(settings, {
     scale: 0.63
   }, {
@@ -11312,7 +11315,7 @@ var menuEl = document.querySelector('[data-scroll-container]');
       pin: ".items3",
       start: "0 0",
       scrub: 1.45,
-      end: "+=110%"
+      end: "+=180%"
     },
     onComplete: aClass,
     onUpdate: rClass
@@ -11329,8 +11332,9 @@ var menuEl = document.querySelector('[data-scroll-container]');
     lineHeight: 1
   }, {
     delay: 0.3,
-    duration: 2.7,
-    transform: 'translateY(-300px) scaleY(4.5)',
+    duration: 2.1,
+    opacity: 0,
+    transform: 'translateY(-400px) scaleY(4.5)',
     lineHeight: 0.8,
     ease: "[0.74,0.2,1,-0.22]"
   }, "1.8");
@@ -11339,31 +11343,34 @@ var menuEl = document.querySelector('[data-scroll-container]');
     lineHeight: 1.2
   }, {
     delay: 0.2,
-    duration: 2.3,
+    duration: 2.1,
+    opacity: 0,
     transform: 'translateY(-500px) scaleY(3.5)',
     lineHeight: 0.8,
     ease: "[0.74,0.2,1,-0.22]"
-  }, "-=1");
+  }, ">-=2.1");
   tl3.fromTo(".block-3 .text-2", {
     transform: 'translateY(0px) scaleY(1)',
     lineHeight: 1.2
   }, {
     delay: 0.2,
-    duration: 2.3,
+    duration: 2.1,
+    opacity: 0,
     transform: 'translateY(-600px) scaleY(3.5)',
     lineHeight: 0.8,
     ease: "[0.74,0.2,1,-0.22]"
-  }, "<+=0.2");
+  }, ">-=2.1");
   tl3.fromTo(".block-3 .text-3", {
     transform: 'translateY(0px) scaleY(1)',
     lineHeight: 1.2
   }, {
     delay: 0.2,
-    duration: 2.3,
+    duration: 2.1,
+    opacity: 0,
     transform: 'translateY(-600px) scaleY(3.5)',
     lineHeight: 0.8,
     ease: "[0.74,0.2,1,-0.22]"
-  }, "<+=0.35");
+  }, ">-=2.1");
   tl3.to(music, {
     playbackRate: 0.18
   });
@@ -11411,7 +11418,7 @@ var menuEl = document.querySelector('[data-scroll-container]');
       pin: ".items4",
       start: "0 0",
       scrub: 1.45,
-      end: "+=110%"
+      end: "+=180%"
     },
     onComplete: aClass,
     onUpdate: rClass
@@ -11428,7 +11435,7 @@ var menuEl = document.querySelector('[data-scroll-container]');
     lineHeight: 1
   }, {
     delay: 0.3,
-    duration: 2.7,
+    duration: 2.1,
     transform: 'translateY(-500px) scaleY(4.5)',
     lineHeight: 0.8,
     ease: "[0.74,0.2,1,-0.22]"
@@ -11438,31 +11445,31 @@ var menuEl = document.querySelector('[data-scroll-container]');
     lineHeight: 1.2
   }, {
     delay: 0.2,
-    duration: 2.3,
+    duration: 2.1,
     transform: 'translateY(-500px) scaleY(3.5)',
     lineHeight: 0.8,
     ease: "[0.74,0.2,1,-0.22]"
-  }, "<+=0.1");
+  }, ">-=2.1");
   tl4.fromTo(".block-4 .text-2", {
     transform: 'translateY(0px) scaleY(1)',
     lineHeight: 1.2
   }, {
     delay: 0.2,
-    duration: 2.3,
+    duration: 2.1,
     transform: 'translateY(-500px) scaleY(3.5)',
     lineHeight: 0.8,
     ease: "[0.74,0.2,1,-0.22]"
-  }, "<+=0.2");
+  }, ">-=2.1");
   tl4.fromTo(".block-4 .text-3, .block-4 .text-4", {
     transform: 'translateY(0px) scaleY(1)',
     lineHeight: 1.2
   }, {
     delay: 0.2,
-    duration: 2.3,
+    duration: 2.1,
     transform: 'translateY(-600px) scaleY(3.5)',
     lineHeight: 0.8,
     ease: "[0.74,0.2,1,-0.22]"
-  }, "<+=0.35");
+  }, ">-=2.1");
   tl4.to(music, {
     playbackRate: 0.18
   });
@@ -11561,7 +11568,7 @@ var menuEl = document.querySelector('[data-scroll-container]');
     lineHeight: 0.8
   }, {
     delay: 0.3,
-    duration: 1,
+    duration: 2.3,
     transform: 'translateY(80px) scaleY(1)',
     lineHeight: 1,
     ease: "[0.74,0.2,1,-0.22]"
@@ -11571,11 +11578,11 @@ var menuEl = document.querySelector('[data-scroll-container]');
     lineHeight: 1.2
   }, {
     delay: 0.2,
-    duration: 1,
+    duration: 2.1,
     transform: 'translateY(0px) scale(1)',
     lineHeight: 1,
     ease: "[0.74,0.2,1,-0.22]"
-  });
+  }, ">-=2.1");
 
   var tlTree = _gsap.gsap.timeline({
     scrollTrigger: {
@@ -11594,7 +11601,7 @@ var menuEl = document.querySelector('[data-scroll-container]');
   tlTree.fromTo(settings, {
     angle: 0
   }, {
-    delay: 0.135,
+    delay: 0.11,
     duration: 1.8,
     angle: 1.89
   });
@@ -11753,7 +11760,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50658" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61321" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
