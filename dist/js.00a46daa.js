@@ -7685,6 +7685,277 @@ ScrollTrigger.sort = function (func) {
 };
 
 _getGSAP() && gsap.registerPlugin(ScrollTrigger);
+},{}],"../node_modules/gsap/ScrollToPlugin.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = exports.ScrollToPlugin = void 0;
+
+/*!
+ * ScrollToPlugin 3.9.1
+ * https://greensock.com
+ *
+ * @license Copyright 2008-2021, GreenSock. All rights reserved.
+ * Subject to the terms at https://greensock.com/standard-license or for
+ * Club GreenSock members, the agreement issued with that membership.
+ * @author: Jack Doyle, jack@greensock.com
+*/
+
+/* eslint-disable */
+var gsap,
+    _coreInitted,
+    _window,
+    _docEl,
+    _body,
+    _toArray,
+    _config,
+    _windowExists = function _windowExists() {
+  return typeof window !== "undefined";
+},
+    _getGSAP = function _getGSAP() {
+  return gsap || _windowExists() && (gsap = window.gsap) && gsap.registerPlugin && gsap;
+},
+    _isString = function _isString(value) {
+  return typeof value === "string";
+},
+    _isFunction = function _isFunction(value) {
+  return typeof value === "function";
+},
+    _max = function _max(element, axis) {
+  var dim = axis === "x" ? "Width" : "Height",
+      scroll = "scroll" + dim,
+      client = "client" + dim;
+  return element === _window || element === _docEl || element === _body ? Math.max(_docEl[scroll], _body[scroll]) - (_window["inner" + dim] || _docEl[client] || _body[client]) : element[scroll] - element["offset" + dim];
+},
+    _buildGetter = function _buildGetter(e, axis) {
+  //pass in an element and an axis ("x" or "y") and it'll return a getter function for the scroll position of that element (like scrollTop or scrollLeft, although if the element is the window, it'll use the pageXOffset/pageYOffset or the documentElement's scrollTop/scrollLeft or document.body's. Basically this streamlines things and makes a very fast getter across browsers.
+  var p = "scroll" + (axis === "x" ? "Left" : "Top");
+
+  if (e === _window) {
+    if (e.pageXOffset != null) {
+      p = "page" + axis.toUpperCase() + "Offset";
+    } else {
+      e = _docEl[p] != null ? _docEl : _body;
+    }
+  }
+
+  return function () {
+    return e[p];
+  };
+},
+    _clean = function _clean(value, index, target, targets) {
+  _isFunction(value) && (value = value(index, target, targets));
+
+  if (typeof value !== "object") {
+    return _isString(value) && value !== "max" && value.charAt(1) !== "=" ? {
+      x: value,
+      y: value
+    } : {
+      y: value
+    }; //if we don't receive an object as the parameter, assume the user intends "y".
+  } else if (value.nodeType) {
+    return {
+      y: value,
+      x: value
+    };
+  } else {
+    var result = {},
+        p;
+
+    for (p in value) {
+      result[p] = p !== "onAutoKill" && _isFunction(value[p]) ? value[p](index, target, targets) : value[p];
+    }
+
+    return result;
+  }
+},
+    _getOffset = function _getOffset(element, container) {
+  element = _toArray(element)[0];
+
+  if (!element || !element.getBoundingClientRect) {
+    return console.warn("scrollTo target doesn't exist. Using 0") || {
+      x: 0,
+      y: 0
+    };
+  }
+
+  var rect = element.getBoundingClientRect(),
+      isRoot = !container || container === _window || container === _body,
+      cRect = isRoot ? {
+    top: _docEl.clientTop - (_window.pageYOffset || _docEl.scrollTop || _body.scrollTop || 0),
+    left: _docEl.clientLeft - (_window.pageXOffset || _docEl.scrollLeft || _body.scrollLeft || 0)
+  } : container.getBoundingClientRect(),
+      offsets = {
+    x: rect.left - cRect.left,
+    y: rect.top - cRect.top
+  };
+
+  if (!isRoot && container) {
+    //only add the current scroll position if it's not the window/body.
+    offsets.x += _buildGetter(container, "x")();
+    offsets.y += _buildGetter(container, "y")();
+  }
+
+  return offsets;
+},
+    _parseVal = function _parseVal(value, target, axis, currentVal, offset) {
+  return !isNaN(value) && typeof value !== "object" ? parseFloat(value) - offset : _isString(value) && value.charAt(1) === "=" ? parseFloat(value.substr(2)) * (value.charAt(0) === "-" ? -1 : 1) + currentVal - offset : value === "max" ? _max(target, axis) - offset : Math.min(_max(target, axis), _getOffset(value, target)[axis] - offset);
+},
+    _initCore = function _initCore() {
+  gsap = _getGSAP();
+
+  if (_windowExists() && gsap && document.body) {
+    _window = window;
+    _body = document.body;
+    _docEl = document.documentElement;
+    _toArray = gsap.utils.toArray;
+    gsap.config({
+      autoKillThreshold: 7
+    });
+    _config = gsap.config();
+    _coreInitted = 1;
+  }
+};
+
+var ScrollToPlugin = {
+  version: "3.9.1",
+  name: "scrollTo",
+  rawVars: 1,
+  register: function register(core) {
+    gsap = core;
+
+    _initCore();
+  },
+  init: function init(target, value, tween, index, targets) {
+    _coreInitted || _initCore();
+    var data = this,
+        snapType = gsap.getProperty(target, "scrollSnapType");
+    data.isWin = target === _window;
+    data.target = target;
+    data.tween = tween;
+    value = _clean(value, index, target, targets);
+    data.vars = value;
+    data.autoKill = !!value.autoKill;
+    data.getX = _buildGetter(target, "x");
+    data.getY = _buildGetter(target, "y");
+    data.x = data.xPrev = data.getX();
+    data.y = data.yPrev = data.getY();
+
+    if (snapType && snapType !== "none") {
+      // disable scroll snapping to avoid strange behavior
+      data.snap = 1;
+      data.snapInline = target.style.scrollSnapType;
+      target.style.scrollSnapType = "none";
+    }
+
+    if (value.x != null) {
+      data.add(data, "x", data.x, _parseVal(value.x, target, "x", data.x, value.offsetX || 0), index, targets);
+
+      data._props.push("scrollTo_x");
+    } else {
+      data.skipX = 1;
+    }
+
+    if (value.y != null) {
+      data.add(data, "y", data.y, _parseVal(value.y, target, "y", data.y, value.offsetY || 0), index, targets);
+
+      data._props.push("scrollTo_y");
+    } else {
+      data.skipY = 1;
+    }
+  },
+  render: function render(ratio, data) {
+    var pt = data._pt,
+        target = data.target,
+        tween = data.tween,
+        autoKill = data.autoKill,
+        xPrev = data.xPrev,
+        yPrev = data.yPrev,
+        isWin = data.isWin,
+        snap = data.snap,
+        snapInline = data.snapInline,
+        x,
+        y,
+        yDif,
+        xDif,
+        threshold;
+
+    while (pt) {
+      pt.r(ratio, pt.d);
+      pt = pt._next;
+    }
+
+    x = isWin || !data.skipX ? data.getX() : xPrev;
+    y = isWin || !data.skipY ? data.getY() : yPrev;
+    yDif = y - yPrev;
+    xDif = x - xPrev;
+    threshold = _config.autoKillThreshold;
+
+    if (data.x < 0) {
+      //can't scroll to a position less than 0! Might happen if someone uses a Back.easeOut or Elastic.easeOut when scrolling back to the top of the page (for example)
+      data.x = 0;
+    }
+
+    if (data.y < 0) {
+      data.y = 0;
+    }
+
+    if (autoKill) {
+      //note: iOS has a bug that throws off the scroll by several pixels, so we need to check if it's within 7 pixels of the previous one that we set instead of just looking for an exact match.
+      if (!data.skipX && (xDif > threshold || xDif < -threshold) && x < _max(target, "x")) {
+        data.skipX = 1; //if the user scrolls separately, we should stop tweening!
+      }
+
+      if (!data.skipY && (yDif > threshold || yDif < -threshold) && y < _max(target, "y")) {
+        data.skipY = 1; //if the user scrolls separately, we should stop tweening!
+      }
+
+      if (data.skipX && data.skipY) {
+        tween.kill();
+        data.vars.onAutoKill && data.vars.onAutoKill.apply(tween, data.vars.onAutoKillParams || []);
+      }
+    }
+
+    if (isWin) {
+      _window.scrollTo(!data.skipX ? data.x : x, !data.skipY ? data.y : y);
+    } else {
+      data.skipY || (target.scrollTop = data.y);
+      data.skipX || (target.scrollLeft = data.x);
+    }
+
+    if (snap && (ratio === 1 || ratio === 0)) {
+      y = target.scrollTop;
+      x = target.scrollLeft;
+      snapInline ? target.style.scrollSnapType = snapInline : target.style.removeProperty("scroll-snap-type");
+      target.scrollTop = y + 1; // bug in Safari causes the element to totally reset its scroll position when scroll-snap-type changes, so we need to set it to a slightly different value and then back again to work around this bug.
+
+      target.scrollLeft = x + 1;
+      target.scrollTop = y;
+      target.scrollLeft = x;
+    }
+
+    data.xPrev = data.x;
+    data.yPrev = data.y;
+  },
+  kill: function kill(property) {
+    var both = property === "scrollTo";
+
+    if (both || property === "scrollTo_x") {
+      this.skipX = 1;
+    }
+
+    if (both || property === "scrollTo_y") {
+      this.skipY = 1;
+    }
+  }
+};
+exports.default = exports.ScrollToPlugin = ScrollToPlugin;
+ScrollToPlugin.max = _max;
+ScrollToPlugin.getOffset = _getOffset;
+ScrollToPlugin.buildGetter = _buildGetter;
+_getGSAP() && gsap.registerPlugin(ScrollToPlugin);
 },{}],"js/utils.js":[function(require,module,exports) {
 "use strict";
 
@@ -10962,6 +11233,8 @@ var _gsap = require("gsap");
 
 var _ScrollTrigger = require("gsap/ScrollTrigger");
 
+var _ScrollToPlugin = require("gsap/ScrollToPlugin");
+
 var _cursor = _interopRequireDefault(require("./cursor"));
 
 var _preloader = require("./preloader");
@@ -10973,7 +11246,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // import * as THREE from 'three';
 // import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 // import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-_gsap.gsap.registerPlugin(_ScrollTrigger.ScrollTrigger);
+_gsap.gsap.registerPlugin(_ScrollTrigger.ScrollTrigger, _ScrollToPlugin.ScrollToPlugin);
 
 var menuEl = document.querySelector('[data-scroll-container]');
 (0, _preloader.preloader)('.item').then(function () {
@@ -11102,12 +11375,10 @@ var menuEl = document.querySelector('[data-scroll-container]');
   }
 
   draw();
-  var music = document.querySelector(".music");
-  var triggerMusic = document.querySelector('#trigger');
-
-  triggerMusic.onclick = function () {
-    music.play();
-  };
+  var music = document.querySelector(".music"); // const triggerMusic = document.querySelector('#trigger');
+  // triggerMusic.onclick = function() {
+  //   music.play()
+  // };
 
   var tl = _gsap.gsap.timeline({
     scrollTrigger: {
@@ -11116,7 +11387,9 @@ var menuEl = document.querySelector('[data-scroll-container]');
       pin: ".items1",
       start: "0 0",
       scrub: 1.8,
-      end: "+=180%" // onEnter: () => {
+      end: "+=180%",
+      id: "#b1" // markers: true,
+      // onEnter: () => {
       //   music.play()
       // }
 
@@ -11138,10 +11411,12 @@ var menuEl = document.querySelector('[data-scroll-container]');
     transform: 'translateX(0px)'
   });
   tl.fromTo(music, {
-    playbackRate: 0.99
+    playbackRate: 0.99,
+    volume: 0.63
   }, {
     duration: 0.4,
-    playbackRate: 1
+    playbackRate: 1,
+    volume: 0.63
   });
   tl.fromTo("#circles", {
     filter: "blur(0px)"
@@ -11192,7 +11467,8 @@ var menuEl = document.querySelector('[data-scroll-container]');
     filter: "blur(2px)"
   });
   tl.to(music, {
-    playbackRate: 0.18
+    playbackRate: 0.18,
+    volume: 0.45
   });
   tl.to(".menu", {
     duration: 3,
@@ -11242,7 +11518,9 @@ var menuEl = document.querySelector('[data-scroll-container]');
       pin: ".items2",
       start: "0 0",
       scrub: 1.89,
-      end: "+=180%"
+      end: "+=180%",
+      id: "#b2" // markers: true,
+
     },
     onComplete: aClass,
     onUpdate: rClass
@@ -11256,10 +11534,12 @@ var menuEl = document.querySelector('[data-scroll-container]');
     filter: "blur(0px)"
   });
   tl2.fromTo(music, {
-    playbackRate: 0.18
+    playbackRate: 0.18,
+    volume: 0.45
   }, {
     duration: 0.2,
-    playbackRate: 1
+    playbackRate: 1,
+    volume: 0.63
   });
   tl2.fromTo("header .border", {
     padding: '0'
@@ -11304,7 +11584,8 @@ var menuEl = document.querySelector('[data-scroll-container]');
     filter: "blur(2px)"
   });
   tl2.to(music, {
-    playbackRate: 0.18
+    playbackRate: 0.18,
+    volume: 0.45
   });
   tl2.fromTo("header .line-1", {
     opacity: 0.4,
@@ -11356,7 +11637,9 @@ var menuEl = document.querySelector('[data-scroll-container]');
       pin: ".items3",
       start: "0 0",
       scrub: 1.89,
-      end: "+=180%"
+      end: "+=180%",
+      id: "#b3" // markers: true,
+
     },
     onComplete: aClass,
     onUpdate: rClass
@@ -11370,10 +11653,12 @@ var menuEl = document.querySelector('[data-scroll-container]');
     filter: "blur(0px)"
   });
   tl3.fromTo(music, {
-    playbackRate: 0.18
+    playbackRate: 0.18,
+    volume: 0.45
   }, {
     duration: 0.2,
-    playbackRate: 1
+    playbackRate: 1,
+    volume: 0.63
   });
   tl3.fromTo("header .border", {
     padding: '0'
@@ -11429,7 +11714,8 @@ var menuEl = document.querySelector('[data-scroll-container]');
     filter: "blur(2px)"
   });
   tl3.to(music, {
-    playbackRate: 0.18
+    playbackRate: 0.18,
+    volume: 0.45
   });
   tl3.fromTo("header .line-1", {
     opacity: 0.4,
@@ -11481,7 +11767,9 @@ var menuEl = document.querySelector('[data-scroll-container]');
       pin: ".items4",
       start: "0 0",
       scrub: 1.89,
-      end: "+=180%"
+      end: "+=180%",
+      id: "#b4" // markers: true,
+
     },
     onComplete: aClass,
     onUpdate: rClass
@@ -11495,10 +11783,12 @@ var menuEl = document.querySelector('[data-scroll-container]');
     filter: "blur(0px)"
   });
   tl4.fromTo(music, {
-    playbackRate: 0.18
+    playbackRate: 0.18,
+    volume: 0.45
   }, {
     duration: 0.2,
-    playbackRate: 1
+    playbackRate: 1,
+    volume: 0.63
   });
   tl4.fromTo("header .border", {
     padding: '0'
@@ -11555,7 +11845,8 @@ var menuEl = document.querySelector('[data-scroll-container]');
     filter: "blur(2px)"
   });
   tl4.to(music, {
-    playbackRate: 0.18
+    playbackRate: 0.18,
+    volume: 0.45
   });
   tl4.fromTo("header .line-1", {
     opacity: 0.72,
@@ -11607,7 +11898,8 @@ var menuEl = document.querySelector('[data-scroll-container]');
       pin: ".items5",
       start: "0 0",
       scrub: 1.89,
-      end: "+=110%"
+      end: "+=110%",
+      id: "#b5"
     },
     onComplete: aClass,
     onUpdate: rClass
@@ -11633,10 +11925,12 @@ var menuEl = document.querySelector('[data-scroll-container]');
     filter: "blur(0px)"
   });
   tl5.fromTo(music, {
-    playbackRate: 0.18
+    playbackRate: 0.18,
+    volume: 0.45
   }, {
     duration: 0.2,
-    playbackRate: 1
+    playbackRate: 1,
+    volume: 0.63
   });
   tl5.fromTo("header .border", {
     height: 'calc(100vh - 80px)',
@@ -11705,7 +11999,8 @@ var menuEl = document.querySelector('[data-scroll-container]');
     angle: 0
   });
   tlTree.set(music, {
-    playbackRate: 1
+    playbackRate: 1,
+    volume: 0.63
   });
   tlTree.fromTo(settings, {
     angle: 0
@@ -11713,11 +12008,6 @@ var menuEl = document.querySelector('[data-scroll-container]');
     delay: 0.11,
     duration: 1.8,
     angle: 1.98
-  });
-  tlTree.fromTo(music, {
-    volume: 0.3
-  }, {
-    volume: 0.7
   });
 
   function aClass() {
@@ -11733,7 +12023,28 @@ var menuEl = document.querySelector('[data-scroll-container]');
     return scroll.update();
   });
 
-  _ScrollTrigger.ScrollTrigger.refresh();
+  _ScrollTrigger.ScrollTrigger.refresh(); // gsap.utils.toArray("section").forEach((section) => {
+  //   gsap.timeline({
+  //     scrollTrigger: {
+  //       trigger: section,
+  //       start: 'center 50%',
+  //       id: "#" + section.getAttribute("id"),
+  //       end: 'bottom',
+  //       markers: true,
+  //     },
+  //   });
+  // });
+  // gsap.utils.toArray("nav a").forEach(function(a) {
+  //   a.addEventListener("click", function(e) {
+  //     const id = e.target.getAttribute("href"),
+  //           trigger = ScrollTrigger.getById(id);
+  //     gsap.to(window, {
+  //       duration: 0.1,
+  //       scrollTo: trigger ? trigger.end : id
+  //     });
+  //   });
+  // });
+
 
   window.AudioContext = window.AudioContext || window.webkitAudioContext || window.mozAudioContext;
   var renderers = {
@@ -11780,99 +12091,102 @@ var menuEl = document.querySelector('[data-scroll-container]');
     }()
   };
 
-  window.onload = function () {
-    function Visualization(config) {
-      var audio,
-          analyser,
-          source,
-          audioCtx,
-          frequencyData,
-          running = false,
-          renderer = config.renderer,
-          width = config.width || 360,
-          height = config.height || 360;
+  function Visualization(config) {
+    var audio,
+        analyser,
+        source,
+        audioCtx,
+        frequencyData,
+        running = false,
+        renderer = config.renderer,
+        width = config.width || 360,
+        height = config.height || 360;
 
-      var init = function init() {
-        audio = document.querySelector(".music");
-        audioCtx = new AudioContext();
-        analyser = audioCtx.createAnalyser();
-        source = audioCtx.createMediaElementSource(audio);
-        source.connect(analyser);
-        analyser.connect(audioCtx.destination);
-        analyser.fftSize = 64;
-        frequencyData = new Uint8Array(analyser.frequencyBinCount);
-        renderer.init({
+    var init = function init() {
+      audio = document.querySelector(".music");
+      audioCtx = new AudioContext();
+      analyser = audioCtx.createAnalyser();
+      source = audioCtx.createMediaElementSource(audio);
+      source.connect(analyser);
+      analyser.connect(audioCtx.destination);
+      analyser.fftSize = 64;
+      frequencyData = new Uint8Array(analyser.frequencyBinCount);
+      renderer.init({
+        count: analyser.frequencyBinCount,
+        width: width,
+        height: height
+      });
+    };
+
+    this.start = function () {
+      console.log('0');
+      running = true;
+      audio.play();
+      console.log('1');
+      renderFrame();
+      console.log('2');
+    };
+
+    this.stop = function () {
+      console.log('3');
+      running = false;
+      audio.pause();
+    };
+
+    this.setRenderer = function (r) {
+      if (!r.isInitialized()) {
+        r.init({
           count: analyser.frequencyBinCount,
           width: width,
           height: height
         });
-      };
+      }
 
-      this.start = function () {
-        audio.play();
-        running = true;
-        renderFrame();
-      };
+      renderer = r;
+    };
 
-      this.stop = function () {
-        running = false;
-        audio.pause();
-      };
+    this.isPlaying = function () {
+      return running;
+    };
 
-      this.setRenderer = function (r) {
-        if (!r.isInitialized()) {
-          r.init({
-            count: analyser.frequencyBinCount,
-            width: width,
-            height: height
-          });
-        }
+    var renderFrame = function renderFrame() {
+      analyser.getByteFrequencyData(frequencyData);
+      renderer.renderFrame(frequencyData);
 
-        renderer = r;
-      };
+      if (running) {
+        requestAnimationFrame(renderFrame);
+      }
+    };
 
-      this.isPlaying = function () {
-        return running;
-      };
+    init();
+  }
 
-      var renderFrame = function renderFrame() {
-        analyser.getByteFrequencyData(frequencyData);
-        renderer.renderFrame(frequencyData);
+  ;
+  var vis = document.querySelector('.initiator');
+  var v = null;
 
-        if (running) {
-          requestAnimationFrame(renderFrame);
-        }
-      };
+  vis.onclick = function () {
+    return function () {
+      var el = this;
+      var id = el.parentNode.id;
 
-      init();
-    }
+      if (!v) {
+        v = new Visualization({
+          renderer: renderers[id]
+        });
+      }
 
-    ;
-    var vis = document.querySelector('.initiator');
-    var v = null;
+      v.setRenderer(renderers[id]);
 
-    vis.onclick = function () {
-      return function () {
-        var el = this;
-        var id = el.parentNode.id;
-
-        if (!v) {
-          v = new Visualization({
-            renderer: renderers[id]
-          });
-        }
-
-        v.setRenderer(renderers[id]);
-
-        if (v.isPlaying()) {
-          el.style.backgroundColor = 'rgba(232,237,218,0.9)';
-        } else {
-          v.start();
-          el.style.backgroundColor = 'rgba(232,237,218,0.9)';
-        }
-      };
-    }();
-  };
+      if (v.isPlaying()) {
+        v.stop();
+        el.style.backgroundColor = '#cbff33';
+      } else {
+        v.start();
+        el.style.backgroundColor = 'rgba(232,237,218,0.9)';
+      }
+    };
+  }();
 }); // console.clear();
 // const renderer = new THREE.WebGLRenderer({ alpha: true, antialiase: true });
 // const w = document.querySelector('.w');
@@ -11980,7 +12294,7 @@ var menuEl = document.querySelector('[data-scroll-container]');
 //   })
 // }
 // window.addEventListener('mousemove', onMouseMove)
-},{"gsap":"../node_modules/gsap/index.js","gsap/ScrollTrigger":"../node_modules/gsap/ScrollTrigger.js","./cursor":"js/cursor.js","./preloader":"js/preloader.js","locomotive-scroll":"../node_modules/locomotive-scroll/dist/locomotive-scroll.esm.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"gsap":"../node_modules/gsap/index.js","gsap/ScrollTrigger":"../node_modules/gsap/ScrollTrigger.js","gsap/ScrollToPlugin":"../node_modules/gsap/ScrollToPlugin.js","./cursor":"js/cursor.js","./preloader":"js/preloader.js","locomotive-scroll":"../node_modules/locomotive-scroll/dist/locomotive-scroll.esm.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -12008,7 +12322,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60123" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53475" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
