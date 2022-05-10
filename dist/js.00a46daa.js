@@ -11248,7 +11248,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 _gsap.gsap.registerPlugin(_ScrollTrigger.ScrollTrigger, _ScrollToPlugin.ScrollToPlugin);
 
-var menuEl = document.querySelector('[data-scroll-container]');
+var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObserver(() => scroll.update()).observe(document.querySelector("[data-scroll-container]"))
+
 (0, _preloader.preloader)('.item').then(function () {
   var scroll = new _locomotiveScroll.default({
     el: menuEl,
@@ -11289,7 +11290,7 @@ var menuEl = document.querySelector('[data-scroll-container]');
     iterations: 10,
     speed: 0.3,
     offset: 0,
-    slices: 13
+    slices: 12
   };
   var canvasWidth, canvasheight;
   var canvas = document.querySelector('#ctx');
@@ -11421,13 +11422,13 @@ var menuEl = document.querySelector('[data-scroll-container]');
   tl.fromTo("#circles", {
     filter: "blur(0px)"
   }, {
-    duration: 0.4,
+    duration: 1.9,
     filter: "blur(0px)"
   });
   tl.fromTo("header .border", {
     width: '1px'
   }, {
-    delay: 2.7,
+    delay: 4.8,
     duration: 4.5,
     width: 'calc(100vw - 80px)',
     ease: "[0.74,0.2,1,-0.22]"
@@ -11463,11 +11464,11 @@ var menuEl = document.querySelector('[data-scroll-container]');
     ease: "[0.74,0.2,1,-0.22]"
   }, "-=1");
   tl.to("#circles", {
-    duration: 0.4,
+    duration: 1.9,
     filter: "blur(2px)"
   });
   tl.to(music, {
-    playbackRate: 0.18,
+    playbackRate: 0.09,
     volume: 0.45
   });
   tl.to(".menu", {
@@ -11530,11 +11531,11 @@ var menuEl = document.querySelector('[data-scroll-container]');
   tl2.fromTo("#circles", {
     filter: "blur(2px)"
   }, {
-    duration: 0.4,
+    duration: 1.9,
     filter: "blur(0px)"
   });
   tl2.fromTo(music, {
-    playbackRate: 0.18,
+    playbackRate: 0.09,
     volume: 0.45
   }, {
     duration: 0.2,
@@ -11581,10 +11582,11 @@ var menuEl = document.querySelector('[data-scroll-container]');
     ease: "[0.74,0.2,1,-0.22]"
   }, ">-=1.8");
   tl2.to("#circles", {
+    duration: 1.9,
     filter: "blur(2px)"
   });
   tl2.to(music, {
-    playbackRate: 0.18,
+    playbackRate: 0.09,
     volume: 0.45
   });
   tl2.fromTo("header .line-1", {
@@ -11649,11 +11651,11 @@ var menuEl = document.querySelector('[data-scroll-container]');
   tl3.fromTo("#circles", {
     filter: "blur(2px)"
   }, {
-    duration: 0.4,
+    duration: 1.9,
     filter: "blur(0px)"
   });
   tl3.fromTo(music, {
-    playbackRate: 0.18,
+    playbackRate: 0.09,
     volume: 0.45
   }, {
     duration: 0.2,
@@ -11711,10 +11713,11 @@ var menuEl = document.querySelector('[data-scroll-container]');
     ease: "[0.74,0.2,1,-0.22]"
   }, ">-=1.8");
   tl3.to("#circles", {
+    duration: 1.9,
     filter: "blur(2px)"
   });
   tl3.to(music, {
-    playbackRate: 0.18,
+    playbackRate: 0.09,
     volume: 0.45
   });
   tl3.fromTo("header .line-1", {
@@ -11751,14 +11754,14 @@ var menuEl = document.querySelector('[data-scroll-container]');
     offset: 0
   }, {
     duration: 1.8,
-    offset: 0.2
+    offset: 0
   });
   tl3.fromTo(settings, {
     scale: 0.63
   }, {
-    duration: 1.8,
+    duration: 3.5,
     scale: 0.63
-  }, 0); // tl3.to(settings, {delay: 0.1, duration: 8, angle: 1.3}, "-=8")
+  }); // tl3.to(settings, {delay: 0.1, duration: 8, angle: 1.3}, "-=8")
 
   var tl4 = _gsap.gsap.timeline({
     scrollTrigger: {
@@ -11779,11 +11782,11 @@ var menuEl = document.querySelector('[data-scroll-container]');
   tl4.fromTo("#circles", {
     filter: "blur(2px)"
   }, {
-    duration: 0.4,
+    duration: 1.9,
     filter: "blur(0px)"
   });
   tl4.fromTo(music, {
-    playbackRate: 0.18,
+    playbackRate: 0.09,
     volume: 0.45
   }, {
     duration: 0.2,
@@ -11842,10 +11845,11 @@ var menuEl = document.querySelector('[data-scroll-container]');
     ease: "[0.74,0.2,1,-0.22]"
   }, ">-=1.8");
   tl4.to("#circles", {
+    duration: 1.9,
     filter: "blur(2px)"
   });
   tl4.to(music, {
-    playbackRate: 0.18,
+    playbackRate: 0.09,
     volume: 0.45
   });
   tl4.fromTo("header .line-1", {
@@ -11879,17 +11883,17 @@ var menuEl = document.querySelector('[data-scroll-container]');
     ease: "[0.74,0.2,1,-0.22]"
   }, "<-=0.1");
   tl4.fromTo(settings, {
-    offset: 0.2
-  }, {
-    duration: 1.8,
-    offset: 0.5
-  });
-  tl4.fromTo(settings, {
     scale: 0.63
   }, {
     duration: 1.8,
-    scale: 0.62
-  }, 0); // tl4.to(settings, {delay: 0.1, duration: 8, angle: 0.4}, "-=8")
+    scale: 0.71
+  });
+  tl4.fromTo(settings, {
+    offset: 0
+  }, {
+    duration: 1.8,
+    offset: 0
+  }); // tl4.to(settings, {delay: 0.1, duration: 8, angle: 0.4}, "-=8")
 
   var tl5 = _gsap.gsap.timeline({
     scrollTrigger: {
@@ -11921,11 +11925,11 @@ var menuEl = document.querySelector('[data-scroll-container]');
   tl5.fromTo("#circles", {
     filter: "blur(2px)"
   }, {
-    duration: 0.4,
+    duration: 1.9,
     filter: "blur(0px)"
   });
   tl5.fromTo(music, {
-    playbackRate: 0.18,
+    playbackRate: 0.09,
     volume: 0.45
   }, {
     duration: 0.2,
@@ -11963,19 +11967,20 @@ var menuEl = document.querySelector('[data-scroll-container]');
     ease: "[0.74,0.2,1,-0.22]"
   }, ">-=1.8");
   tl5.fromTo(settings, {
-    offset: 0.5
+    scale: 0.71
   }, {
     delay: 0.11,
     duration: 1.8,
-    offset: 1.08
+    scale: 0.72
   });
   tl5.fromTo(settings, {
-    scale: 0.62
+    offset: 0
   }, {
     delay: 0.11,
     duration: 1.8,
-    scale: 0.64
-  }); // tl5.fromTo(settings, {size: 162}, {delay: 0.11, duration: 1.8, size: 180})
+    offset: 0
+  }); // tl5.fromTo(settings, {scale: 0.71}, {delay: 0.11, duration: 1.8, scale: 0.9})
+  // tl5.fromTo(settings, {size: 162}, {delay: 0.11, duration: 1.8, size: 180})
   // tl5.to(settings, {delay: 0.11, duration: 1.8, angle: 0.2})
 
   var tlTree = _gsap.gsap.timeline({
@@ -12007,7 +12012,7 @@ var menuEl = document.querySelector('[data-scroll-container]');
   }, {
     delay: 0.11,
     duration: 1.8,
-    angle: 1.98
+    angle: 1.7
   });
 
   function aClass() {
@@ -12015,8 +12020,7 @@ var menuEl = document.querySelector('[data-scroll-container]');
   }
 
   function rClass() {
-    items.classList.remove("active");
-    console.log(music.playbackRate);
+    items.classList.remove("active"); // console.log(music.playbackRate);
   }
 
   _ScrollTrigger.ScrollTrigger.addEventListener("refresh", function () {
@@ -12119,12 +12123,9 @@ var menuEl = document.querySelector('[data-scroll-container]');
     };
 
     this.start = function () {
-      console.log('0');
       running = true;
       audio.play();
-      console.log('1');
       renderFrame();
-      console.log('2');
     };
 
     this.stop = function () {

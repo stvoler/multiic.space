@@ -227,7 +227,7 @@ header,
   transition: transform 0.3s ease-out;
   a {
     color: var(--color-link);
-    margin-bottom: 10px;
+    padding-bottom: 10px;
     font-weight: 500;
     font-size: 14px;
     line-height: 17px;
@@ -439,15 +439,15 @@ p {
     justify-content: center;
     grid-column: 1/-1;
     grid-row: 2;
-    font-size: 50px;
+    font-size: clamp(32px, 4vw, 50px);
     line-height: 1;
     div {
-      width: 113px;
-      min-width: 113px;
-      height: 113px;
+      width: clamp(98px, 10vw, 113px);
+      min-width: clamp(98px, 10vw, 113px);
+      height: clamp(98px, 10vw, 113px);
       color: var(--color-link);
       border: 1px solid var(--color-link);
-      margin: auto clamp(40px, 11vw, 112px);
+      margin: auto clamp(40px, 8vw, 112px);
       border-radius: 50%;
       display: flex;
       align-items: center;
