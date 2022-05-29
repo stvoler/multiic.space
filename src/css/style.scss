@@ -225,7 +225,8 @@ header,
   grid-row: 1;
   z-index: 2;
   transition: transform 0.3s ease-out;
-  a {
+  a,
+  button {
     color: var(--color-link);
     padding-bottom: 10px;
     font-weight: 500;
@@ -233,6 +234,7 @@ header,
     line-height: 17px;
     letter-spacing: 0.08em;
     text-transform: uppercase;
+    cursor: pointer;
   }
 }
 
@@ -327,6 +329,20 @@ a {
 
 p {
   margin: 0 0 36px 0;
+}
+
+.block-0 {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 80px 100px auto auto;
+  .title {
+    grid-column: 3/-1;
+    grid-row: 1;
+  }
+  .text {
+    grid-column: 4;
+    grid-row: 3;
+    padding-left: 0;
+  }
 }
 
 .block-1 {
@@ -607,6 +623,20 @@ html.has-scroll-dragging {
 
 #circles{
   transition: filter 0.2s ease-in-out;
+  opacity: 0.9;
+  .circle{
+    &:nth-child(2n){
+      opacity: 0.11;
+    }
+    &:nth-child(2n+3){
+      opacity: 0.09;
+    }
+    &:nth-child(9),
+    &:nth-child(18),
+    &:nth-child(27){
+      opacity: 0.89;
+    }
+  }
 }
 
 .circle {
