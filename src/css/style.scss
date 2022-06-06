@@ -206,6 +206,7 @@ header,
 .text {
   padding-left: clamp(30px, 3.9vw, 54px);
   padding-right: clamp(27px, 3.9vw, 50px);
+  transform-origin: center bottom;
 }
 
 .title {
@@ -275,7 +276,7 @@ a {
 
 .items {
   width: 100vw;
-  min-height: 100vh;
+  // min-height: 100vh;
   padding: 0;
   margin: auto;
   position: relative;

@@ -11253,7 +11253,8 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
 (0, _preloader.preloader)('.item').then(function () {
   var scroll = new _locomotiveScroll.default({
     el: menuEl,
-    smooth: true
+    smooth: true,
+    lerp: 0.1
   });
   var cursor = new _cursor.default(document.querySelector('.cursor'));
   var target = document.querySelector('.item.active');
@@ -11376,10 +11377,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
   }
 
   draw();
-  var music = document.querySelector(".music"); // const triggerMusic = document.querySelector('#trigger');
-  // triggerMusic.onclick = function() {
-  //   music.play()
-  // };
+  var music = document.querySelector(".music");
 
   _gsap.gsap.set(settings, {
     offset: 0
@@ -11401,7 +11399,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
       start: "0 0",
       scrub: 1.8,
       end: "+=171%",
-      id: "#b1" // markers: true,
+      id: "#b0" // markers: true,
       // onEnter: () => {
       //   music.play()
       // }
@@ -11436,7 +11434,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     delay: 0.3,
     duration: 12,
     opacity: 0.8,
-    transform: 'translateY(-400px) scaleY(4.5)',
+    transform: 'translateY(-180px) scaleY(4.5)',
     lineHeight: 0.8,
     ease: "[0.74,0.2,1,-0.22]"
   });
@@ -11444,13 +11442,13 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     transform: 'translateY(0px) scaleY(1)',
     lineHeight: 1.2
   }, {
-    delay: 0.3,
+    delay: 0.1,
     duration: 12,
     opacity: 0,
-    transform: 'translateY(-560px) scaleY(3.5)',
-    lineHeight: 0.8,
+    transform: 'translateY(0px) scaleY(4)',
+    lineHeight: 0.6,
     ease: "[0.74,0.2,1,-0.22]"
-  }, "-=8");
+  }, ">-=8");
   tl0.to("#circles", {
     duration: 1.9,
     filter: "blur(2px)"
@@ -11522,7 +11520,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     delay: 0.3,
     duration: 12,
     opacity: 0.8,
-    transform: 'translateY(-400px) scaleY(4.5)',
+    transform: 'translateY(-180px) scaleY(4.5)',
     lineHeight: 0.8,
     ease: "[0.74,0.2,1,-0.22]"
   });
@@ -11533,10 +11531,10 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     delay: 0.3,
     duration: 12,
     opacity: 0,
-    transform: 'translateY(-560px) scaleY(3.5)',
-    lineHeight: 0.8,
+    transform: 'translateY(0px) scaleY(4)',
+    lineHeight: 0.6,
     ease: "[0.74,0.2,1,-0.22]"
-  }, "-=8");
+  }, ">-=8");
   tl1.to("#circles", {
     duration: 1.9,
     filter: "blur(2px)"
@@ -11610,7 +11608,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     delay: 0.3,
     duration: 12,
     opacity: 0.8,
-    transform: 'translateY(-400px) scaleY(4.5)',
+    transform: 'translateY(-180px) scaleY(4.5)',
     lineHeight: 0.8,
     ease: "[0.74,0.2,1,-0.22]"
   }, ">1.8");
@@ -11621,8 +11619,8 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     delay: 0.2,
     duration: 10,
     opacity: 0,
-    transform: 'translateY(-500px) scaleY(3.5)',
-    lineHeight: 0.8,
+    transform: 'translateY(0px) scaleY(4)',
+    lineHeight: 0.6,
     ease: "[0.74,0.2,1,-0.22]"
   }, ">-=8");
   tl2.fromTo(".block-2 .text-2", {
@@ -11632,8 +11630,8 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     delay: 0.2,
     duration: 10,
     opacity: 0,
-    transform: 'translateY(-900px) scaleY(3.5)',
-    lineHeight: 0.8,
+    transform: 'translateY(0px) scaleY(4)',
+    lineHeight: 0.6,
     ease: "[0.74,0.2,1,-0.22]"
   }, ">-=8");
   tl2.to("#circles", {
@@ -11718,7 +11716,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     delay: 0.3,
     duration: 12,
     opacity: 0.8,
-    transform: 'translateY(-400px) scaleY(4.5)',
+    transform: 'translateY(-180px) scaleY(4.5)',
     lineHeight: 0.8,
     ease: "[0.74,0.2,1,-0.22]"
   }, ">1.8");
@@ -11729,8 +11727,8 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     delay: 0.2,
     duration: 10,
     opacity: 0,
-    transform: 'translateY(-500px) scaleY(3.5)',
-    lineHeight: 0.8,
+    transform: 'translateY(0px) scaleY(4)',
+    lineHeight: 0.6,
     ease: "[0.74,0.2,1,-0.22]"
   }, ">-=8");
   tl3.fromTo(".block-3 .text-2", {
@@ -11740,8 +11738,8 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     delay: 0.2,
     duration: 10,
     opacity: 0,
-    transform: 'translateY(-600px) scaleY(3.5)',
-    lineHeight: 0.8,
+    transform: 'translateY(0px) scaleY(4)',
+    lineHeight: 0.6,
     ease: "[0.74,0.2,1,-0.22]"
   }, ">-=8");
   tl3.fromTo(".block-3 .text-3", {
@@ -11751,8 +11749,8 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     delay: 0.2,
     duration: 10,
     opacity: 0,
-    transform: 'translateY(-600px) scaleY(3.5)',
-    lineHeight: 0.8,
+    transform: 'translateY(0px) scaleY(4)',
+    lineHeight: 0.6,
     ease: "[0.74,0.2,1,-0.22]"
   }, ">-=8");
   tl3.to("#circles", {
@@ -11839,7 +11837,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     delay: 0.3,
     duration: 12,
     opacity: 0.8,
-    transform: 'translateY(-500px) scaleY(4.5)',
+    transform: 'translateY(-180px) scaleY(4.5)',
     lineHeight: 0.8,
     ease: "[0.74,0.2,1,-0.22]"
   }, ">1.8");
@@ -11850,8 +11848,8 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     delay: 0.2,
     duration: 10,
     opacity: 0,
-    transform: 'translateY(-500px) scaleY(3.5)',
-    lineHeight: 0.8,
+    transform: 'translateY(0px) scaleY(4)',
+    lineHeight: 0.6,
     ease: "[0.74,0.2,1,-0.22]"
   }, ">-=8");
   tl4.fromTo(".block-4 .text-2", {
@@ -11861,8 +11859,8 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     delay: 0.2,
     duration: 10,
     opacity: 0,
-    transform: 'translateY(-500px) scaleY(3.5)',
-    lineHeight: 0.8,
+    transform: 'translateY(0px) scaleY(4)',
+    lineHeight: 0.6,
     ease: "[0.74,0.2,1,-0.22]"
   }, ">-=8");
   tl4.fromTo(".block-4 .text-3, .block-4 .text-4", {
@@ -11872,8 +11870,8 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     delay: 0.2,
     duration: 10,
     opacity: 0,
-    transform: 'translateY(-600px) scaleY(3.5)',
-    lineHeight: 0.8,
+    transform: 'translateY(0px) scaleY(4)',
+    lineHeight: 0.5,
     ease: "[0.74,0.2,1,-0.22]"
   }, ">-=8");
   tl4.to("#circles", {
@@ -12357,7 +12355,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53771" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50160" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
