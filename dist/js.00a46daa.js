@@ -11456,11 +11456,8 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
   tl0.to(music, {
     playbackRate: 0.09,
     volume: 0.45
-  });
-  tl0.to(".menu", {
-    duration: 3,
-    translateY: '-300px'
-  }, 0).to("#trigger", {
+  }) // tl0.to(".menu", {duration: 3, translateY: '-300px'}, 0)
+  .to("#trigger", {
     duration: 4,
     translateX: '30vw'
   }, 0).addLabel("b0", ">");
@@ -11998,38 +11995,42 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
   tlTree.set(music, {
     playbackRate: 1,
     volume: 0.63
-  }); // .fromTo(settings, {size: 150}, {delay: 0.11, duration: 1.8, size: 153})
-
+  });
   tlTree.to(settings, {
     angle: 0,
     scale: 0,
     duration: 1.8
-  }, "b0+=0.1");
+  }, "b0+=0.01");
   tlTree.to(settings, {
-    scale: 0.63,
+    scale: 0.53,
     duration: 0.1
-  }, "b1+=0.1");
+  }, "b1+=0.01").addLabel("tree1", 0);
   tlTree.to(settings, {
-    angle: 0.7,
+    angle: 0.72,
+    scale: 0.58,
     duration: 1.8
   }, ">");
   tlTree.to(settings, {
-    angle: 0.9,
-    scale: 0.68,
+    angle: 0.4,
+    scale: 0.5,
     duration: 1.8
-  }, "b2+=0.1");
+  }, "b2+=0.01").addLabel("tree2", 0);
   tlTree.to(settings, {
-    angle: 0.8,
+    angle: 0.63,
+    scale: 0.63,
     duration: 1.8
-  }, "b3+=0.1");
-  tlTree.to(settings, {
-    angle: 0.1,
-    duration: 1.8
-  }, "b4+=0.1");
+  }, "b3+=0.01").addLabel("tree3", 0);
   tlTree.to(settings, {
     angle: 0.3,
+    scale: 0.6,
+    iterations: 3,
     duration: 1.8
-  }, "b5+=0.1"); // const btns = document.querySelectorAll('.menu a');
+  }, "b4+=0.01").addLabel("tree4", 0);
+  tlTree.to(settings, {
+    angle: 0.5,
+    iterations: 2,
+    duration: 1.8
+  }, "b5+=0.01"); // const btns = document.querySelectorAll('.menu a');
   // btns.forEach(function(btn) {
   //   btn.addEventListener('click', function(e){
   //     // var st = timeline.scrollTrigger;
@@ -12039,49 +12040,66 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
   //     tlTree.to( settings, {angle: 0.1, scale: 0.72, duration: 1} );
   //   });
   // })
-  // gsap.utils.toArray(".menu a").forEach((a, i) => {
-  //   a.clickElem = document.querySelector(a.hash);
-  //   a.offset = a.clickElem.offsetTop;
-  //   a.height = a.clickElem.offsetHeight;
-  //   a.addEventListener("click", e => {
-  //     gsap.to(window, {scrollTo: a.offset + a.height * (i + 1)})
-  //   });
-  // });
+
+  var menuItem1 = document.querySelector('.menu-item-1');
+  var menuItem2 = document.querySelector('.menu-item-2');
+  var menuItem3 = document.querySelector('.menu-item-3');
+  var menuItem4 = document.querySelector('.menu-item-4');
+
+  _gsap.gsap.utils.toArray("nav a").forEach(function (a) {
+    a.addEventListener("click", function (e) {
+      e.preventDefault();
+
+      var id = e.target.getAttribute("href"),
+          trigger = _ScrollTrigger.ScrollTrigger.getById(id);
+
+      _gsap.gsap.to(window, {
+        duration: 1,
+        scrollTo: trigger ? trigger.start : id
+      });
+    });
+  });
+
+  menuItem1.addEventListener("click", function () {
+    tl0.timeScale(50.0).play(0, true);
+    console.log('1');
+  });
+  menuItem2.addEventListener("click", function () {
+    // tl0.timeScale(60.0).play(0, true)
+    tl1.timeScale(50.0).play(0, true);
+    tlTree.play("b1+=0.01"); // tlTree.pause("b1+=0.1")
+
+    console.log('2');
+  });
+  menuItem3.addEventListener("click", function () {
+    // tl0.timeScale(70.0).play(0, true)
+    // tl1.timeScale(60.0).play(0, true)
+    tl2.timeScale(50.0).play(0, true);
+    tlTree.play("b2+=0.01");
+    console.log('3');
+  });
+  menuItem4.addEventListener("click", function () {
+    // tl0.timeScale(80.0).play(0, true)
+    // tl1.timeScale(70.0).play(0, true)
+    // tl2.timeScale(60.0).play(0, true)
+    tl3.timeScale(50.0).play(0, true);
+    tlTree.play("b3+=0.01");
+    console.log('4');
+  });
 
   function aClass() {
     items.classList.add("active");
   }
 
   function rClass() {
-    items.classList.remove("active"); // console.log(music.playbackRate);
+    items.classList.remove("active");
   }
 
   _ScrollTrigger.ScrollTrigger.addEventListener("refresh", function () {
     return scroll.update();
   });
 
-  _ScrollTrigger.ScrollTrigger.refresh(); // gsap.utils.toArray("section").forEach((section) => {
-  //   gsap.timeline({
-  //     scrollTrigger: {
-  //       trigger: section,
-  //       start: 'center 50%',
-  //       id: "#" + section.getAttribute("id"),
-  //       end: 'bottom',
-  //       markers: true,
-  //     },
-  //   });
-  // });
-  // gsap.utils.toArray("nav a").forEach(function(a) {
-  //   a.addEventListener("click", function(e) {
-  //     const id = e.target.getAttribute("href"),
-  //           trigger = ScrollTrigger.getById(id);
-  //     gsap.to(window, {
-  //       duration: 0.1,
-  //       scrollTo: trigger ? trigger.end : id
-  //     });
-  //   });
-  // });
-
+  _ScrollTrigger.ScrollTrigger.refresh();
 
   window.AudioContext = window.AudioContext || window.webkitAudioContext || window.mozAudioContext;
   var renderers = {
@@ -12355,7 +12373,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50160" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58347" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

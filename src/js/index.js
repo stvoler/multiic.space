@@ -154,7 +154,8 @@ preloader('.item').then(() => {
     tl0.fromTo(".block-0 .text", {transform: 'translateY(0px) scaleY(1)', lineHeight: 1.2}, {delay: 0.1, duration: 12, opacity: 0, transform: 'translateY(0px) scaleY(4)', lineHeight: 0.6, ease: "[0.74,0.2,1,-0.22]"}, ">-=8")
     tl0.to("#circles", {duration: 1.9, filter: "blur(2px)"})
     tl0.to(music, {playbackRate: 0.09, volume: 0.45})
-    tl0.to(".menu", {duration: 3, translateY: '-300px'}, 0).to("#trigger", {duration: 4, translateX: '30vw'}, 0)
+    // tl0.to(".menu", {duration: 3, translateY: '-300px'}, 0)
+    .to("#trigger", {duration: 4, translateX: '30vw'}, 0)
     .addLabel("b0", ">")
     
     let tl1 = gsap.timeline({
@@ -309,14 +310,17 @@ preloader('.item').then(() => {
     tlTree.set("#circles", {filter: "blur(0px)"})
     tlTree.set(settings, {offset: 0, scale: 0, angle: 0})
     tlTree.set(music, {playbackRate: 1, volume: 0.63})
-    // .fromTo(settings, {size: 150}, {delay: 0.11, duration: 1.8, size: 153})
-    tlTree.to(settings, {angle: 0, scale: 0, duration: 1.8}, "b0+=0.1")
-    tlTree.to(settings, {scale: 0.63, duration: 0.1}, "b1+=0.1")
-    tlTree.to(settings, {angle: 0.7, duration: 1.8}, ">")
-    tlTree.to(settings, {angle: 0.9, scale: 0.68, duration: 1.8}, "b2+=0.1")
-    tlTree.to(settings, {angle: 0.8, duration: 1.8}, "b3+=0.1")
-    tlTree.to(settings, {angle: 0.1, duration: 1.8}, "b4+=0.1")
-    tlTree.to(settings, {angle: 0.3, duration: 1.8}, "b5+=0.1")
+    tlTree.to(settings, {angle: 0, scale: 0, duration: 1.8}, "b0+=0.01")
+    tlTree.to(settings, {scale: 0.53, duration: 0.1}, "b1+=0.01")
+    .addLabel("tree1", 0)
+    tlTree.to(settings, {angle: 0.72, scale: 0.58, duration: 1.8}, ">")
+    tlTree.to(settings, {angle: 0.4, scale: 0.5, duration: 1.8}, "b2+=0.01")
+    .addLabel("tree2", 0)
+    tlTree.to(settings, {angle: 0.63, scale: 0.63, duration: 1.8}, "b3+=0.01")
+    .addLabel("tree3", 0)
+    tlTree.to(settings, {angle: 0.3, scale: 0.6, iterations: 3, duration: 1.8}, "b4+=0.01")
+    .addLabel("tree4", 0)
+    tlTree.to(settings, {angle: 0.5, iterations: 2, duration: 1.8}, "b5+=0.01")
 
     // const btns = document.querySelectorAll('.menu a');
     // btns.forEach(function(btn) {
@@ -329,50 +333,61 @@ preloader('.item').then(() => {
     //   });
     // })
 
-    // gsap.utils.toArray(".menu a").forEach((a, i) => {
-    //   a.clickElem = document.querySelector(a.hash);
-    //   a.offset = a.clickElem.offsetTop;
-    //   a.height = a.clickElem.offsetHeight;
-    //   a.addEventListener("click", e => {
-    //     gsap.to(window, {scrollTo: a.offset + a.height * (i + 1)})
-    //   });
-    // });
+    const menuItem1 = document.querySelector('.menu-item-1');
+    const menuItem2 = document.querySelector('.menu-item-2');
+    const menuItem3 = document.querySelector('.menu-item-3');
+    const menuItem4 = document.querySelector('.menu-item-4');
+
+    gsap.utils.toArray("nav a").forEach(function(a) {
+      a.addEventListener("click", function(e) {
+        e.preventDefault();
+        const id = e.target.getAttribute("href"),
+              trigger = ScrollTrigger.getById(id);
+        gsap.to(window, {
+          duration: 1,
+          scrollTo: trigger ? trigger.start : id,
+        });
+      });
+    });
+
+    menuItem1.addEventListener("click", () => {
+      tl0.timeScale(50.0).play(0, true)
+      console.log('1');
+    })
+
+    menuItem2.addEventListener("click", () => {
+      // tl0.timeScale(60.0).play(0, true)
+      tl1.timeScale(50.0).play(0, true)
+      tlTree.play("b1+=0.01")
+      // tlTree.pause("b1+=0.1")
+      console.log('2');
+    })
+
+    menuItem3.addEventListener("click", () => {
+      // tl0.timeScale(70.0).play(0, true)
+      // tl1.timeScale(60.0).play(0, true)
+      tl2.timeScale(50.0).play(0, true)
+      tlTree.play("b2+=0.01")
+      console.log('3');
+    })
+
+    menuItem4.addEventListener("click", () => {
+      // tl0.timeScale(80.0).play(0, true)
+      // tl1.timeScale(70.0).play(0, true)
+      // tl2.timeScale(60.0).play(0, true)
+      tl3.timeScale(50.0).play(0, true)
+      tlTree.play("b3+=0.01")
+      console.log('4');
+    })
+
+
 
     function aClass(){items.classList.add("active")}
     function rClass(){
       items.classList.remove("active");
-      // console.log(music.playbackRate);
     }
     ScrollTrigger.addEventListener("refresh", () => scroll.update());
     ScrollTrigger.refresh();
-
-    
-
-
-
-    // gsap.utils.toArray("section").forEach((section) => {
-    //   gsap.timeline({
-    //     scrollTrigger: {
-    //       trigger: section,
-    //       start: 'center 50%',
-    //       id: "#" + section.getAttribute("id"),
-    //       end: 'bottom',
-    //       markers: true,
-    //     },
-    //   });
-    // });
-
-    // gsap.utils.toArray("nav a").forEach(function(a) {
-    //   a.addEventListener("click", function(e) {
-    //     const id = e.target.getAttribute("href"),
-    //           trigger = ScrollTrigger.getById(id);
-    //     gsap.to(window, {
-    //       duration: 0.1,
-    //       scrollTo: trigger ? trigger.end : id
-    //     });
-    //   });
-    // });
-
 
 
     window.AudioContext = window.AudioContext || window.webkitAudioContext || window.mozAudioContext;
