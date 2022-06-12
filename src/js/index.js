@@ -296,13 +296,13 @@ preloader('.item').then(() => {
     tlTree.set(settings, {offset: 0, scale: 0, angle: 0, iterations: 10})
     tlTree.set(music, {playbackRate: 1, volume: 0.63})
     tlTree.to(settings, {angle: 0, scale: 0, duration: 1.8}, "b0+=0.01")
-    tlTree.to(settings, {angle: 0, scale: 0.53, duration: 0.4}, "b1+=0.2")
+    tlTree.to(settings, {angle: 0, scale: 0.55, duration: 0.4}, "b1+=0.17")
     tlTree.to(settings, {angle: 0.63, scale: 0.58, duration: 1.8}, ">")
     tlTree.to(settings, {angle: 0.5, scale: 0.53, duration: 1.8}, "b2+=0.01")
     tlTree.to(settings, {angle: 0.72, scale: 0.59, duration: 1.8}, "b3+=0.01")
     tlTree.to(settings, {angle: 0.63, scale: 0.57, duration: 1.8}, "b4+=0.01")
     tlTree.to(settings, {angle: 0.5, scale: 0.54, duration: 0.9}, ">")
-    tlTree.to(settings, {angle: 0.5, scale: 0.54, iterations: 3, duration: 0.05}, ">")
+    tlTree.to(settings, {angle: 0.5, scale: 0.54, iterations: 3, duration: 0.04}, ">")
     tlTree.to(settings, {angle: 0.5, scale: 0.54, duration: 0.8}, ">")
 
     gsap.utils.toArray("nav a").forEach(function(a) {
@@ -314,7 +314,7 @@ preloader('.item').then(() => {
         //   duration: 1,
         //   scrollTo: trigger ? trigger.start : id,
         // });
-        scroll.scrollTo(trigger ? trigger.start : id)
+        scroll.scrollTo(trigger ? trigger.start : id, 180)
       });
     });
 

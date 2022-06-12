@@ -11998,9 +11998,9 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
   }, "b0+=0.01");
   tlTree.to(settings, {
     angle: 0,
-    scale: 0.53,
+    scale: 0.55,
     duration: 0.4
-  }, "b1+=0.2");
+  }, "b1+=0.17");
   tlTree.to(settings, {
     angle: 0.63,
     scale: 0.58,
@@ -12030,7 +12030,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     angle: 0.5,
     scale: 0.54,
     iterations: 3,
-    duration: 0.05
+    duration: 0.04
   }, ">");
   tlTree.to(settings, {
     angle: 0.5,
@@ -12049,7 +12049,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
       // });
 
 
-      scroll.scrollTo(trigger ? trigger.start : id);
+      scroll.scrollTo(trigger ? trigger.start : id, 180);
     });
   }); // const menuItem1 = document.querySelector('.menu-item-1');
   // const menuItem2 = document.querySelector('.menu-item-2');
