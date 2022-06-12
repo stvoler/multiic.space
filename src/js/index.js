@@ -206,9 +206,9 @@ preloader('.item').then(() => {
     tl2.fromTo(".block-2 .text-2", {transform: 'translateY(0px) scaleY(1)', lineHeight: 1.2}, {delay: 0.2, duration: 10, opacity: 0, transform: 'translateY(0px) scaleY(4)', lineHeight: 0.6, ease: "[0.74,0.2,1,-0.22]"}, ">-=8")
     tl2.to("#circles", {duration: 1.9, filter: "blur(2px)"})
     tl2.to(music, {playbackRate: 0.09, volume: 0.45})
-    tl2.fromTo("header .line-1", {opacity: 0.4, transform: 'translateX(-50vw)'}, {delay: 1.1, duration: 1.8, opacity: 0.72, transform: 'translateX(-66vw)', ease: "[0.74,0.2,1,-0.22]"}, "-=2")
-    tl2.fromTo("header .line-2", {opacity: 0, transform: 'translateX(0px)'}, {delay: 0.7, duration: 0.5, opacity: 0.72, transform: 'translateX(-34vw)', ease: "[0.74,0.2,1,-0.22]"}, "-=2")
-    tl2.fromTo("header .line-3", {opacity: 0, transform: 'translateX(0px)'}, {delay: 0.7, duration: 0.5, opacity: 0, transform: 'translateX(0px)', ease: "[0.74,0.2,1,-0.22]"}, "-=2")
+    tl2.fromTo("header .line-1", {opacity: 0.4, transform: 'translateX(-50vw)'}, {delay: 1.1, duration: 1.8, opacity: 0.72, transform: 'translateX(-66vw)', ease: "[0.74,0.2,1,-0.22]"})
+    tl2.fromTo("header .line-2", {opacity: 0, transform: 'translateX(0px)'}, {delay: 0.7, duration: 0.5, opacity: 0.72, transform: 'translateX(-34vw)', ease: "[0.74,0.2,1,-0.22]"})
+    tl2.fromTo("header .line-3", {opacity: 0, transform: 'translateX(0px)'}, {delay: 0.7, duration: 0.5, opacity: 0, transform: 'translateX(0px)', ease: "[0.74,0.2,1,-0.22]"})
 
     let tl3 = gsap.timeline({
       scrollTrigger: {
@@ -260,9 +260,9 @@ preloader('.item').then(() => {
     tl4.fromTo(".block-4 .text-3, .block-4 .text-4", {transform: 'translateY(0px) scaleY(1)', lineHeight: 1.2}, {delay: 0.2, duration: 10, opacity: 0, transform: 'translateY(0px) scaleY(4)', lineHeight: 0.5, ease: "[0.74,0.2,1,-0.22]"}, ">-=8") 
     tl4.to("#circles", {duration: 1.9, filter: "blur(2px)"})
     tl4.to(music, {playbackRate: 0.09, volume: 0.45})
-    tl4.fromTo("header .line-1", {opacity: 0.72, transform: 'translateX(-74vw)'}, {delay: 0.7, duration: 0.9, opacity: 0, transform: 'translateX(0px)', ease: "[0.74,0.2,1,-0.22]"}, "-=1.7")
-    tl4.fromTo("header .line-2", {opacity: 0.72, transform: 'translateX(-50vw)'}, {delay: 0.7, duration: 0.9, opacity: 0, transform: 'translateX(0px)', ease: "[0.74,0.2,1,-0.22]"}, "<-=0.2")
-    tl4.fromTo("header .line-3", {opacity: 0.72, transform: 'translateX(-26vw)'}, {delay: 0.7, duration: 0.9, opacity: 0, transform: 'translateX(0px)', ease: "[0.74,0.2,1,-0.22]"}, "<-=0.1")
+    tl4.fromTo("header .line-1", {opacity: 0.72, transform: 'translateX(-74vw)'}, {delay: 0.7, duration: 0.9, opacity: 0, transform: 'translateX(0px)', ease: "[0.74,0.2,1,-0.22]"})
+    tl4.fromTo("header .line-2", {opacity: 0.72, transform: 'translateX(-50vw)'}, {delay: 0.7, duration: 0.9, opacity: 0, transform: 'translateX(0px)', ease: "[0.74,0.2,1,-0.22]"})
+    tl4.fromTo("header .line-3", {opacity: 0.72, transform: 'translateX(-26vw)'}, {delay: 0.7, duration: 0.9, opacity: 0, transform: 'translateX(0px)', ease: "[0.74,0.2,1,-0.22]"})
 
     let tl5 = gsap.timeline({
       scrollTrigger: {
@@ -288,24 +288,21 @@ preloader('.item').then(() => {
     let tlTree = gsap.timeline({
       scrollTrigger: {
         start: "top center",
-        end: "120%",
+        end: "100%",
         scrub: 1.8,
       }
     });
     tlTree.set("#circles", {filter: "blur(0px)"})
-    tlTree.set(settings, {offset: 0, scale: 0, angle: 0})
+    tlTree.set(settings, {offset: 0, scale: 0, angle: 0, iterations: 10})
     tlTree.set(music, {playbackRate: 1, volume: 0.63})
     tlTree.to(settings, {angle: 0, scale: 0, duration: 1.8}, "b0+=0.01")
-    tlTree.to(settings, {scale: 0.53, duration: 0.1}, "b1+=0.01")
-    .addLabel("tree1", 0)
+    tlTree.to(settings, {angle: 0, scale: 0.53, duration: 0.1}, "b1+=0.01")
     tlTree.to(settings, {angle: 0.72, scale: 0.58, duration: 1.8}, ">")
     tlTree.to(settings, {angle: 0.4, scale: 0.5, duration: 1.8}, "b2+=0.01")
-    .addLabel("tree2", 0)
     tlTree.to(settings, {angle: 0.63, scale: 0.63, duration: 1.8}, "b3+=0.01")
-    .addLabel("tree3", 0)
-    tlTree.to(settings, {angle: 0.3, scale: 0.6, iterations: 3, duration: 1.8}, "b4+=0.01")
-    .addLabel("tree4", 0)
-    tlTree.to(settings, {angle: 0.5, iterations: 2, duration: 1.8}, "b5+=0.01")
+    tlTree.to(settings, {angle: 0.3, scale: 0.6, duration: 1.8}, "b4+=0.01")
+    tlTree.to(settings, {angle: 0.5, scale: 0.54, duration: 0.9}, "b4+=30%")
+    tlTree.to(settings, {angle: 0.5, scale: 0.54, iterations: 2, duration: 0.8}, "b4+=60%")
 
     gsap.utils.toArray("nav a").forEach(function(a) {
       a.addEventListener("click", function(e) {

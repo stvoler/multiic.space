@@ -11650,7 +11650,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     opacity: 0.72,
     transform: 'translateX(-66vw)',
     ease: "[0.74,0.2,1,-0.22]"
-  }, "-=2");
+  });
   tl2.fromTo("header .line-2", {
     opacity: 0,
     transform: 'translateX(0px)'
@@ -11660,7 +11660,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     opacity: 0.72,
     transform: 'translateX(-34vw)',
     ease: "[0.74,0.2,1,-0.22]"
-  }, "-=2");
+  });
   tl2.fromTo("header .line-3", {
     opacity: 0,
     transform: 'translateX(0px)'
@@ -11670,7 +11670,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     opacity: 0,
     transform: 'translateX(0px)',
     ease: "[0.74,0.2,1,-0.22]"
-  }, "-=2");
+  });
 
   var tl3 = _gsap.gsap.timeline({
     scrollTrigger: {
@@ -11885,7 +11885,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     opacity: 0,
     transform: 'translateX(0px)',
     ease: "[0.74,0.2,1,-0.22]"
-  }, "-=1.7");
+  });
   tl4.fromTo("header .line-2", {
     opacity: 0.72,
     transform: 'translateX(-50vw)'
@@ -11895,7 +11895,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     opacity: 0,
     transform: 'translateX(0px)',
     ease: "[0.74,0.2,1,-0.22]"
-  }, "<-=0.2");
+  });
   tl4.fromTo("header .line-3", {
     opacity: 0.72,
     transform: 'translateX(-26vw)'
@@ -11905,7 +11905,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     opacity: 0,
     transform: 'translateX(0px)',
     ease: "[0.74,0.2,1,-0.22]"
-  }, "<-=0.1");
+  });
 
   var tl5 = _gsap.gsap.timeline({
     scrollTrigger: {
@@ -11973,7 +11973,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
   var tlTree = _gsap.gsap.timeline({
     scrollTrigger: {
       start: "top center",
-      end: "120%",
+      end: "100%",
       scrub: 1.8
     }
   });
@@ -11984,7 +11984,8 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
   tlTree.set(settings, {
     offset: 0,
     scale: 0,
-    angle: 0
+    angle: 0,
+    iterations: 10
   });
   tlTree.set(music, {
     playbackRate: 1,
@@ -11996,9 +11997,10 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     duration: 1.8
   }, "b0+=0.01");
   tlTree.to(settings, {
+    angle: 0,
     scale: 0.53,
     duration: 0.1
-  }, "b1+=0.01").addLabel("tree1", 0);
+  }, "b1+=0.01");
   tlTree.to(settings, {
     angle: 0.72,
     scale: 0.58,
@@ -12008,23 +12010,28 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     angle: 0.4,
     scale: 0.5,
     duration: 1.8
-  }, "b2+=0.01").addLabel("tree2", 0);
+  }, "b2+=0.01");
   tlTree.to(settings, {
     angle: 0.63,
     scale: 0.63,
     duration: 1.8
-  }, "b3+=0.01").addLabel("tree3", 0);
+  }, "b3+=0.01");
   tlTree.to(settings, {
     angle: 0.3,
     scale: 0.6,
-    iterations: 3,
     duration: 1.8
-  }, "b4+=0.01").addLabel("tree4", 0);
+  }, "b4+=0.01");
   tlTree.to(settings, {
     angle: 0.5,
+    scale: 0.54,
+    duration: 0.9
+  }, "b4+=30%");
+  tlTree.to(settings, {
+    angle: 0.5,
+    scale: 0.54,
     iterations: 2,
-    duration: 1.8
-  }, "b5+=0.01");
+    duration: 0.8
+  }, "b4+=60%");
 
   _gsap.gsap.utils.toArray("nav a").forEach(function (a) {
     a.addEventListener("click", function (e) {
