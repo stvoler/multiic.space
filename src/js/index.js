@@ -174,7 +174,7 @@ preloader('.item').then(() => {
     tl1.set("header .line-1, header .line-2, header .line-3", {opacity: 0, transform: 'translateX(0px)'})
     tl1.fromTo(music, {playbackRate: 0.99, volume: 0.63}, {duration: 0.4, playbackRate: 1, volume: 0.63})
     tl1.fromTo("#circles", {filter: "blur(0px)"}, {duration: 1.9, filter: "blur(0px)"})
-    tl1.fromTo("header .border", {width: '1px'}, {delay: 4.8, duration: 4.5, width: 'calc(100vw - 80px)', ease: "[0.74,0.2,1,-0.22]"})
+    tl1.fromTo("header .border", {width: '1px'}, {delay: 4.8, duration: 8.5, width: 'calc(100vw - 80px)', ease: "[0.74,0.2,1,-0.22]"})
     tl1.fromTo(".item .border", {borderColor: '#000'}, {delay: 2.7, duration: 4.5, borderColor: '#fff', ease: "[0.74,0.2,1,-0.22]"})
     tl1.fromTo(".block-1 .title", {transform: 'translateY(0px) scaleY(1)', lineHeight: 1}, {delay: 0.3, duration: 12, opacity: 0.8, transform: 'translateY(-180px) scaleY(4.5)', lineHeight: 0.8, ease: "[0.74,0.2,1,-0.22]"})
     tl1.fromTo(".block-1 .text", {transform: 'translateY(0px) scaleY(1)', lineHeight: 1.2}, {delay: 0.3, duration: 12, opacity: 0, transform: 'translateY(0px) scaleY(4)', lineHeight: 0.6, ease: "[0.74,0.2,1,-0.22]"}, ">-=8")
@@ -298,10 +298,10 @@ preloader('.item').then(() => {
     tlTree.to(settings, {angle: 0, scale: 0, duration: 1.8}, "b0+=0.01")
     tlTree.to(settings, {angle: 0, scale: 0.53, duration: 0.1}, "b1+=0.01")
     tlTree.to(settings, {angle: 0.72, scale: 0.58, duration: 1.8}, ">")
-    tlTree.to(settings, {angle: 0.4, scale: 0.5, duration: 1.8}, "b2+=0.01")
-    tlTree.to(settings, {angle: 0.63, scale: 0.63, duration: 1.8}, "b3+=0.01")
-    tlTree.to(settings, {angle: 0.3, scale: 0.6, duration: 1.8}, "b4+=0.01")
-    tlTree.to(settings, {angle: 0.5, scale: 0.54, duration: 0.9}, "b4+=30%")
+    tlTree.to(settings, {angle: 0.4, scale: 0.53, duration: 1.8}, "b2+=0.01")
+    tlTree.to(settings, {angle: 0.63, scale: 0.59, duration: 1.8}, "b3+=0.01")
+    tlTree.to(settings, {angle: 0.3, scale: 0.57, duration: 1.8}, "b4+=0.01")
+    tlTree.to(settings, {angle: 0.5, scale: 0.54, iterations: 10, duration: 0.9}, "b4+=10%")
     tlTree.to(settings, {angle: 0.5, scale: 0.54, iterations: 2, duration: 0.8}, "b4+=60%")
 
     gsap.utils.toArray("nav a").forEach(function(a) {

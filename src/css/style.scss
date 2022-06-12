@@ -656,10 +656,10 @@ html.has-scroll-dragging {
   opacity: 0.9;
   .circle{
     &:nth-child(2n){
-      opacity: 0.11;
+      opacity: 0.018;
     }
     &:nth-child(2n+3){
-      opacity: 0.09;
+      opacity: 0.009;
     }
     &:nth-child(9),
     &:nth-child(18),
