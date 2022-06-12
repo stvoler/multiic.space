@@ -11645,8 +11645,8 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     opacity: 0.4,
     transform: 'translateX(-50vw)'
   }, {
-    delay: 1.7,
-    duration: 2.5,
+    delay: 1.1,
+    duration: 1.8,
     opacity: 0.72,
     transform: 'translateX(-66vw)',
     ease: "[0.74,0.2,1,-0.22]"
@@ -11762,8 +11762,8 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     opacity: 0.4,
     transform: 'translateX(-66vw)'
   }, {
-    delay: 1.7,
-    duration: 2.5,
+    delay: 1.1,
+    duration: 1.8,
     opacity: 0.72,
     transform: 'translateX(-74vw)',
     ease: "[0.74,0.2,1,-0.22]"
