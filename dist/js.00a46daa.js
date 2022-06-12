@@ -11257,15 +11257,13 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     lerp: 0.1
   });
   var cursor = new _cursor.default(document.querySelector('.cursor'));
-  var target = document.querySelector('.item.active');
   var items = document.querySelector('section');
-  var menu = document.querySelector('.menu');
 
   _gsap.gsap.registerPlugin(_ScrollTrigger.ScrollTrigger);
 
   scroll.on("scroll", _ScrollTrigger.ScrollTrigger.update);
 
-  _ScrollTrigger.ScrollTrigger.scrollerProxy("[data-scroll-container]", {
+  _ScrollTrigger.ScrollTrigger.scrollerProxy(menuEl, {
     scrollTop: function scrollTop(value) {
       return arguments.length ? scroll.scrollTo(value, 0, 0) : scroll.scroll.instance.scroll.y;
     },
@@ -11281,7 +11279,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
 
   _ScrollTrigger.ScrollTrigger.defaults({
     toggleActions: "restart pause resume pause",
-    scroller: "[data-scroll-container]"
+    scroller: menuEl
   });
 
   var settings = {
@@ -11391,6 +11389,10 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     angle: 0
   });
 
+  _gsap.gsap.set("header .border", {
+    width: 'calc(100vw - 80px)'
+  });
+
   var tl0 = _gsap.gsap.timeline({
     scrollTrigger: {
       trigger: ".items0",
@@ -11409,6 +11411,9 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     onUpdate: rClass
   });
 
+  tl0.set("header .border", {
+    width: '1px'
+  });
   tl0.set("header .line-1, header .line-2, header .line-3", {
     opacity: 0,
     transform: 'translateX(0px)'
@@ -11559,9 +11564,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     opacity: 0,
     transform: 'translateX(0px)',
     ease: "[0.74,0.2,1,-0.22]"
-  }) // tl1.fromTo(settings, {offset: 0}, {duration: 4, offset: 0}, 0)
-  // tl1.fromTo(settings, {scale: 0.001}, {duration: 4, scale: 0.63}, 0)
-  .addLabel("b1", ">");
+  }).addLabel("b1", ">");
 
   var tl2 = _gsap.gsap.timeline({
     scrollTrigger: {
@@ -11571,8 +11574,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
       start: "0 0",
       scrub: 1.8,
       end: "+=171%",
-      id: "#b2" // markers: true,
-
+      id: "#b2"
     },
     onComplete: aClass,
     onUpdate: rClass
@@ -11668,8 +11670,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     opacity: 0,
     transform: 'translateX(0px)',
     ease: "[0.74,0.2,1,-0.22]"
-  }, "-=2"); // tl2.fromTo(settings, {offset: 0}, {duration: 4, offset: 0}, 0)
-  // tl2.fromTo(settings, {scale: 0.63}, {duration: 4, scale: 0.63}, 0)
+  }, "-=2");
 
   var tl3 = _gsap.gsap.timeline({
     scrollTrigger: {
@@ -11679,8 +11680,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
       start: "0 0",
       scrub: 1.8,
       end: "+=171%",
-      id: "#b3" // markers: true,
-
+      id: "#b3"
     },
     onComplete: aClass,
     onUpdate: rClass
@@ -11787,8 +11787,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     opacity: 0.72,
     transform: 'translateX(-26vw)',
     ease: "[0.74,0.2,1,-0.22]"
-  }); // tl3.fromTo(settings, {offset: 0}, {duration: 4, offset: 0}, 0)
-  // tl3.fromTo(settings, {scale: 0.63}, {duration: 4, scale: 0.71}, 0)
+  });
 
   var tl4 = _gsap.gsap.timeline({
     scrollTrigger: {
@@ -11798,13 +11797,11 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
       start: "0 0",
       scrub: 1.8,
       end: "+=171%",
-      id: "#b4" // markers: true,
-
+      id: "#b4"
     },
     onComplete: aClass,
     onUpdate: rClass
-  }).addLabel("b4", 0); // tl4.fromTo(settings, {angle: 1.3}, {delay: 0.1, duration: 8, angle: 1.5}, 0)
-
+  }).addLabel("b4", 0);
 
   tl4.fromTo("#circles", {
     filter: "blur(2px)"
@@ -11908,8 +11905,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     opacity: 0,
     transform: 'translateX(0px)',
     ease: "[0.74,0.2,1,-0.22]"
-  }, "<-=0.1"); // tl4.fromTo(settings, {offset: 0}, {duration: 4, offset: 0}, 0)
-  // tl4.fromTo(settings, {scale: 0.68}, {duration: 4, scale: 0.54}, 0)
+  }, "<-=0.1");
 
   var tl5 = _gsap.gsap.timeline({
     scrollTrigger: {
@@ -11972,9 +11968,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     transform: 'translateY(0px) scale(1)',
     lineHeight: 1,
     ease: "[0.74,0.2,1,-0.22]"
-  }, ">-=8"); // tl5.fromTo(settings, {offset: 0}, {delay: 0.11, duration: 4, offset: 0}, 0)
-  // tl5.fromTo(settings, {scale: 0.54}, {delay: 0.11, duration: 4, scale: 0.45}, 0)
-  // tl5.set(settings, {offset: 0, scale: 0, angle: 0})
+  }, ">-=8");
 
   var tlTree = _gsap.gsap.timeline({
     scrollTrigger: {
@@ -12030,62 +12024,41 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     angle: 0.5,
     iterations: 2,
     duration: 1.8
-  }, "b5+=0.01"); // const btns = document.querySelectorAll('.menu a');
-  // btns.forEach(function(btn) {
-  //   btn.addEventListener('click', function(e){
-  //     // var st = timeline.scrollTrigger;
-  //     // var pos = st.start + (st.end - st.start) * (timeline.labels['section'] / timeline.duration());
-  //     // gsap.to(window, {scrollTo: pos, overwrite: true, duration: 1});
-  //     // gsap.to( window, {duration: 1, scrollTo: 2000} );
-  //     tlTree.to( settings, {angle: 0.1, scale: 0.72, duration: 1} );
-  //   });
-  // })
-
-  var menuItem1 = document.querySelector('.menu-item-1');
-  var menuItem2 = document.querySelector('.menu-item-2');
-  var menuItem3 = document.querySelector('.menu-item-3');
-  var menuItem4 = document.querySelector('.menu-item-4');
+  }, "b5+=0.01");
 
   _gsap.gsap.utils.toArray("nav a").forEach(function (a) {
     a.addEventListener("click", function (e) {
       e.preventDefault();
 
       var id = e.target.getAttribute("href"),
-          trigger = _ScrollTrigger.ScrollTrigger.getById(id);
+          trigger = _ScrollTrigger.ScrollTrigger.getById(id); // gsap.to(window, {
+      //   duration: 1,
+      //   scrollTo: trigger ? trigger.start : id,
+      // });
 
-      _gsap.gsap.to(window, {
-        duration: 1,
-        scrollTo: trigger ? trigger.start : id
-      });
+
+      scroll.scrollTo(trigger ? trigger.start : id);
     });
-  });
+  }); // const menuItem1 = document.querySelector('.menu-item-1');
+  // const menuItem2 = document.querySelector('.menu-item-2');
+  // const menuItem3 = document.querySelector('.menu-item-3');
+  // const menuItem4 = document.querySelector('.menu-item-4');
+  // // menuItem1.addEventListener("click", () => {
+  // //   tl0.timeScale(50.0).play(1, true)
+  // // })
+  // // menuItem2.addEventListener("click", () => {
+  // //   tl1.timeScale(50.0).play(1, true)
+  // //   tlTree.play("b1+=0.01")
+  // // })
+  // // menuItem3.addEventListener("click", () => {
+  // //   tl2.timeScale(50.0).play(0, true)
+  // //   tlTree.play("b2+=0.01")
+  // // })
+  // // menuItem4.addEventListener("click", () => {
+  // //   tl3.timeScale(50.0).play(0, true)
+  // //   tlTree.play("b3+=0.01")
+  // // })
 
-  menuItem1.addEventListener("click", function () {
-    tl0.timeScale(50.0).play(0, true);
-    console.log('1');
-  });
-  menuItem2.addEventListener("click", function () {
-    // tl0.timeScale(60.0).play(0, true)
-    tl1.timeScale(50.0).play(0, true);
-    tlTree.play("b1+=0.01"); // tlTree.pause("b1+=0.1")
-
-    console.log('2');
-  });
-  menuItem3.addEventListener("click", function () {
-    // tl0.timeScale(70.0).play(0, true)
-    // tl1.timeScale(60.0).play(0, true)
-    tl2.timeScale(50.0).play(0, true);
-    tlTree.play("b2+=0.01");
-    console.log('3');
-  });
-  menuItem4.addEventListener("click", function () {
-    // tl0.timeScale(80.0).play(0, true)
-    // tl1.timeScale(70.0).play(0, true)
-    // tl2.timeScale(60.0).play(0, true)
-    tl3.timeScale(50.0).play(0, true);
-    tlTree.play("b3+=0.01");
-    console.log('4');
-  });
 
   function aClass() {
     items.classList.add("active");
@@ -12214,6 +12187,8 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
 
   ;
   var vis = document.querySelector('.initiator');
+  var soundIcon = document.querySelector('.sound-icon');
+  var soundIconSvg = document.querySelector('.sound-icon svg');
   var v = null;
 
   vis.onclick = function () {
@@ -12232,119 +12207,21 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
       if (v.isPlaying()) {
         v.stop();
         el.style.backgroundColor = '#cbff33';
+        soundIcon.classList.remove('active');
       } else {
         v.start();
         el.style.backgroundColor = 'rgba(232,237,218,0.9)';
+        soundIcon.classList.add('active');
       }
     };
   }();
-}); // console.clear();
-// const renderer = new THREE.WebGLRenderer({ alpha: true, antialiase: true });
-// const w = document.querySelector('.w');
-// renderer.setSize(window.innerWidth, window.innerHeight);
-// w.appendChild(renderer.domElement);
-// const scene = new THREE.Scene();
-// const camera = new THREE.PerspectiveCamera(
-//   80, window.innerWidth / window.innerHeight, 1, 1000
-// );
-// // camera.position.z = 540;
-// camera.position.z = 7; /* for dino */
-// camera.position.y = 1.5;
-// let light = new THREE.DirectionalLight(0xefefff, 1.8);
-// light.position.set(1, 1, 1).normalize();
-// scene.add(light);
-// window.addEventListener("resize", function () {
-//   let width = window.innerWidth;
-//   let height = window.innerHeight;
-//   renderer.setSize(width, height);
-//   camera.aspect = width / height;
-//   camera.updateProjectionMatrix();
-// });
-// const loader = new GLTFLoader();
-// let mixer;
-// let model;
-// loader.load(
-//   // "glass_circles_copy.gltf",
-//   "dinosaur.glb",
-//   function (gltf) {
-//     gltf.scene.traverse(function (node) {
-//       if (node instanceof THREE.Mesh) {
-//         node.castShadow = true;
-//         node.material.side = THREE.DoubleSide;
-//       }
-//     });
-//     model = gltf.scene;
-//     scene.add(model);
-//     mixer = new THREE.AnimationMixer(model);
-//     const action = mixer.clipAction(gltf.animations[0]);
-//     action.play();
-//     createAnimation(mixer, action, gltf.animations[0]);
-//   }
-// );
-// const clock = new THREE.Clock();
-// function render() {
-//   requestAnimationFrame(render);
-//   const delta = clock.getDelta();
-//   if (mixer != null) mixer.update(delta);
-//   // if (model) model.rotation.y += 0.0025;
-//   renderer.render(scene, camera);
-// }
-// render();
-// function createAnimation(mixer, action, clip) {
-//   let proxy = {
-//     get time() {
-//       return mixer.time;
-//     },
-//     set time(value) {
-//       action.paused = false;
-//       mixer.setTime(value);
-//       action.paused = true;
-//     }
-//   };
-//   let scrollingTL = gsap.timeline({
-//     scrollTrigger: {
-//       // trigger: renderer.domElement,
-//       start: "top center",
-//       end: "bottom center",
-//       scrub: 1,
-//       onUpdate: function () {
-//         camera.updateProjectionMatrix();
-//       }
-//     }
-//   });
-//   scrollingTL.to(proxy, {
-//     time: clip.duration,
-//     repeat: 0
-//   });
-// }
-// // init();
-// // animate();
-// // function init() {
-// //   gsap.to('.w', {
-// //     scrollTrigger: {
-// //       trigger: renderer.domElement,
-// //       start: "top center",
-// //       end: "bottom top",
-// //       scrub: true,
-// //       toggleActions: "restart pause resume pause"
-// //     },
-// //     y: Math.PI
-// //   });
-// //   gsap.to('.w', {duration: 3, translateY: '-300px'}, 0)
-// // }
-// // function animate() {
-// //   requestAnimationFrame(animate);
-// //   renderer.render(scene, camera);
-// // }
-// function onMouseMove(e) {
-//   const x = e.clientX
-//   const y = e.clientY
-//   gsap.to(scene.rotation, {
-//     y: gsap.utils.mapRange(0, window.innerWidth, 1, -1, x),
-//     x: gsap.utils.mapRange(0, window.innerHeight, 1, -1, y),
-//   })
-// }
-// window.addEventListener('mousemove', onMouseMove)
+
+  soundIcon.addEventListener("click", function () {
+    soundIcon.classList.add('mute');
+    soundIconSvg.animationsPaused() ? soundIconSvg.unpauseAnimations() : soundIconSvg.pauseAnimations();
+    vis.click();
+  });
+});
 },{"gsap":"../node_modules/gsap/index.js","gsap/ScrollTrigger":"../node_modules/gsap/ScrollTrigger.js","gsap/ScrollToPlugin":"../node_modules/gsap/ScrollToPlugin.js","./cursor":"js/cursor.js","./preloader":"js/preloader.js","locomotive-scroll":"../node_modules/locomotive-scroll/dist/locomotive-scroll.esm.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';

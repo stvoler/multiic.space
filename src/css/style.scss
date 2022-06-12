@@ -220,6 +220,33 @@ header,
   grid-column-start: 2;
 }
 
+.sound-icon{
+  position: fixed;
+  top: 25px;
+  right: 27px;
+  width: 54px;
+  height: 44px;
+  cursor: pointer;
+  display: none;
+  &.active,
+  &.mute{
+    display: block;
+    z-index: 9;
+  }
+  &.active{
+    &.mute{
+      opacity: 1;
+    }
+  }
+  &.mute{
+    opacity: 0.4;
+  }
+  svg{
+    width: 100%;
+    height: 100%;
+  }
+}
+
 .menu {
   display: flex;
   flex-direction: column;
