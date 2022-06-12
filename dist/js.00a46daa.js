@@ -11503,7 +11503,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     width: '1px'
   }, {
     delay: 4.8,
-    duration: 8.5,
+    duration: 7.2,
     width: 'calc(100vw - 80px)',
     ease: "[0.74,0.2,1,-0.22]"
   });
@@ -11999,40 +11999,44 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
   tlTree.to(settings, {
     angle: 0,
     scale: 0.53,
-    duration: 0.1
-  }, "b1+=0.01");
+    duration: 0.4
+  }, "b1+=0.2");
   tlTree.to(settings, {
-    angle: 0.72,
+    angle: 0.63,
     scale: 0.58,
     duration: 1.8
   }, ">");
   tlTree.to(settings, {
-    angle: 0.4,
+    angle: 0.5,
     scale: 0.53,
     duration: 1.8
   }, "b2+=0.01");
   tlTree.to(settings, {
-    angle: 0.63,
+    angle: 0.72,
     scale: 0.59,
     duration: 1.8
   }, "b3+=0.01");
   tlTree.to(settings, {
-    angle: 0.3,
+    angle: 0.63,
     scale: 0.57,
     duration: 1.8
   }, "b4+=0.01");
   tlTree.to(settings, {
     angle: 0.5,
     scale: 0.54,
-    iterations: 10,
     duration: 0.9
-  }, "b4+=10%");
+  }, ">");
   tlTree.to(settings, {
     angle: 0.5,
     scale: 0.54,
-    iterations: 2,
+    iterations: 3,
+    duration: 0.05
+  }, ">");
+  tlTree.to(settings, {
+    angle: 0.5,
+    scale: 0.54,
     duration: 0.8
-  }, "b4+=60%");
+  }, ">");
 
   _gsap.gsap.utils.toArray("nav a").forEach(function (a) {
     a.addEventListener("click", function (e) {
