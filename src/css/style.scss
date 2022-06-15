@@ -325,7 +325,7 @@ a {
   grid-template-columns: 1fr;
   padding: 89px 40px 40px 40px;
   // height: 100vh;
-  height: calc(100vh - 80px);
+  // height: calc(100vh - 80px);
   grid-column: 1/-1;
   &.active {
     grid-column: 1/-1;
@@ -334,7 +334,7 @@ a {
     margin: auto;
     width: 100vw;
     // height: 100vh;
-    height: calc(100vh - 80px);
+    // height: calc(100vh - 80px);
     position: relative;
     color: var(--color-text);
     &:before {
@@ -470,6 +470,7 @@ p {
 .block-5 {
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
+  height: calc(100vh - 80px);
   .title {
     grid-column: 1/-1;
     grid-row: 1;
