@@ -156,7 +156,7 @@ preloader('.item').then(() => {
     tl0.to("#circles", {duration: 1.9, filter: "blur(2px)"})
     tl0.to(music, {playbackRate: 0.09, volume: 0.45})
     // tl0.to(".menu", {duration: 3, translateY: '-300px'}, 0)
-    .to("#trigger", {duration: 4, translateX: '30vw'}, 0)
+    .to("#trigger", {duration: 10, translateX: '30vw'}, 0)
     .addLabel("b0", ">")
     
     let tl1 = gsap.timeline({
@@ -261,9 +261,9 @@ preloader('.item').then(() => {
     tl4.fromTo(".block-4 .text-3, .block-4 .text-4", {transform: 'translateY(0px) scaleY(1)'}, {delay: 0.2, duration: 10, opacity: 0, transform: 'translateY(-210px) scaleY(1.1)', ease: "[0.74,0.2,1,-0.22]"}, ">-=8") 
     tl4.to("#circles", {duration: 1.9, filter: "blur(2px)"})
     tl4.to(music, {playbackRate: 0.09, volume: 0.45})
-    tl4.fromTo("header .line-1", {opacity: 0.72, transform: 'translateX(-74vw)'}, {delay: 0.7, duration: 0.9, opacity: 0, transform: 'translateX(0px)', ease: "[0.74,0.2,1,-0.22]"})
-    tl4.fromTo("header .line-2", {opacity: 0.72, transform: 'translateX(-50vw)'}, {delay: 0.7, duration: 0.9, opacity: 0, transform: 'translateX(0px)', ease: "[0.74,0.2,1,-0.22]"})
-    tl4.fromTo("header .line-3", {opacity: 0.72, transform: 'translateX(-26vw)'}, {delay: 0.7, duration: 0.9, opacity: 0, transform: 'translateX(0px)', ease: "[0.74,0.2,1,-0.22]"})
+    tl4.fromTo("header .line-1", {opacity: 0.72, transform: 'translateX(-74vw)'}, {delay: 0.7, duration: 0.9, opacity: 0, transform: 'translateX(-74vw)', ease: "[0.74,0.2,1,-0.22]"})
+    tl4.fromTo("header .line-2", {opacity: 0.72, transform: 'translateX(-50vw)'}, {delay: 0.7, duration: 0.9, opacity: 0, transform: 'translateX(-50vw)', ease: "[0.74,0.2,1,-0.22]"})
+    tl4.fromTo("header .line-3", {opacity: 0.72, transform: 'translateX(-26vw)'}, {delay: 0.7, duration: 0.9, opacity: 0, transform: 'translateX(-26vw)', ease: "[0.74,0.2,1,-0.22]"})
 
     let tl5 = gsap.timeline({
       scrollTrigger: {

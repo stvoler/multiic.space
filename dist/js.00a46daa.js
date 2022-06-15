@@ -11462,7 +11462,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     volume: 0.45
   }) // tl0.to(".menu", {duration: 3, translateY: '-300px'}, 0)
   .to("#trigger", {
-    duration: 4,
+    duration: 10,
     translateX: '30vw'
   }, 0).addLabel("b0", ">");
 
@@ -11864,7 +11864,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     delay: 0.7,
     duration: 0.9,
     opacity: 0,
-    transform: 'translateX(0px)',
+    transform: 'translateX(-74vw)',
     ease: "[0.74,0.2,1,-0.22]"
   });
   tl4.fromTo("header .line-2", {
@@ -11874,7 +11874,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     delay: 0.7,
     duration: 0.9,
     opacity: 0,
-    transform: 'translateX(0px)',
+    transform: 'translateX(-50vw)',
     ease: "[0.74,0.2,1,-0.22]"
   });
   tl4.fromTo("header .line-3", {
@@ -11884,7 +11884,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     delay: 0.7,
     duration: 0.9,
     opacity: 0,
-    transform: 'translateX(0px)',
+    transform: 'translateX(-26vw)',
     ease: "[0.74,0.2,1,-0.22]"
   });
 
@@ -12269,7 +12269,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50767" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62328" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
