@@ -11400,7 +11400,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
       repeat: true,
       pin: ".items0",
       start: "0 0",
-      scrub: 1.8,
+      scrub: 0.9,
       end: "+=117%",
       id: "#b0" // markers: true,
       // onEnter: () => {
@@ -11434,14 +11434,12 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     filter: "blur(0px)"
   });
   tl0.fromTo(".block-0 .title", {
-    transform: 'translateY(0px) scaleY(1)',
-    lineHeight: 1
+    transform: 'translateY(0px) scaleY(1)'
   }, {
     delay: 0.3,
     duration: 12,
     opacity: 0,
-    transform: 'translateY(-200px) scaleY(4.5)',
-    lineHeight: 0.8,
+    transform: 'translateY(-30px) scaleY(3.6)',
     ease: "[0.74,0.2,1,-0.22]"
   });
   tl0.fromTo(".block-0 .text", {
@@ -11450,9 +11448,13 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     delay: 0.1,
     duration: 12,
     opacity: 0,
-    transform: 'translateY(-210px) scaleY(1.1)',
+    transform: 'translateY(-80px) scaleY(1.1)',
     ease: "[0.74,0.2,1,-0.22]"
-  }, ">-=8");
+  }, ">-=8").to("#trigger", {
+    duration: 10,
+    opacity: 0,
+    translateY: '-80px'
+  }, ">-=10");
   tl0.to("#circles", {
     duration: 1.9,
     filter: "blur(2px)"
@@ -11460,11 +11462,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
   tl0.to(music, {
     playbackRate: 0.09,
     volume: 0.45
-  }) // tl0.to(".menu", {duration: 3, translateY: '-300px'}, 0)
-  .to("#trigger", {
-    duration: 10,
-    translateX: '30vw'
-  }, 0).addLabel("b0", ">");
+  }).addLabel("b0", ">");
 
   var tl1 = _gsap.gsap.timeline({
     scrollTrigger: {
@@ -11472,7 +11470,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
       repeat: true,
       pin: ".items1",
       start: "0 0",
-      scrub: 1.8,
+      scrub: 0.9,
       end: "+=117%",
       id: "#b1"
     },
@@ -11515,14 +11513,12 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     ease: "[0.74,0.2,1,-0.22]"
   });
   tl1.fromTo(".block-1 .title", {
-    transform: 'translateY(0px) scaleY(1)',
-    lineHeight: 1
+    transform: 'translateY(0px) scaleY(1)'
   }, {
     delay: 0.3,
     duration: 12,
     opacity: 0,
-    transform: 'translateY(-200px) scaleY(4.5)',
-    lineHeight: 0.8,
+    transform: 'translateY(-30px) scaleY(4)',
     ease: "[0.74,0.2,1,-0.22]"
   });
   tl1.fromTo(".block-1 .text", {
@@ -11531,7 +11527,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     delay: 0.3,
     duration: 12,
     opacity: 0,
-    transform: 'translateY(-210px) scaleY(1.1)',
+    transform: 'translateY(-80px) scaleY(1.1)',
     ease: "[0.74,0.2,1,-0.22]"
   }, ">-=8");
   tl1.to("#circles", {
@@ -11569,7 +11565,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
       repeat: true,
       pin: ".items2",
       start: "0 0",
-      scrub: 1.8,
+      scrub: 0.9,
       end: "+=117%",
       id: "#b2"
     },
@@ -11598,14 +11594,12 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     padding: '0'
   });
   tl2.fromTo(".block-2 .title", {
-    transform: 'translateY(0px) scaleY(1)',
-    lineHeight: 1
+    transform: 'translateY(0px) scaleY(1)'
   }, {
     delay: 0.3,
     duration: 12,
     opacity: 0,
-    transform: 'translateY(-200px) scaleY(4.5)',
-    lineHeight: 0.8,
+    transform: 'translateY(-30px) scaleY(4)',
     ease: "[0.74,0.2,1,-0.22]"
   }, ">1.8");
   tl2.fromTo(".block-2 .text-1", {
@@ -11614,7 +11608,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     delay: 0.2,
     duration: 10,
     opacity: 0,
-    transform: 'translateY(-210px) scaleY(1.1)',
+    transform: 'translateY(-80px) scaleY(1.1)',
     ease: "[0.74,0.2,1,-0.22]"
   }, ">-=8");
   tl2.fromTo(".block-2 .text-2", {
@@ -11623,7 +11617,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     delay: 0.2,
     duration: 10,
     opacity: 0,
-    transform: 'translateY(-210px) scaleY(1.1)',
+    transform: 'translateY(-80px) scaleY(1.1)',
     ease: "[0.74,0.2,1,-0.22]"
   }, ">-=8");
   tl2.to("#circles", {
@@ -11671,7 +11665,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
       repeat: true,
       pin: ".items3",
       start: "0 0",
-      scrub: 1.8,
+      scrub: 0.9,
       end: "+=117%",
       id: "#b3"
     },
@@ -11700,14 +11694,12 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     padding: '0'
   });
   tl3.fromTo(".block-3 .title", {
-    transform: 'translateY(0px) scaleY(1)',
-    lineHeight: 1
+    transform: 'translateY(0px) scaleY(1)'
   }, {
     delay: 0.3,
     duration: 12,
     opacity: 0,
-    transform: 'translateY(-200px) scaleY(4.5)',
-    lineHeight: 0.8,
+    transform: 'translateY(-30px) scaleY(4)',
     ease: "[0.74,0.2,1,-0.22]"
   }, ">1.8");
   tl3.fromTo(".block-3 .text-1", {
@@ -11716,7 +11708,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     delay: 0.2,
     duration: 10,
     opacity: 0,
-    transform: 'translateY(-210px) scaleY(1.1)',
+    transform: 'translateY(-80px) scaleY(1.1)',
     ease: "[0.74,0.2,1,-0.22]"
   }, ">-=8");
   tl3.fromTo(".block-3 .text-2", {
@@ -11725,7 +11717,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     delay: 0.2,
     duration: 10,
     opacity: 0,
-    transform: 'translateY(-210px) scaleY(1.1)',
+    transform: 'translateY(-80px) scaleY(1.1)',
     ease: "[0.74,0.2,1,-0.22]"
   }, ">-=8");
   tl3.fromTo(".block-3 .text-3", {
@@ -11734,7 +11726,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     delay: 0.2,
     duration: 10,
     opacity: 0,
-    transform: 'translateY(-210px) scaleY(1.1)',
+    transform: 'translateY(-80px) scaleY(1.1)',
     ease: "[0.74,0.2,1,-0.22]"
   }, ">-=8");
   tl3.to("#circles", {
@@ -11782,7 +11774,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
       repeat: true,
       pin: ".items4",
       start: "0 0",
-      scrub: 1.8,
+      scrub: 0.9,
       end: "+=117%",
       id: "#b4"
     },
@@ -11812,14 +11804,12 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     ease: "[0.74,0.2,1,-0.22]"
   });
   tl4.fromTo(".block-4 .title", {
-    transform: 'translateY(0px) scaleY(1)',
-    lineHeight: 1
+    transform: 'translateY(0px) scaleY(1)'
   }, {
     delay: 0.3,
     duration: 12,
     opacity: 0,
-    transform: 'translateY(-200px) scaleY(4.5)',
-    lineHeight: 0.8,
+    transform: 'translateY(-30px) scaleY(4)',
     ease: "[0.74,0.2,1,-0.22]"
   }, ">1.8");
   tl4.fromTo(".block-4 .text-1", {
@@ -11828,7 +11818,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     delay: 0.2,
     duration: 10,
     opacity: 0,
-    transform: 'translateY(-210px) scaleY(1.1)',
+    transform: 'translateY(-80px) scaleY(1.1)',
     ease: "[0.74,0.2,1,-0.22]"
   }, ">-=8");
   tl4.fromTo(".block-4 .text-2", {
@@ -11837,7 +11827,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     delay: 0.2,
     duration: 10,
     opacity: 0,
-    transform: 'translateY(-210px) scaleY(1.1)',
+    transform: 'translateY(-80px) scaleY(1.1)',
     ease: "[0.74,0.2,1,-0.22]"
   }, ">-=8");
   tl4.fromTo(".block-4 .text-3, .block-4 .text-4", {
@@ -11846,7 +11836,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     delay: 0.2,
     duration: 10,
     opacity: 0,
-    transform: 'translateY(-210px) scaleY(1.1)',
+    transform: 'translateY(-80px) scaleY(1.1)',
     ease: "[0.74,0.2,1,-0.22]"
   }, ">-=8");
   tl4.to("#circles", {
@@ -11894,7 +11884,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
       repeat: true,
       pin: ".items5",
       start: "0 0",
-      scrub: 1.8,
+      scrub: 0.9,
       end: "+=117%",
       id: "#b5"
     },
@@ -12269,7 +12259,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62328" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49361" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

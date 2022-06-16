@@ -348,7 +348,7 @@ a {
 }
 
 .text {
-  font-size: clamp(12px, 1.1vw, 18px);
+  font-size: clamp(12px, 1vw, 18px);
   line-height: 1.2;
   p {
     &:nth-last-child(1) {
@@ -372,6 +372,11 @@ p {
     grid-column: 4;
     grid-row: 3;
     padding-left: 0;
+  }
+  .button{
+    grid-column: 4;
+    grid-row: 4;
+    margin-top: 15px;
   }
 }
 
