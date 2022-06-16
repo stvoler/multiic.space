@@ -11254,7 +11254,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
   var scroll = new _locomotiveScroll.default({
     el: menuEl,
     smooth: true,
-    lerp: 0.1
+    lerp: 0.08
   });
   var cursor = new _cursor.default(document.querySelector('.cursor'));
   var items = document.querySelector('section');
@@ -11400,7 +11400,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
       repeat: true,
       pin: ".items0",
       start: "0 0",
-      scrub: 0.9,
+      scrub: 0.1,
       end: "+=117%",
       id: "#b0" // markers: true,
       // onEnter: () => {
@@ -11469,7 +11469,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
       repeat: true,
       pin: ".items1",
       start: "0 0",
-      scrub: 0.9,
+      scrub: 0.1,
       end: "+=117%",
       id: "#b1"
     },
@@ -11540,7 +11540,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     transform: 'translateX(0px)'
   }, {
     delay: 0.7,
-    duration: 0.9,
+    duration: 2.7,
     opacity: 0.72,
     transform: 'translateX(-50vw)',
     ease: "power1.in"
@@ -11550,7 +11550,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     transform: 'translateX(0px)'
   }, {
     delay: 0.5,
-    duration: 0.7,
+    duration: 1.8,
     opacity: 0,
     transform: 'translateX(0px)',
     ease: "power1.in"
@@ -11562,7 +11562,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
       repeat: true,
       pin: ".items2",
       start: "0 0",
-      scrub: 0.9,
+      scrub: 0.1,
       end: "+=117%",
       id: "#b2"
     },
@@ -11623,11 +11623,11 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     volume: 0.45
   }, "<");
   tl2.fromTo("header .line-1", {
-    opacity: 0.4,
+    opacity: 0.72,
     transform: 'translateX(-50vw)'
   }, {
     delay: 0.7,
-    duration: 0.9,
+    duration: 2.7,
     opacity: 0.72,
     transform: 'translateX(-66vw)',
     ease: "power1.in"
@@ -11637,7 +11637,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     transform: 'translateX(0px)'
   }, {
     delay: 0.5,
-    duration: 0.7,
+    duration: 1.8,
     opacity: 0.72,
     transform: 'translateX(-34vw)',
     ease: "power1.in"
@@ -11647,7 +11647,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     transform: 'translateX(0px)'
   }, {
     delay: 0.5,
-    duration: 0.7,
+    duration: 1.8,
     opacity: 0,
     transform: 'translateX(0px)',
     ease: "power1.in"
@@ -11659,7 +11659,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
       repeat: true,
       pin: ".items3",
       start: "0 0",
-      scrub: 0.9,
+      scrub: 0.1,
       end: "+=117%",
       id: "#b3"
     },
@@ -11732,7 +11732,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     transform: 'translateX(-66vw)'
   }, {
     delay: 0.7,
-    duration: 0.9,
+    duration: 2.7,
     opacity: 0.72,
     transform: 'translateX(-74vw)',
     ease: "power1.in"
@@ -11742,7 +11742,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     transform: 'translateX(-34vw)'
   }, {
     delay: 0.5,
-    duration: 0.7,
+    duration: 1.8,
     opacity: 0.72,
     transform: 'translateX(-50vw)',
     ease: "power1.in"
@@ -11752,7 +11752,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     transform: 'translateX(0px)'
   }, {
     delay: 0.5,
-    duration: 0.7,
+    duration: 1.8,
     opacity: 0.72,
     transform: 'translateX(-26vw)',
     ease: "power1.in"
@@ -11764,7 +11764,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
       repeat: true,
       pin: ".items4",
       start: "0 0",
-      scrub: 0.9,
+      scrub: 0.1,
       end: "+=117%",
       id: "#b4"
     },
@@ -11838,7 +11838,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     transform: 'translateX(-74vw)'
   }, {
     delay: 0.7,
-    duration: 0.9,
+    duration: 2.7,
     opacity: 0,
     transform: 'translateX(-74vw)',
     ease: "power1.in"
@@ -11848,7 +11848,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     transform: 'translateX(-50vw)'
   }, {
     delay: 0.5,
-    duration: 0.7,
+    duration: 1.8,
     opacity: 0,
     transform: 'translateX(-50vw)',
     ease: "power1.in"
@@ -11858,7 +11858,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     transform: 'translateX(-26vw)'
   }, {
     delay: 0.5,
-    duration: 0.7,
+    duration: 1.8,
     opacity: 0,
     transform: 'translateX(-26vw)',
     ease: "power1.in"
@@ -11870,7 +11870,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
       repeat: true,
       pin: ".items5",
       start: "0 0",
-      scrub: 0.9,
+      scrub: 0.8,
       end: "+=117%",
       id: "#b5"
     },
