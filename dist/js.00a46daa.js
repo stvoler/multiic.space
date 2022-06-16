@@ -11436,33 +11436,32 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
   tl0.fromTo(".block-0 .title", {
     transform: 'translateY(0px) scaleY(1)'
   }, {
-    delay: 0.3,
     duration: 12,
     opacity: 0,
-    transform: 'translateY(-30px) scaleY(3.6)',
-    ease: "[0.74,0.2,1,-0.22]"
+    transform: 'translateY(-20px) scaleY(3.6)',
+    ease: "power1.in"
   });
   tl0.fromTo(".block-0 .text", {
     transform: 'translateY(0px) scaleY(1)'
   }, {
-    delay: 0.1,
     duration: 12,
     opacity: 0,
-    transform: 'translateY(-80px) scaleY(1.1)',
-    ease: "[0.74,0.2,1,-0.22]"
-  }, ">-=8").to("#trigger", {
+    transform: 'translateY(-40px) scaleY(1.1)',
+    ease: "power1.in"
+  }, "<").to("#trigger", {
     duration: 10,
     opacity: 0,
-    translateY: '-80px'
-  }, ">-=10");
+    translateY: '-40px',
+    ease: "power1.in"
+  }, "<");
   tl0.to("#circles", {
     duration: 1.9,
     filter: "blur(2px)"
-  });
+  }, "<");
   tl0.to(music, {
     playbackRate: 0.09,
     volume: 0.45
-  }).addLabel("b0", ">");
+  }, "<").addLabel("b0", ">");
 
   var tl1 = _gsap.gsap.timeline({
     scrollTrigger: {
@@ -11502,7 +11501,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     delay: 4.8,
     duration: 7.2,
     width: 'calc(100vw - 80px)',
-    ease: "[0.74,0.2,1,-0.22]"
+    ease: "power1.in"
   });
   tl1.fromTo(".item .border", {
     borderColor: '#000'
@@ -11510,53 +11509,51 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     delay: 2.7,
     duration: 4.5,
     borderColor: '#fff',
-    ease: "[0.74,0.2,1,-0.22]"
+    ease: "power1.in"
   });
   tl1.fromTo(".block-1 .title", {
     transform: 'translateY(0px) scaleY(1)'
   }, {
-    delay: 0.3,
     duration: 12,
     opacity: 0,
-    transform: 'translateY(-30px) scaleY(4)',
-    ease: "[0.74,0.2,1,-0.22]"
+    transform: 'translateY(-20px) scaleY(4)',
+    ease: "power1.in"
   });
   tl1.fromTo(".block-1 .text", {
     transform: 'translateY(0px) scaleY(1)'
   }, {
-    delay: 0.3,
-    duration: 12,
+    duration: 11,
     opacity: 0,
-    transform: 'translateY(-80px) scaleY(1.1)',
-    ease: "[0.74,0.2,1,-0.22]"
-  }, ">-=8");
+    transform: 'translateY(-40px) scaleY(1.1)',
+    ease: "power1.in"
+  }, "<");
   tl1.to("#circles", {
     duration: 1.9,
     filter: "blur(2px)"
-  });
+  }, "<");
   tl1.to(music, {
     playbackRate: 0.09,
     volume: 0.45
-  });
+  }, "<");
   tl1.fromTo("header .line-1", {
     opacity: 0,
     transform: 'translateX(0px)'
   }, {
-    delay: 0.5,
-    duration: 0.5,
+    delay: 0.7,
+    duration: 0.9,
     opacity: 0.72,
     transform: 'translateX(-50vw)',
-    ease: "[0.74,0.2,1,-0.22]"
+    ease: "power1.in"
   });
   tl1.fromTo("header .line-3", {
     opacity: 0,
     transform: 'translateX(0px)'
   }, {
-    delay: 0.7,
-    duration: 0.5,
+    delay: 0.5,
+    duration: 0.7,
     opacity: 0,
     transform: 'translateX(0px)',
-    ease: "[0.74,0.2,1,-0.22]"
+    ease: "power1.in"
   }).addLabel("b1", ">");
 
   var tl2 = _gsap.gsap.timeline({
@@ -11596,67 +11593,64 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
   tl2.fromTo(".block-2 .title", {
     transform: 'translateY(0px) scaleY(1)'
   }, {
-    delay: 0.3,
     duration: 12,
     opacity: 0,
-    transform: 'translateY(-30px) scaleY(4)',
-    ease: "[0.74,0.2,1,-0.22]"
-  }, ">1.8");
+    transform: 'translateY(-20px) scaleY(4)',
+    ease: "power1.in"
+  });
   tl2.fromTo(".block-2 .text-1", {
     transform: 'translateY(0px) scaleY(1)'
   }, {
-    delay: 0.2,
-    duration: 10,
+    duration: 11,
     opacity: 0,
-    transform: 'translateY(-80px) scaleY(1.1)',
-    ease: "[0.74,0.2,1,-0.22]"
-  }, ">-=8");
+    transform: 'translateY(-40px) scaleY(1.1)',
+    ease: "power1.in"
+  }, "<");
   tl2.fromTo(".block-2 .text-2", {
     transform: 'translateY(0px) scaleY(1)'
   }, {
-    delay: 0.2,
-    duration: 10,
+    duration: 11,
     opacity: 0,
-    transform: 'translateY(-80px) scaleY(1.1)',
-    ease: "[0.74,0.2,1,-0.22]"
-  }, ">-=8");
+    transform: 'translateY(-40px) scaleY(1.1)',
+    ease: "power1.in"
+  }, "<");
   tl2.to("#circles", {
     duration: 1.9,
     filter: "blur(2px)"
-  });
+  }, "<");
   tl2.to(music, {
     playbackRate: 0.09,
     volume: 0.45
-  });
+  }, "<");
   tl2.fromTo("header .line-1", {
     opacity: 0.4,
     transform: 'translateX(-50vw)'
   }, {
-    delay: 1.1,
-    duration: 1.8,
+    delay: 0.7,
+    duration: 0.9,
     opacity: 0.72,
     transform: 'translateX(-66vw)',
-    ease: "[0.74,0.2,1,-0.22]"
+    ease: "power1.in"
   });
   tl2.fromTo("header .line-2", {
     opacity: 0,
     transform: 'translateX(0px)'
   }, {
-    delay: 0.7,
-    duration: 0.5,
+    delay: 0.5,
+    duration: 0.7,
     opacity: 0.72,
     transform: 'translateX(-34vw)',
-    ease: "[0.74,0.2,1,-0.22]"
+    ease: "power1.in"
   });
   tl2.fromTo("header .line-3", {
     opacity: 0,
     transform: 'translateX(0px)'
   }, {
-    delay: 0.7,
-    duration: 0.5,
+    delay: 0.5,
+    duration: 0.7,
     opacity: 0,
     transform: 'translateX(0px)',
-    ease: "[0.74,0.2,1,-0.22]"
+    ease: "power1.in"
   });
 
   var tl3 = _gsap.gsap.timeline({
@@ -11696,76 +11690,72 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
   tl3.fromTo(".block-3 .title", {
     transform: 'translateY(0px) scaleY(1)'
   }, {
-    delay: 0.3,
     duration: 12,
     opacity: 0,
-    transform: 'translateY(-30px) scaleY(4)',
-    ease: "[0.74,0.2,1,-0.22]"
-  }, ">1.8");
+    transform: 'translateY(-20px) scaleY(4)',
+    ease: "power1.in"
+  });
   tl3.fromTo(".block-3 .text-1", {
     transform: 'translateY(0px) scaleY(1)'
   }, {
-    delay: 0.2,
-    duration: 10,
+    duration: 11,
     opacity: 0,
-    transform: 'translateY(-80px) scaleY(1.1)',
-    ease: "[0.74,0.2,1,-0.22]"
-  }, ">-=8");
+    transform: 'translateY(-40px) scaleY(1.1)',
+    ease: "power1.in"
+  }, "<");
   tl3.fromTo(".block-3 .text-2", {
     transform: 'translateY(0px) scaleY(1)'
   }, {
-    delay: 0.2,
-    duration: 10,
+    duration: 11,
     opacity: 0,
-    transform: 'translateY(-80px) scaleY(1.1)',
-    ease: "[0.74,0.2,1,-0.22]"
-  }, ">-=8");
+    transform: 'translateY(-40px) scaleY(1.1)',
+    ease: "power1.in"
+  }, "<");
   tl3.fromTo(".block-3 .text-3", {
     transform: 'translateY(0px) scaleY(1)'
   }, {
-    delay: 0.2,
-    duration: 10,
+    duration: 11,
     opacity: 0,
-    transform: 'translateY(-80px) scaleY(1.1)',
-    ease: "[0.74,0.2,1,-0.22]"
-  }, ">-=8");
+    transform: 'translateY(-20px) scaleY(1.1)',
+    ease: "power1.in"
+  }, "<");
   tl3.to("#circles", {
     duration: 1.9,
     filter: "blur(2px)"
-  });
+  }, "<");
   tl3.to(music, {
     playbackRate: 0.09,
     volume: 0.45
-  });
+  }, "<");
   tl3.fromTo("header .line-1", {
     opacity: 0.4,
     transform: 'translateX(-66vw)'
   }, {
-    delay: 1.1,
-    duration: 1.8,
+    delay: 0.7,
+    duration: 0.9,
     opacity: 0.72,
     transform: 'translateX(-74vw)',
-    ease: "[0.74,0.2,1,-0.22]"
+    ease: "power1.in"
   });
   tl3.fromTo("header .line-2", {
     opacity: 0.4,
     transform: 'translateX(-34vw)'
   }, {
-    delay: 0.7,
-    duration: 0.5,
+    delay: 0.5,
+    duration: 0.7,
     opacity: 0.72,
     transform: 'translateX(-50vw)',
-    ease: "[0.74,0.2,1,-0.22]"
+    ease: "power1.in"
   });
   tl3.fromTo("header .line-3", {
     opacity: 0.4,
     transform: 'translateX(0px)'
   }, {
-    delay: 0.7,
-    duration: 0.5,
+    delay: 0.5,
+    duration: 0.7,
     opacity: 0.72,
     transform: 'translateX(-26vw)',
-    ease: "[0.74,0.2,1,-0.22]"
+    ease: "power1.in"
   });
 
   var tl4 = _gsap.gsap.timeline({
@@ -11801,52 +11791,48 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
   }, {
     duration: 4.5,
     padding: '0',
-    ease: "[0.74,0.2,1,-0.22]"
+    ease: "power1.in"
   });
   tl4.fromTo(".block-4 .title", {
     transform: 'translateY(0px) scaleY(1)'
   }, {
-    delay: 0.3,
     duration: 12,
     opacity: 0,
-    transform: 'translateY(-30px) scaleY(4)',
-    ease: "[0.74,0.2,1,-0.22]"
-  }, ">1.8");
+    transform: 'translateY(-20px) scaleY(4)',
+    ease: "power1.in"
+  });
   tl4.fromTo(".block-4 .text-1", {
     transform: 'translateY(0px) scaleY(1)'
   }, {
-    delay: 0.2,
-    duration: 10,
+    duration: 11,
     opacity: 0,
-    transform: 'translateY(-80px) scaleY(1.1)',
-    ease: "[0.74,0.2,1,-0.22]"
-  }, ">-=8");
+    transform: 'translateY(-40px) scaleY(1.1)',
+    ease: "power1.in"
+  }, "<");
   tl4.fromTo(".block-4 .text-2", {
     transform: 'translateY(0px) scaleY(1)'
   }, {
-    delay: 0.2,
-    duration: 10,
+    duration: 11,
     opacity: 0,
-    transform: 'translateY(-80px) scaleY(1.1)',
-    ease: "[0.74,0.2,1,-0.22]"
-  }, ">-=8");
+    transform: 'translateY(-40px) scaleY(1.1)',
+    ease: "power1.in"
+  }, "<");
   tl4.fromTo(".block-4 .text-3, .block-4 .text-4", {
     transform: 'translateY(0px) scaleY(1)'
   }, {
-    delay: 0.2,
     duration: 10,
     opacity: 0,
-    transform: 'translateY(-80px) scaleY(1.1)',
-    ease: "[0.74,0.2,1,-0.22]"
-  }, ">-=8");
+    transform: 'translateY(-40px) scaleY(1.1)',
+    ease: "power1.in"
+  }, "<");
   tl4.to("#circles", {
     duration: 1.9,
     filter: "blur(2px)"
-  });
+  }, "<");
   tl4.to(music, {
     playbackRate: 0.09,
     volume: 0.45
-  });
+  }, "<");
   tl4.fromTo("header .line-1", {
     opacity: 0.72,
     transform: 'translateX(-74vw)'
@@ -11855,27 +11841,27 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     duration: 0.9,
     opacity: 0,
     transform: 'translateX(-74vw)',
-    ease: "[0.74,0.2,1,-0.22]"
+    ease: "power1.in"
   });
   tl4.fromTo("header .line-2", {
     opacity: 0.72,
     transform: 'translateX(-50vw)'
   }, {
-    delay: 0.7,
-    duration: 0.9,
+    delay: 0.5,
+    duration: 0.7,
     opacity: 0,
     transform: 'translateX(-50vw)',
-    ease: "[0.74,0.2,1,-0.22]"
+    ease: "power1.in"
   });
   tl4.fromTo("header .line-3", {
     opacity: 0.72,
     transform: 'translateX(-26vw)'
   }, {
-    delay: 0.7,
-    duration: 0.9,
+    delay: 0.5,
+    duration: 0.7,
     opacity: 0,
     transform: 'translateX(-26vw)',
-    ease: "[0.74,0.2,1,-0.22]"
+    ease: "power1.in"
   });
 
   var tl5 = _gsap.gsap.timeline({
@@ -11896,31 +11882,28 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     opacity: 0,
     transform: 'translateX(-74vw)'
   }, {
-    delay: 0.01,
-    duration: 0.01,
+    duration: 0.1,
     opacity: 0,
     transform: 'translateX(0px)',
-    ease: "[0.74,0.2,1,-0.22]"
+    ease: "power1.in"
   });
   tl5.fromTo("header .line-2", {
     opacity: 0,
     transform: 'translateX(-50vw)'
   }, {
-    delay: 0.01,
-    duration: 0.01,
+    duration: 0.1,
     opacity: 0,
     transform: 'translateX(0px)',
-    ease: "[0.74,0.2,1,-0.22]"
+    ease: "power1.in"
   });
   tl5.fromTo("header .line-3", {
     opacity: 0,
     transform: 'translateX(-26vw)'
   }, {
-    delay: 0.01,
-    duration: 0.01,
+    duration: 0.1,
     opacity: 0,
     transform: 'translateX(0px)',
-    ease: "[0.74,0.2,1,-0.22]"
+    ease: "power1.in"
   });
   tl5.fromTo("#circles", {
     filter: "blur(2px)"
@@ -11944,7 +11927,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     duration: 3.5,
     height: '20vh',
     transform: 'translateY(72vh)',
-    ease: "[0.74,0.2,1,-0.22]"
+    ease: "power1.in"
   });
   tl5.fromTo(".block-5 .title", {
     transform: 'translateY(1000px) scaleY(2)',
@@ -11954,7 +11937,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     duration: 12,
     transform: 'translateY(80px) scaleY(1)',
     lineHeight: 1,
-    ease: "[0.74,0.2,1,-0.22]"
+    ease: "power1.in"
   }, "1.8");
   tl5.fromTo(".block-5 .text", {
     transform: 'translateY(50px) scale(0.4)',
@@ -11964,7 +11947,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     duration: 10,
     transform: 'translateY(0px) scale(1)',
     lineHeight: 1,
-    ease: "[0.74,0.2,1,-0.22]"
+    ease: "power1.in"
   }, ">-=8");
 
   var tlTree = _gsap.gsap.timeline({
@@ -11996,7 +11979,7 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
   tlTree.to(settings, {
     angle: 0,
     scale: 0.55,
-    duration: 0.19
+    duration: 0.31
   }, "b1+=0.01");
   tlTree.to(settings, {
     angle: 0.63,
@@ -12259,7 +12242,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49361" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49330" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
