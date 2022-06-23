@@ -207,8 +207,8 @@ preloader('.item').then(() => {
     tl2.fromTo(".block-2 .text-2", {transform: 'translateY(0px) scaleY(1)'}, {duration: 11, opacity: 0, transform: 'translateY(-40px) scaleY(1.1)', ease: "power1.in"}, "<")
     tl2.to("#circles", {duration: 1.9, filter: "blur(2px)"}, "<")
     tl2.to(music, {playbackRate: 0.09, volume: 0.45}, "<")
-    tl2.fromTo("header .line-1", {opacity: 0.72, transform: 'translateX(-50vw)'}, {delay: 0.7, duration: 2.7, opacity: 0.72, transform: 'translateX(-66vw)', ease: "power1.in"})
-    tl2.fromTo("header .line-2", {opacity: 0, transform: 'translateX(0px)'}, {delay: 0.5, duration: 1.8, opacity: 0.72, transform: 'translateX(-34vw)', ease: "power1.in"})
+    tl2.fromTo("header .line-1", {opacity: 0.99, transform: 'translateX(-50vw)'}, {delay: 0.7, duration: 2.7, opacity: 0.99, transform: 'translateX(-66vw)', ease: "power1.in"})
+    tl2.fromTo("header .line-2", {opacity: 0, transform: 'translateX(0px)'}, {delay: 0.5, duration: 1.8, opacity: 0.99, transform: 'translateX(-34vw)', ease: "power1.in"})
     tl2.fromTo("header .line-3", {opacity: 0, transform: 'translateX(0px)'}, {delay: 0.5, duration: 1.8, opacity: 0, transform: 'translateX(0px)', ease: "power1.in"})
 
     let tl3 = gsap.timeline({
@@ -234,9 +234,9 @@ preloader('.item').then(() => {
     tl3.fromTo(".block-3 .text-3", {transform: 'translateY(0px) scaleY(1)'}, {duration: 11, opacity: 0, transform: 'translateY(-20px) scaleY(1.1)', ease: "power1.in"}, "<")
     tl3.to("#circles", {duration: 1.9, filter: "blur(2px)"}, "<")
     tl3.to(music, {playbackRate: 0.09, volume: 0.45}, "<")
-    tl3.fromTo("header .line-1", {opacity: 0.4, transform: 'translateX(-66vw)'}, {delay: 0.7, duration: 2.7, opacity: 0.72, transform: 'translateX(-74vw)', ease: "power1.in"})
-    tl3.fromTo("header .line-2", {opacity: 0.4, transform: 'translateX(-34vw)'}, {delay: 0.5, duration: 1.8, opacity: 0.72, transform: 'translateX(-50vw)', ease: "power1.in"})
-    tl3.fromTo("header .line-3", {opacity: 0.4, transform: 'translateX(0px)'}, {delay: 0.5, duration: 1.8, opacity: 0.72, transform: 'translateX(-26vw)', ease: "power1.in"})
+    tl3.fromTo("header .line-1", {opacity: 0.99, transform: 'translateX(-66vw)'}, {delay: 0.7, duration: 2.7, opacity: 0.99, transform: 'translateX(-74vw)', ease: "power1.in"})
+    tl3.fromTo("header .line-2", {opacity: 0.99, transform: 'translateX(-34vw)'}, {delay: 0.5, duration: 1.8, opacity: 0.99, transform: 'translateX(-50vw)', ease: "power1.in"})
+    tl3.fromTo("header .line-3", {opacity: 0.99, transform: 'translateX(0px)'}, {delay: 0.5, duration: 1.8, opacity: 0.99, transform: 'translateX(-26vw)', ease: "power1.in"})
 
     let tl4 = gsap.timeline({
       scrollTrigger: {
@@ -261,9 +261,9 @@ preloader('.item').then(() => {
     tl4.fromTo(".block-4 .text-3, .block-4 .text-4", {transform: 'translateY(0px) scaleY(1)'}, {duration: 10, opacity: 0, transform: 'translateY(-40px) scaleY(1.1)', ease: "power1.in"}, "<") 
     tl4.to("#circles", {duration: 1.9, filter: "blur(2px)"}, "<")
     tl4.to(music, {playbackRate: 0.09, volume: 0.45}, "<")
-    tl4.fromTo("header .line-1", {opacity: 0.72, transform: 'translateX(-74vw)'}, {delay: 0.7, duration: 2.7, opacity: 0, transform: 'translateX(-74vw)', ease: "power1.in"})
-    tl4.fromTo("header .line-2", {opacity: 0.72, transform: 'translateX(-50vw)'}, {delay: 0.5, duration: 1.8, opacity: 0, transform: 'translateX(-50vw)', ease: "power1.in"})
-    tl4.fromTo("header .line-3", {opacity: 0.72, transform: 'translateX(-26vw)'}, {delay: 0.5, duration: 1.8, opacity: 0, transform: 'translateX(-26vw)', ease: "power1.in"})
+    tl4.fromTo("header .line-1", {opacity: 0.99, transform: 'translateX(-74vw)'}, {delay: 0.7, duration: 2.7, opacity: 0, transform: 'translateX(-74vw)', ease: "power1.in"})
+    tl4.fromTo("header .line-2", {opacity: 0.99, transform: 'translateX(-50vw)'}, {delay: 0.5, duration: 1.8, opacity: 0, transform: 'translateX(-50vw)', ease: "power1.in"})
+    tl4.fromTo("header .line-3", {opacity: 0.99, transform: 'translateX(-26vw)'}, {delay: 0.5, duration: 1.8, opacity: 0, transform: 'translateX(-26vw)', ease: "power1.in"})
 
     let tl5 = gsap.timeline({
       scrollTrigger: {
@@ -310,6 +310,11 @@ preloader('.item').then(() => {
 
     gsap.utils.toArray("nav a").forEach(function(a) {
       a.addEventListener("click", function(e) {
+        let menuItems = document.querySelectorAll('.menu a');
+        menuItems.forEach(el => {
+          el.classList.remove('active');
+        })
+        a.classList.add('active');
         e.preventDefault();
         const id = e.target.getAttribute("href"),
               trigger = ScrollTrigger.getById(id);
