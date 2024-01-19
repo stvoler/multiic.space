@@ -11448,6 +11448,14 @@ var menuEl = document.querySelector('[data-scroll-container]'); // new ResizeObs
     opacity: 0,
     transform: 'translateY(-40px) scaleY(1.1)',
     ease: "power1.in"
+  }, "<");
+  tl0.fromTo(".block-0 .img", {
+    transform: 'translateY(0px) scaleY(1)'
+  }, {
+    duration: 12,
+    opacity: 0,
+    transform: 'translateY(-40px) scaleY(1.04)',
+    ease: "power1.in"
   }, "<").to("#trigger", {
     duration: 10,
     opacity: 0,
@@ -12247,7 +12255,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56120" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52898" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

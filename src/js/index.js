@@ -154,6 +154,7 @@ preloader('.item').then(() => {
     tl0.fromTo("#circles", {filter: "blur(0px)"}, {duration: 1.9, filter: "blur(0px)"})
     tl0.fromTo(".block-0 .title", {transform: 'translateY(0px) scaleY(1)'}, {duration: 12, opacity: 0, transform: 'translateY(-20px) scaleY(3.6)', ease: "power1.in"})
     tl0.fromTo(".block-0 .text", {transform: 'translateY(0px) scaleY(1)'}, {duration: 12, opacity: 0, transform: 'translateY(-40px) scaleY(1.1)', ease: "power1.in"}, "<")
+    tl0.fromTo(".block-0 .img", {transform: 'translateY(0px) scaleY(1)'}, {duration: 12, opacity: 0, transform: 'translateY(-40px) scaleY(1.04)', ease: "power1.in"}, "<")
     .to("#trigger", {duration: 10, opacity: 0, translateY: '-40px', ease: "power1.in"}, "<")
     tl0.to("#circles", {duration: 1.9, filter: "blur(2px)"}, "<")
     tl0.to(music, {playbackRate: 0.09, volume: 0.45}, "<")

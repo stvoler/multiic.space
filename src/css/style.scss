@@ -1,4 +1,34 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap");
+:root {
+  --font-1: 'Neue';
+}
+
+@font-face {
+  font-family: 'Neue';
+  src: url("../fonts/TTFirsNeue-Regular.woff2") format("woff2"), url("../fonts/TTFirsNeue-Regular.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Neue';
+  src: url("../fonts/TTFirsNeue-Light.woff2") format("woff2"), url("../fonts/TTFirsNeue-Light.woff") format("woff");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@function vw($desktop-size-px) {
+  @return calc($desktop-size-px * 100 / 1920) + vw;
+}
+
+@function auto-clamp($min-px, $max-px) {
+  @return clamp(#{$min-px + px}, #{vw($max-px)}, #{$max-px + px});
+}
+
+@function auto-calc($min-f-px, $min-d-px, $max-f-px, $max-d-px) {
+  @return calc(#{$min-f-px + px} + (#{$max-f-px} - #{$min-f-px}) * ((100vw - #{$min-d-px + px}) / (#{$max-d-px} - #{$min-d-px})));
+}
 
 *,
 *::after,
@@ -25,7 +55,7 @@ body {
   --cursor-stroke-width: 1px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-1);
   &.loading {
     overflow: hidden;
   }
@@ -210,10 +240,10 @@ header,
 }
 
 .title {
-  font-family: Inter;
+  font-family: var(--font-1);
   font-style: normal;
   font-weight: normal;
-  font-size: clamp(54px, 7vw, 100px);
+  font-size: auto-clamp(26, 81);
   line-height: 1;
   color: var(--color-text);
   margin: clamp(18px, 4vw, 54px) 0 auto 0;
@@ -363,6 +393,21 @@ a {
       margin-bottom: 0;
     }
   }
+  small{
+    white-space: nowrap;
+  }
+}
+
+.img{
+  grid-column: 1/3;
+  grid-row: 1/5;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  img{
+    width: auto-clamp(320, 540);
+    max-width: 100%;
+  }
 }
 
 p {
@@ -499,15 +544,15 @@ p {
     justify-content: center;
     grid-column: 1/-1;
     grid-row: 2;
-    font-size: clamp(32px, 4vw, 50px);
+    font-size: auto-clamp(23, 50);
     line-height: 1;
     div {
-      width: clamp(98px, 10vw, 113px);
-      min-width: clamp(98px, 10vw, 113px);
-      height: clamp(98px, 10vw, 113px);
+      width: auto-clamp(72, 113);
+      min-width: auto-clamp(72, 113);
+      height: auto-clamp(72, 113);
       color: var(--color-link);
       border: 1px solid var(--color-link);
-      margin: auto clamp(40px, 8vw, 112px);
+      margin: auto auto-clamp(20, 112);
       border-radius: 50%;
       display: flex;
       align-items: center;
