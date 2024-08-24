@@ -176,6 +176,7 @@ preloader('.item').then(() => {
     })
     tl1.set("header .line-1, header .line-2, header .line-3", {opacity: 0, transform: 'translateX(0px)'})
     .addLabel("b1", ">")
+    tl0.to('.w', {transform: 'translate(0vw, 0vw)', duration: 11}, "b1-=9")
     tl1.to("body", {duration: 9, background: '#23231b', color: '#fff'})
     tl1.fromTo(".block-1 .character", {filter: 'grayscale(0.5) brightness(0)', opacity: 0.2}, {duration: 9, filter: 'grayscale(0) brightness(1)', opacity: 1, ease: "power1.in"})
     tl1.fromTo(music, {playbackRate: 0.99, volume: 0.63}, {duration: 0.4, playbackRate: 1, volume: 0.63})
@@ -203,6 +204,7 @@ preloader('.item').then(() => {
       onUpdate: rClass
     })
     .addLabel("b2", 0)
+    tl1.to('.w', {transform: 'translate(-31vw, 6vw)', duration: 11}, "b2-=9")
     tl2.to("body", {duration: 9, background: '#492b28', color: '#fff'})
     tl2.fromTo(".block-2 .character", {filter: 'grayscale(0.5) brightness(0)', opacity: 0.2}, {duration: 9, filter: 'grayscale(0) brightness(1)', opacity: 1, ease: "power1.in"})
     tl2.fromTo("#circles", {filter: "blur(2px)"}, {duration: 1.9, filter: "blur(0px)"})
@@ -231,6 +233,7 @@ preloader('.item').then(() => {
       onUpdate: rClass
     })
     .addLabel("b3", 0)
+    tl2.to('.w', {transform: 'translate(0vw, 6vw)', duration: 11}, "b3-=9")
     tl3.to("body", {duration: 9, background: '#1f3133', color: '#fff'})
     tl3.fromTo(".block-3 .character", {filter: 'grayscale(0.5) brightness(0)', opacity: 0.2}, {duration: 9, filter: 'grayscale(0) brightness(1)', opacity: 1, ease: "power1.in"})
     tl3.fromTo("#circles", {filter: "blur(2px)"}, {duration: 1.9, filter: "blur(0px)"})
@@ -260,6 +263,7 @@ preloader('.item').then(() => {
       onUpdate: rClass
     })
     .addLabel("b4", 0)
+    tl3.to('.w', {transform: 'translate(31vw, 6vw)', duration: 11}, "b4-=9")
     tl4.to("body", {duration: 9, background: '#282533', color: '#fff'})
     tl4.fromTo(".block-4 .character", {filter: 'grayscale(0.5) brightness(0)', opacity: 0.2}, {duration: 9, filter: 'grayscale(0) brightness(1)', opacity: 1, ease: "power1.in"})
     tl4.fromTo("#circles", {filter: "blur(2px)"}, {duration: 1.9, filter: "blur(0px)"})
@@ -290,6 +294,7 @@ preloader('.item').then(() => {
       onUpdate: rClass
     })
     .addLabel("b5", 0)
+    tl4.to('.w', {transform: 'translate(0vw, 0vw)', duration: 11}, "b5-=9")
     tl5.fromTo("header .line-1", {opacity: 0, transform: 'translateX(-74vw)'}, {duration: 0.1, opacity: 0, transform: 'translateX(0px)', ease: "power1.in"})
     tl5.fromTo("header .line-2", {opacity: 0, transform: 'translateX(-50vw)'}, {duration: 0.1, opacity: 0, transform: 'translateX(0px)', ease: "power1.in"})
     tl5.fromTo("header .line-3", {opacity: 0, transform: 'translateX(-26vw)'}, {duration: 0.1, opacity: 0, transform: 'translateX(0px)', ease: "power1.in"})
@@ -311,13 +316,9 @@ preloader('.item').then(() => {
     tlTree.set(music, {playbackRate: 1, volume: 0.63})
     tlTree.to(settings, {angle: 0, scale: 0, duration: 1.5}, "b0+=0.01")
     tlTree.to(settings, {angle: 0, scale: 0.55, duration: 0.31}, "b1+=0.01")
-    tlTree.to('.w', {transform: 'translate(-31vw, 6vw)', duration: 0.5}, ">")
     tlTree.to(settings, {angle: 0.63, scale: 0.58, duration: 1.5}, ">")
-    tlTree.to('.w', {transform: 'translate(0vw, 6vw)', duration: 0.5}, ">")
     tlTree.to(settings, {angle: 0.5, scale: 0.53, duration: 1.5}, "b2+=0.01")
-    tlTree.to('.w', {transform: 'translate(31vw, 6vw)', duration: 0.5}, ">")
     tlTree.to(settings, {angle: 0.72, scale: 0.59, duration: 1.5}, "b3+=0.01")
-    tlTree.to('.w', {transform: 'translate(0vw, 0vw)', duration: 0.5}, ">")
     tlTree.to(settings, {angle: 0.63, scale: 0.57, duration: 0.5}, "b4+=0.01")
     tlTree.to(settings, {angle: 0.5, scale: 0.54, duration: 0.8}, ">")
     tlTree.to(settings, {angle: 0.5, scale: 0.54, iterations: 3, duration: 0.04}, ">")

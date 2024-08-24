@@ -11803,6 +11803,10 @@ var menuEl = document.querySelector('[data-scroll-container]');
     opacity: 0,
     transform: 'translateX(0px)'
   }).addLabel("b1", ">");
+  tl0.to('.w', {
+    transform: 'translate(0vw, 0vw)',
+    duration: 11
+  }, "b1-=9");
   tl1.to("body", {
     duration: 9,
     background: '#23231b',
@@ -11904,6 +11908,10 @@ var menuEl = document.querySelector('[data-scroll-container]');
     onComplete: aClass,
     onUpdate: rClass
   }).addLabel("b2", 0);
+  tl1.to('.w', {
+    transform: 'translate(-31vw, 6vw)',
+    duration: 11
+  }, "b2-=9");
   tl2.to("body", {
     duration: 9,
     background: '#492b28',
@@ -12013,6 +12021,10 @@ var menuEl = document.querySelector('[data-scroll-container]');
     onComplete: aClass,
     onUpdate: rClass
   }).addLabel("b3", 0);
+  tl2.to('.w', {
+    transform: 'translate(0vw, 6vw)',
+    duration: 11
+  }, "b3-=9");
   tl3.to("body", {
     duration: 9,
     background: '#1f3133',
@@ -12130,6 +12142,10 @@ var menuEl = document.querySelector('[data-scroll-container]');
     onComplete: aClass,
     onUpdate: rClass
   }).addLabel("b4", 0);
+  tl3.to('.w', {
+    transform: 'translate(31vw, 6vw)',
+    duration: 11
+  }, "b4-=9");
   tl4.to("body", {
     duration: 9,
     background: '#282533',
@@ -12250,6 +12266,10 @@ var menuEl = document.querySelector('[data-scroll-container]');
     onComplete: aClass,
     onUpdate: rClass
   }).addLabel("b5", 0);
+  tl4.to('.w', {
+    transform: 'translate(0vw, 0vw)',
+    duration: 11
+  }, "b5-=9");
   tl5.fromTo("header .line-1", {
     opacity: 0,
     transform: 'translateX(-74vw)'
@@ -12351,37 +12371,21 @@ var menuEl = document.querySelector('[data-scroll-container]');
     scale: 0.55,
     duration: 0.31
   }, "b1+=0.01");
-  tlTree.to('.w', {
-    transform: 'translate(-31vw, 6vw)',
-    duration: 0.5
-  }, ">");
   tlTree.to(settings, {
     angle: 0.63,
     scale: 0.58,
     duration: 1.5
-  }, ">");
-  tlTree.to('.w', {
-    transform: 'translate(0vw, 6vw)',
-    duration: 0.5
   }, ">");
   tlTree.to(settings, {
     angle: 0.5,
     scale: 0.53,
     duration: 1.5
   }, "b2+=0.01");
-  tlTree.to('.w', {
-    transform: 'translate(31vw, 6vw)',
-    duration: 0.5
-  }, ">");
   tlTree.to(settings, {
     angle: 0.72,
     scale: 0.59,
     duration: 1.5
   }, "b3+=0.01");
-  tlTree.to('.w', {
-    transform: 'translate(0vw, 0vw)',
-    duration: 0.5
-  }, ">");
   tlTree.to(settings, {
     angle: 0.63,
     scale: 0.57,
@@ -12606,7 +12610,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59491" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65394" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
