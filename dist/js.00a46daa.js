@@ -11808,7 +11808,15 @@ var menuEl = document.querySelector('[data-scroll-container]');
     background: '#23231b',
     color: '#fff'
   });
-  // tl1.fromTo("body", {background: '#191919', color: '#fff'}, {duration: 12, background: '#fbe9ff', color: '#000', ease: "power1.in"})
+  tl1.fromTo(".block-1 .character", {
+    filter: 'grayscale(0.5) brightness(0)',
+    opacity: 0.2
+  }, {
+    duration: 9,
+    filter: 'grayscale(0) brightness(1)',
+    opacity: 1,
+    ease: "power1.in"
+  });
   tl1.fromTo(music, {
     playbackRate: 0.99,
     volume: 0.63
@@ -11837,15 +11845,6 @@ var menuEl = document.querySelector('[data-scroll-container]');
     delay: 2.7,
     duration: 4.5,
     borderColor: '#fff',
-    ease: "power1.in"
-  });
-  tl1.fromTo(".block-1 .character", {
-    filter: 'grayscale(0.5) brightness(0)',
-    opacity: 0.2
-  }, {
-    duration: 9,
-    filter: 'grayscale(0) brightness(1)',
-    opacity: 1,
     ease: "power1.in"
   });
   tl1.fromTo(".block-1 .title", {
@@ -11910,6 +11909,15 @@ var menuEl = document.querySelector('[data-scroll-container]');
     background: '#492b28',
     color: '#fff'
   });
+  tl2.fromTo(".block-2 .character", {
+    filter: 'grayscale(0.5) brightness(0)',
+    opacity: 0.2
+  }, {
+    duration: 9,
+    filter: 'grayscale(0) brightness(1)',
+    opacity: 1,
+    ease: "power1.in"
+  });
   tl2.fromTo("#circles", {
     filter: "blur(2px)"
   }, {
@@ -11929,15 +11937,6 @@ var menuEl = document.querySelector('[data-scroll-container]');
   }, {
     duration: 4.5,
     padding: '0'
-  });
-  tl2.fromTo(".block-2 .character", {
-    filter: 'grayscale(0.5) brightness(0)',
-    opacity: 0.2
-  }, {
-    duration: 9,
-    filter: 'grayscale(0) brightness(1)',
-    opacity: 1,
-    ease: "power1.in"
   });
   tl2.fromTo(".block-2 .title", {
     transform: 'translateY(0px) scaleY(1)'
@@ -12019,6 +12018,15 @@ var menuEl = document.querySelector('[data-scroll-container]');
     background: '#1f3133',
     color: '#fff'
   });
+  tl3.fromTo(".block-3 .character", {
+    filter: 'grayscale(0.5) brightness(0)',
+    opacity: 0.2
+  }, {
+    duration: 9,
+    filter: 'grayscale(0) brightness(1)',
+    opacity: 1,
+    ease: "power1.in"
+  });
   tl3.fromTo("#circles", {
     filter: "blur(2px)"
   }, {
@@ -12038,15 +12046,6 @@ var menuEl = document.querySelector('[data-scroll-container]');
   }, {
     duration: 4.5,
     padding: '0'
-  });
-  tl3.fromTo(".block-3 .character", {
-    filter: 'grayscale(0.5) brightness(0)',
-    opacity: 0.2
-  }, {
-    duration: 9,
-    filter: 'grayscale(0) brightness(1)',
-    opacity: 1,
-    ease: "power1.in"
   });
   tl3.fromTo(".block-3 .title", {
     transform: 'translateY(0px) scaleY(1)'
@@ -12136,6 +12135,15 @@ var menuEl = document.querySelector('[data-scroll-container]');
     background: '#282533',
     color: '#fff'
   });
+  tl4.fromTo(".block-4 .character", {
+    filter: 'grayscale(0.5) brightness(0)',
+    opacity: 0.2
+  }, {
+    duration: 9,
+    filter: 'grayscale(0) brightness(1)',
+    opacity: 1,
+    ease: "power1.in"
+  });
   tl4.fromTo("#circles", {
     filter: "blur(2px)"
   }, {
@@ -12155,15 +12163,6 @@ var menuEl = document.querySelector('[data-scroll-container]');
   }, {
     duration: 4.5,
     padding: '0',
-    ease: "power1.in"
-  });
-  tl4.fromTo(".block-4 .character", {
-    filter: 'grayscale(0.5) brightness(0)',
-    opacity: 0.2
-  }, {
-    duration: 9,
-    filter: 'grayscale(0) brightness(1)',
-    opacity: 1,
     ease: "power1.in"
   });
   tl4.fromTo(".block-4 .title", {
@@ -12336,7 +12335,7 @@ var menuEl = document.querySelector('[data-scroll-container]');
     offset: 0,
     scale: 0,
     angle: 0,
-    iterations: 10
+    iterations: 9
   });
   tlTree.set(music, {
     playbackRate: 1,
@@ -12591,7 +12590,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61492" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59069" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
