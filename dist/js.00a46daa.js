@@ -12351,21 +12351,37 @@ var menuEl = document.querySelector('[data-scroll-container]');
     scale: 0.55,
     duration: 0.31
   }, "b1+=0.01");
+  tlTree.to('.w', {
+    transform: 'translate(-31vw, 6vw)',
+    duration: 0.5
+  }, ">");
   tlTree.to(settings, {
     angle: 0.63,
     scale: 0.58,
     duration: 1.5
+  }, ">");
+  tlTree.to('.w', {
+    transform: 'translate(0vw, 6vw)',
+    duration: 0.5
   }, ">");
   tlTree.to(settings, {
     angle: 0.5,
     scale: 0.53,
     duration: 1.5
   }, "b2+=0.01");
+  tlTree.to('.w', {
+    transform: 'translate(31vw, 6vw)',
+    duration: 0.5
+  }, ">");
   tlTree.to(settings, {
     angle: 0.72,
     scale: 0.59,
     duration: 1.5
   }, "b3+=0.01");
+  tlTree.to('.w', {
+    transform: 'translate(0vw, 0vw)',
+    duration: 0.5
+  }, ">");
   tlTree.to(settings, {
     angle: 0.63,
     scale: 0.57,
@@ -12590,7 +12606,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59069" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59491" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
