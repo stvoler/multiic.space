@@ -45,12 +45,12 @@ body {
   margin: 0;
   --color-bg: #191919;
   --color-text: #fff;
-  --color-link: #cbff33;
+  --color-link: #c372d8;
   --color-link-hover: #575757;
   --color-border: #6d6d6d;
   color: var(--color-text);
   background-color: var(--color-bg);
-  --cursor-stroke: #cbff33;
+  --cursor-stroke: #c372d8;
   --cursor-fill: #fff;
   --cursor-stroke-width: 1px;
   -webkit-font-smoothing: antialiased;
@@ -207,6 +207,7 @@ header {
     margin: auto;
     position: fixed;
     top: 0;
+    bottom: 0;
     left: 0;
     right: 0;
     // overflow: hidden;
@@ -245,7 +246,7 @@ header,
   font-weight: normal;
   font-size: auto-clamp(26, 81);
   line-height: 1;
-  color: var(--color-text);
+  // color: var(--color-text);
   margin: clamp(18px, 4vw, 54px) 0 auto 0;
   grid-column-start: 2;
 }
@@ -374,7 +375,7 @@ a {
     // height: 100vh;
     // height: calc(100vh - 80px);
     position: relative;
-    color: var(--color-text);
+    // color: var(--color-text);
     &:before {
       display: none;
     }
@@ -402,12 +403,16 @@ a {
   grid-column: 1/3;
   grid-row: 1/5;
   display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
+  align-items: center;
+  justify-content: center;
   img{
     width: auto-clamp(320, 540);
     max-width: 100%;
   }
+}
+
+.character{
+  width: 30vw;
 }
 
 p {
@@ -417,6 +422,9 @@ p {
 .block-0 {
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 80px 100px auto auto;
+  &.item{
+    height: 100vh;
+  }
   .title {
     grid-column: 3/-1;
     grid-row: 1;
@@ -436,6 +444,10 @@ p {
 .block-1 {
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 80px 100px auto auto;
+  // background-image: url(../img/city-2043-15.webp);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   .title {
     grid-column: 3/-1;
     grid-row: 1;
@@ -618,6 +630,7 @@ p {
     position: absolute;
     left: 0;
     right: 0;
+    // filter: brightness(0.5);
   }
 
   .tree-degr {
