@@ -836,8 +836,8 @@ html.has-scroll-dragging {
   .character {
     width: 100%;
     max-width: 100%;
-    filter: opacity(1) grayscale(0) brightness(1) !important;
-    opacity: 1 !important;
+    // filter: opacity(1) grayscale(0) brightness(1) !important;
+    // opacity: 1 !important;
   }
   canvas {
     max-height: 63vw !important;
