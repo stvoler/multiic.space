@@ -11578,6 +11578,7 @@ var menuEl = document.querySelector('[data-scroll-container]');
 
 // new ResizeObserver(() => scroll.update()).observe(document.querySelector("[data-scroll-container]"))
 
+var maxWidth = window.matchMedia("(max-width: 800px)");
 (0, _preloader.preloader)('.item').then(function () {
   var scroll = new _locomotiveScroll.default({
     el: menuEl,
@@ -12594,7 +12595,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63056" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50399" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];

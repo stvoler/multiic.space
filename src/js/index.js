@@ -14,8 +14,11 @@ const menuEl = document.querySelector('[data-scroll-container]');
 
 // new ResizeObserver(() => scroll.update()).observe(document.querySelector("[data-scroll-container]"))
 
+const maxWidth = window.matchMedia("(max-width: 800px)");
+
 preloader('.item').then(() => {
     const scroll = new LocomotiveScroll({el: menuEl, smooth: true, lerp: 0.08});
+
     const cursor = new Cursor(document.querySelector('.cursor'));
     const items = document.querySelector('section');
 
