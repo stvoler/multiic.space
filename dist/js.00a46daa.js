@@ -12067,20 +12067,12 @@ var menuEl = document.querySelector('[data-scroll-container]');
     transform: 'translateY(-20px) scaleY(4)',
     ease: "power1.in"
   });
-  tl3.fromTo(".block-3 .text-2", {
+  tl3.fromTo(".block-3 .text-1", {
     transform: 'translateY(0px) scaleY(1)'
   }, {
     duration: 11,
     opacity: 0,
     transform: 'translateY(-40px) scaleY(1.1)',
-    ease: "power1.in"
-  }, "<");
-  tl3.fromTo(".block-3 .text-3", {
-    transform: 'translateY(0px) scaleY(1)'
-  }, {
-    duration: 11,
-    opacity: 0,
-    transform: 'translateY(-20px) scaleY(1.1)',
     ease: "power1.in"
   }, "<");
   tl3.to("#circles", {
@@ -12189,18 +12181,10 @@ var menuEl = document.querySelector('[data-scroll-container]');
     transform: 'translateY(-20px) scaleY(4)',
     ease: "power1.in"
   });
-  tl4.fromTo(".block-4 .text-2", {
+  tl4.fromTo(".block-4 .text-1", {
     transform: 'translateY(0px) scaleY(1)'
   }, {
     duration: 11,
-    opacity: 0,
-    transform: 'translateY(-40px) scaleY(1.1)',
-    ease: "power1.in"
-  }, "<");
-  tl4.fromTo(".block-4 .text-3, .block-4 .text-4", {
-    transform: 'translateY(0px) scaleY(1)'
-  }, {
-    duration: 10,
     opacity: 0,
     transform: 'translateY(-40px) scaleY(1.1)',
     ease: "power1.in"
@@ -12610,7 +12594,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55027" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63056" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
