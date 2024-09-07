@@ -363,8 +363,9 @@ a {
   order: 2;
   position: relative;
   grid-template-columns: 1fr;
-  padding: auto-clamp(40, 89) auto-clamp(18, 40) auto-clamp(18, 40) auto-clamp(18, 40);
+  padding: auto-clamp(40, 89) auto-clamp(18, 40) 0 auto-clamp(18, 40);
   grid-column: 1/-1;
+  min-height: 100vh;
   &.active {
     grid-column: 1/-1;
     order: 1;
@@ -510,6 +511,9 @@ p {
     grid-column: 3;
     padding-top: 10%;
     box-sizing: content-box;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
   }
   .text-3 {
     grid-column: 2;
@@ -536,6 +540,9 @@ p {
     padding-top: 10%;
     padding-right: 0;
     box-sizing: content-box;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
   }
   .text-1 {
     grid-column: 2;
@@ -561,15 +568,15 @@ p {
     justify-content: center;
     grid-column: 1/-1;
     grid-row: 2;
-    font-size: auto-clamp(23, 50);
+    font-size: auto-clamp(20, 50);
     line-height: 1;
     div {
-      width: auto-clamp(72, 113);
-      min-width: auto-clamp(72, 113);
-      height: auto-clamp(72, 113);
+      width: auto-clamp(45, 113);
+      min-width: auto-clamp(45, 113);
+      height: auto-clamp(45, 113);
       color: var(--color-link);
       border: 1px solid var(--color-link);
-      margin: auto auto-clamp(20, 112);
+      margin: auto auto-clamp(9, 112);
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -787,8 +794,9 @@ html.has-scroll-dragging {
   }
   .block-1 {
     .img-ch {
-      grid-column: 2/-1;
+      grid-column: 1/-1;
       grid-row: 3/5;
+      padding-left: 9%;
     }
   }
   .block-2 {
@@ -798,7 +806,7 @@ html.has-scroll-dragging {
     }
     .img-ch {
       grid-column: 1/-1;
-      grid-row: 3/-1;
+      grid-row: 3/5;
     }
     .character{
       max-width: 80%;
@@ -806,8 +814,8 @@ html.has-scroll-dragging {
   }
   .block-3 {
     .img-ch {
-      grid-row: 2/5;
       grid-column: 1/-1;
+      grid-row: 2/5;
       padding-left: 27%;
     }
     .text-1{
@@ -832,15 +840,15 @@ html.has-scroll-dragging {
     opacity: 1 !important;
   }
   canvas {
-    max-height: 45vw !important;
-    display: none;
+    max-height: 63vw !important;
+    // display: none;
   }
   .item{
     .title{
       display: none;
     }
   }
-  .w{
-    display: none;
-  }
+  // .w{
+  //   display: none;
+  // }
 }

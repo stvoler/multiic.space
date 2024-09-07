@@ -17,8 +17,13 @@ const menuEl = document.querySelector('[data-scroll-container]');
 const maxWidth = window.matchMedia("(max-width: 800px)");
 
 preloader('.item').then(() => {
-  const endValue = maxWidth.matches ? "+=4%" : "+=117%";
-  const scroll = new LocomotiveScroll({ el: menuEl, smooth: true, lerp: 0.08 });
+  const endValue = maxWidth.matches ? "+=54%" : "+=117%";
+  const scroll = new LocomotiveScroll({ 
+    el: menuEl, 
+    smooth: true, 
+    lerp: 0.08,
+    smoothMobile: true
+  });
   const cursor = new Cursor(document.querySelector('.cursor'));
   const items = document.querySelector('section');
   gsap.registerPlugin(ScrollTrigger);
@@ -63,7 +68,7 @@ preloader('.item').then(() => {
   window.addEventListener('resize', resize);
   resize();
   function resize() {
-    canvasWidth = bufferCanvas.width = canvas.width = window.innerWidth;
+    canvasWidth = bufferCanvas.width = canvas.width = window.innerHeight;
     canvasheight = bufferCanvas.height = canvas.height = window.innerHeight;
     bufferContext.translate(canvasWidth * 0.501, canvasheight);
     bufferContext.strokeStyle = '#c3c3c3';
@@ -188,7 +193,7 @@ preloader('.item').then(() => {
   tl1.to(music, { playbackRate: 0.09, volume: 0.45 }, "<")
   tl1.fromTo("header .line-1", { opacity: 0, transform: 'translateX(0px)' }, { delay: 0.7, duration: 2.7, opacity: 0.72, transform: 'translateX(-50vw)', ease: "power1.in" })
   tl1.fromTo("header .line-3", { opacity: 0, transform: 'translateX(0px)' }, { delay: 0.5, duration: 1.8, opacity: 0, transform: 'translateX(0px)', ease: "power1.in" })
-  tl1.fromTo(".block-1 .img-ch", { transform: 'translateY(0px) scaleY(1)' }, { duration: 11, opacity: 0, transform: 'translateY(-90px) scale(1)', ease: "power1.in" }, "<")
+  tl1.fromTo(".block-1 .img-ch", { transform: 'translateY(90px) scaleY(1)' }, { duration: 11, opacity: 0, transform: 'translateY(-90px) scale(1)', ease: "power1.in" }, "<")
 
   let tl2 = gsap.timeline({
     scrollTrigger: {
@@ -275,7 +280,7 @@ preloader('.item').then(() => {
   tl4.fromTo("header .line-1", { opacity: 0.99, transform: 'translateX(-74vw)' }, { delay: 0.7, duration: 2.7, opacity: 0, transform: 'translateX(-74vw)', ease: "power1.in" })
   tl4.fromTo("header .line-2", { opacity: 0.99, transform: 'translateX(-50vw)' }, { delay: 0.5, duration: 1.8, opacity: 0, transform: 'translateX(-50vw)', ease: "power1.in" })
   tl4.fromTo("header .line-3", { opacity: 0.99, transform: 'translateX(-26vw)' }, { delay: 0.5, duration: 1.8, opacity: 0, transform: 'translateX(-26vw)', ease: "power1.in" })
-  tl4.fromTo(".block-4 .img-ch", { transform: 'translateY(0px) scaleY(1)' }, { duration: 11, opacity: 0, transform: 'translateY(-40px) scaleY(1)', ease: "power1.in" }, "<")
+  tl4.fromTo(".block-4 .img-ch", { transform: 'translateY(80px) scaleY(1)' }, { duration: 11, opacity: 0, transform: 'translateY(-40px) scaleY(1)', ease: "power1.in" }, "<")
   // tl4.to(".block-4 .text-1", {duration: 9, opacity: 0}, "b5-=0.1")
 
   let tl5 = gsap.timeline({
