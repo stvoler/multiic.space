@@ -11580,6 +11580,7 @@ var menuEl = document.querySelector('[data-scroll-container]');
 
 var maxWidth = window.matchMedia("(max-width: 800px)");
 (0, _preloader.preloader)('.item').then(function () {
+  var endValue = maxWidth.matches ? "+=4%" : "+=117%";
   var scroll = new _locomotiveScroll.default({
     el: menuEl,
     smooth: true,
@@ -11602,6 +11603,9 @@ var maxWidth = window.matchMedia("(max-width: 800px)");
       };
     }
   });
+  // if (maxWidth.matches) {
+  //   scroll.destroy();
+  // }
   _ScrollTrigger.ScrollTrigger.defaults({
     toggleActions: "restart pause resume pause",
     scroller: menuEl
@@ -11712,7 +11716,7 @@ var maxWidth = window.matchMedia("(max-width: 800px)");
       pin: ".items0",
       start: "0 0",
       scrub: 0.1,
-      end: "+=117%",
+      end: endValue,
       id: "#b0"
       // markers: true,
       // onEnter: () => {
@@ -11794,7 +11798,7 @@ var maxWidth = window.matchMedia("(max-width: 800px)");
       pin: ".items1",
       start: "0 0",
       scrub: 0.1,
-      end: "+=117%",
+      end: endValue,
       id: "#b1"
     },
     onComplete: aClass,
@@ -11903,7 +11907,7 @@ var maxWidth = window.matchMedia("(max-width: 800px)");
       pin: ".items2",
       start: "0 0",
       scrub: 0.1,
-      end: "+=117%",
+      end: endValue,
       id: "#b2"
     },
     onComplete: aClass,
@@ -12016,7 +12020,7 @@ var maxWidth = window.matchMedia("(max-width: 800px)");
       pin: ".items3",
       start: "0 0",
       scrub: 0.1,
-      end: "+=117%",
+      end: endValue,
       id: "#b3"
     },
     onComplete: aClass,
@@ -12129,7 +12133,7 @@ var maxWidth = window.matchMedia("(max-width: 800px)");
       pin: ".items4",
       start: "0 0",
       scrub: 0.1,
-      end: "+=117%",
+      end: endValue,
       id: "#b4"
     },
     onComplete: aClass,
@@ -12245,7 +12249,7 @@ var maxWidth = window.matchMedia("(max-width: 800px)");
       pin: ".items5",
       start: "0 0",
       scrub: 0.8,
-      end: "+=117%",
+      end: endValue,
       id: "#b5"
     },
     onComplete: aClass,
@@ -12595,7 +12599,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50399" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55831" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
