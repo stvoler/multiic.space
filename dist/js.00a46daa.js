@@ -11624,7 +11624,7 @@ var menuEl = document.querySelector('[data-scroll-container]');
   function resize() {
     canvasWidth = bufferCanvas.width = canvas.width = window.innerWidth;
     canvasheight = bufferCanvas.height = canvas.height = window.innerHeight;
-    bufferContext.translate(canvasWidth * 0.5, canvasheight);
+    bufferContext.translate(canvasWidth * 0.501, canvasheight);
     bufferContext.strokeStyle = '#c3c3c3';
   }
   function draw() {

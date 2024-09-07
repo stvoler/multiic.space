@@ -774,7 +774,7 @@ html.has-scroll-dragging {
 
 @media(max-width: 720px){
   .items{
-    height: 100vh !important;
+    // height: 100vh !important;
   }
   .item{
     height: 100%;
@@ -822,5 +822,8 @@ html.has-scroll-dragging {
   .character {
     width: 100%;
     max-width: 100%;
+  }
+  canvas {
+    max-height: 40vw !important;
   }
 }
