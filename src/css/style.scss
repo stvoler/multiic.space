@@ -792,6 +792,12 @@ html.has-scroll-dragging {
     // height: 100%;
     // max-height: 80vh;
   }
+  .block-0{
+    .img {
+      grid-row: 3;
+      align-items: flex-start;
+    }
+  }
   .block-1 {
     .img-ch {
       grid-column: 1/-1;
