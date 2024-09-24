@@ -505,3 +505,68 @@ preloader('.item').then(() => {
     vis.click();
   })
 });
+
+const translations = {
+  en: {
+    b0Text: "visual novel <br>on neural",
+    b1Text: "Multiic is a picturesque city nestled at the foot of mighty mountains that have witnessed both greatness and downfall, stretching all the way to the sea shores. here, the steel gazes of modern skyscrapers are often directed downward—to the weary streets, with their secrets and the romance of decadence ",
+    b2Text: "the main character arrives here and meets his neighbors Josephine, Dina, Laura, and Fiona ",
+    b3Text: "an internet connection is recommended for gameplay, as it is necessary for chatbot functionality. without a network connection, the game operates in offline mode ",
+    b4Text: "I hope you enjoy it. Happy gaming!",
+    // b5Text: "developer notes: <br>I am against the war unleashed by the dictator putin. I hate him. <br>I have been an emigrant for two years and cannot return to my country. <br>I wish for Ukraine's victory. <br>this game, besides the obvious entertainment content, <br>is also my attempt to reflect on the tragedy that is happening now."
+  },
+  ru: {
+    b0Text: "визуальная новелла <br>на нейросетях",
+    b1Text: "Малтик — живописный город, устроившийся у подножия могучих гор и растянувшийся до берегов моря. здесь стальные взгляды современных небоскрёбов нередко устремлены вниз — на усталые улицы, с их секретами и романтикой декаданса ",
+    b2Text: "сюда главный герой прилетает и знакомится со своими соседками Джозефиной, Диной, Лорой и Фионой ",
+    b3Text: "рекомендуемое прохождение с интернетом - необходим для работы чатботов, без соединения с сетью игра работает в автономном режиме, но с окнами ввода ",
+    b4Text: "надеюсь тебе понравится, приятной игры ",
+    // b5Text: " "
+  }
+};
+
+function detectLanguage() {
+  const savedLang = localStorage.getItem('preferredLanguage');
+  if (savedLang && translations[savedLang]) {
+    return savedLang;
+  }
+  const lang = navigator.language || navigator.userLanguage;
+  const shortLang = lang.split('-')[0];
+  return translations[shortLang] ? shortLang : 'en';
+}
+
+function applyTranslation(lang) {
+  const elements = document.querySelectorAll('[id]');
+  elements.forEach(element => {
+    const key = element.id;
+    if (translations[lang][key]) {
+      element.innerHTML = translations[lang][key];
+    }
+  });
+  localStorage.setItem('preferredLanguage', lang);
+  updateActiveButton(lang);
+}
+
+function updateActiveButton(activeLang) {
+  const buttons = document.querySelectorAll('.lang-item');
+  buttons.forEach(button => {
+    if (button.getAttribute('data-lang') === activeLang) {
+      button.classList.add('active');
+    } else {
+      button.classList.remove('active');
+    }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const userLang = detectLanguage();
+  applyTranslation(userLang);
+  
+  const buttons = document.querySelectorAll('.lang-item');
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      const selectedLang = button.getAttribute('data-lang');
+      applyTranslation(selectedLang);
+    });
+  });
+});
